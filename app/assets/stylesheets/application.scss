@@ -1,0 +1,24 @@
+
+
+//top//
+
+.top{
+  background-image: url(Top.jpg);
+  background-size: cover;
+  background-position: center;
+  width: 100%;
+  min-height: 90vh ;
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+}
+
+.top-contents{
+  font-size: 25px;
+  background-color: white;
+  width: 23em;
+  height: 6em;
+  margin-right: 10%;
+  padding: 1em 2em;
+  border-radius: 2em;
+}
