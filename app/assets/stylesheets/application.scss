@@ -1,4 +1,7 @@
-
+//universal//
+.contents{
+  padding-top: 60px
+}
 
 //top//
 
@@ -14,11 +17,25 @@
 }
 
 .top-contents{
+  background-color: rgba(0,0,0,0.3);
   font-size: 25px;
-  background-color: white;
-  width: 23em;
-  height: 6em;
-  margin-right: 10%;
+  color: white;
+  width: 27em;
+  margin-right: 5%;
   padding: 1em 2em;
   border-radius: 2em;
+  & h2{
+    font-size: 50px;
+  }
+}
+
+.navbar{
+  background-color: rgba(253,253,253,0.9);
+  height: 60px
+}
+
+// footer//
+
+.footer{
+  text-align: center;
 }
