@@ -1,5 +1,10 @@
 <div class='container'>
 <h2>show</h2>
 <%= current_user.user_name%>
+<% if @user.image? %>
+  <%= image_tag @user.image.url %>
+<% else %>
+  <%= image_tag "/assets/default.png", :size => '100x100' %>
+<% end %>
 <%= link_to 'プロフィール編集', edit_user_registration_path(current_user) %>
 </div>
