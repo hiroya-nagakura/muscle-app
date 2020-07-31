@@ -1,0 +1,36 @@
+<%= form_with model: @article do |f| %>
+
+  <div class="field">
+    <%= f.label :title %><br />
+    <%= f.text_field :title %>
+  </div>
+
+  <div class="field">
+    <%= f.label :target_site %><br />
+    <%= f.text_field :target_site %>
+  </div>
+
+  <div class="field">
+    <%= f.label :need %><br />
+    <%= f.text_field :need %>
+  </div>
+
+  <div class="field">
+    <%= f.label :recommended_target %><br />
+    <%= f.text_field :recommended_target %>
+  </div>
+
+  <div class="field">
+    <%= f.label :body %><br />
+    <%= f.text_area :body %>
+  </div>
+
+  <div class="field">
+    <%= f.label :important_point %><br />
+    <%= f.text_field :important_point %>
+  </div>
+
+  <div class="actions">
+    <%= f.submit "投稿する" %>
+  </div>
+<% end %>
