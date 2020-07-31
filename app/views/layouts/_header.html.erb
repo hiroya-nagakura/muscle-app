@@ -6,7 +6,7 @@
           <li class="nav-item"><%= link_to "メニュー一覧", '#' ,class: 'nav-link' %></li>
           <li class="nav-item"><%= link_to "メニュー検索", '#' ,class: 'nav-link' %></li>
           <% if user_signed_in? %>
-            <li class="nav-item"><%= link_to "メニュー投稿", '#' ,class: 'nav-link' %></li>
+            <li class="nav-item"><%= link_to "メニュー投稿", new_article_path ,class: 'nav-link' %></li>
             <li class="nav-item dropdown">
             <%= link_to " #{current_user.user_name}さん", '#', class: "nav-link dropdown-toggle", id: "navbarDropdown",
             role: "button", data: { toggle: "dropdown" }, aria: { haspopup: "true", expanded: "false" } %>

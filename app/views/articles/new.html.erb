@@ -1,36 +1,38 @@
+<div class=container>
 <%= form_with model: @article do |f| %>
 
-  <div class="field">
-    <%= f.label :title %><br />
-    <%= f.text_field :title %>
+  <div class="field form-group">
+    <%= f.label :title, 'メニュー' %><br />
+    <%= f.text_field :title, class: 'form-control' %>
   </div>
 
-  <div class="field">
-    <%= f.label :target_site %><br />
-    <%= f.text_field :target_site %>
+  <div class="field form-group">
+    <%= f.label :target_site, '鍛えられる部位' %><br />
+    <%= f.text_field :target_site, class: 'form-control' %>
   </div>
 
-  <div class="field">
-    <%= f.label :need %><br />
-    <%= f.text_field :need %>
+  <div class="field form-group">
+    <%= f.label :need, '必要な器具' %><br />
+    <%= f.text_field :need, class: 'form-control' %>
   </div>
 
-  <div class="field">
-    <%= f.label :recommended_target %><br />
-    <%= f.text_field :recommended_target %>
+  <div class="field form-group">
+    <%= f.label :recommended_target, 'オススメしたい人' %><br />
+    <%= f.text_field :recommended_target, class: 'form-control' %>
   </div>
 
-  <div class="field">
-    <%= f.label :body %><br />
-    <%= f.text_area :body %>
+  <div class="field form-group">
+    <%= f.label :body, 'メニューのやり方' %><br />
+    <%= f.text_area :body, class: 'form-control' %>
   </div>
 
-  <div class="field">
-    <%= f.label :important_point %><br />
-    <%= f.text_field :important_point %>
+  <div class="field form-group">
+    <%= f.label :important_point, 'コツや注意点、回数など' %><br />
+    <%= f.text_area :important_point, class: 'form-control' %>
   </div>
 
   <div class="actions">
     <%= f.submit "投稿する" %>
   </div>
 <% end %>
+</div>
