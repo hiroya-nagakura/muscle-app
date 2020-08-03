@@ -1,0 +1,17 @@
+<div>
+  <% if notice %>
+    <p class='alert alert-success'><%= notice %></p>
+  <% end %>
+  <% if alert %>
+  <div class="alert alert-danger">
+    <p><%= alert %></p>
+      <% if flash[:error_messages] %>
+          <ul>
+            <% flash[:error_messages].each do |msg| %>
+              <li><%= msg %></li>
+            <% end %>
+          </ul>
+      <% end %>
+  </div>
+  <% end %>
+</div>

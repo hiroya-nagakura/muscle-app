@@ -11,8 +11,10 @@ class ArticlesController < ApplicationController
   def create
     @article = current_user.articles.build(article_params)
     if @article.save
-      redirect_to root_path
+      redirect_to articles_path, notice: 'メニューを投稿しました'
     else
+      flash.now[:alert] = '投稿に失敗しました'
+      flash.now[:error_messages] = @article.errors.full_messages
       render :new
     end
   end

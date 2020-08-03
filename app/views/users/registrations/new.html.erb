@@ -1,10 +1,9 @@
+<%= render "users/shared/error_messages", resource: resource %>
 <div class ='container'>
   <div class ='user_form'>
     <h2>新規ユーザー登録</h2>
     
       <%= form_for(resource, as: resource_name, url: registration_path(resource_name)) do |f| %>
-        <%= render "users/shared/error_messages", resource: resource %>
-
         <div class="field form-group">
           <%= f.label :user_name, 'ユーザー名' %><br />
           <%= f.text_field :user_name, autofocus: true, class: 'form-control' %>

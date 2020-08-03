@@ -1,6 +1,6 @@
 <div class=container>
 <h2>メニュー投稿</h2>
-<%= form_with model: @article do |f| %>
+<%= form_with model: @article, local: true do |f| %>
 
   <div class="field form-group">
     <%= f.label :title, 'メニュー' %><br />
