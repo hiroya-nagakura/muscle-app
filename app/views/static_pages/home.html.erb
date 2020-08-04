@@ -1,9 +1,15 @@
 <div class ='top'>
   <div class ='top-contents'>
-    <h2>Muscle app</h2>
+    <div class='top-title'>
+      <h2>Muscle app</h2>
+    </div>
     <p>おすすめのトレーニングメニューを</p>
-        <p>投稿、シェアすることができるサイトです</p>
-        <p>お気に入りのメニューをみんなと共有しましょう！</p>
-    
+    <p>投稿、シェアすることができるサイトです</p>
+    <p>お気に入りのメニューをみんなと共有しましょう！</p>
+    <div class='top-link'>
+      <%= link_to '新規登録', new_user_registration_path, class: 'btn btn-primary btn-lg'%>
+      <%= link_to 'ログイン', user_session_path, class: 'btn btn-secondary btn-lg'%>
+    </div>
+
   </div>
 </div>
