@@ -9,7 +9,32 @@
 
   <div class="field form-group">
     <%= f.label :target_site, '鍛えられる部位' %><br />
-    <%= f.text_field :target_site, class: 'form-control' %>
+    <div class='select-target-group'>
+      <div class='select-target'>
+      <%= f.radio_button :target_site, :大胸筋 %>
+      <%= f.label :target_site, "大胸筋" %>
+      </div>
+      <div class='select-target'>
+      <%= f.radio_button :target_site, :肩 %>
+      <%= f.label :target_site, "肩" %>
+      </div>
+      <div class='select-target'>
+      <%= f.radio_button :target_site, :腕 %>
+      <%= f.label :target_site, "腕" %>
+      </div>
+      <div class='select-target'>
+      <%= f.radio_button :target_site, :腹筋 %>
+      <%= f.label :target_site, "腹筋" %>
+      </div>
+      <div class='select-target'>
+      <%= f.radio_button :target_site, :背中 %>
+      <%= f.label :target_site, "背中" %>
+      </div>
+      <div class='select-target'>
+      <%= f.radio_button :target_site, :脚 %>
+      <%= f.label :target_site, "脚" %>
+      </div>
+    </div>
   </div>
 
   <div class="field form-group">

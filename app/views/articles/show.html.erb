@@ -1,8 +1,10 @@
-<h2>Articles#show</h2>
+<div class='container'>
+  <h2>Articles#show</h2>
 
-<p>タイトル: <%= @article.title %></p>
-<p>鍛えられる部位: <%= @article.target_site %></p>
-<p>必要な器具: <%= @article.need %></p>
-<p>おすすめしたい人: <%= @article.recommended_target %></p>
-<p>メニューのやり方: <%= @article.body %></p>
-<p>コツや注意点、回数など: <%= @article.important_point %></p>
+  <p>タイトル: <%= @article.title %></p>
+  <p>鍛えられる部位: <%= @article.target_site %></p>
+  <p>必要な器具: <%= @article.need %></p>
+  <p>おすすめしたい人: <%= @article.recommended_target %></p>
+  <p>メニューのやり方: <%= simple_format(@article.body) %></p>
+  <p>コツや注意点、回数など: <%= @article.important_point %></p>
+</div>
