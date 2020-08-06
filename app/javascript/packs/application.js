@@ -19,3 +19,5 @@ require('bootstrap/dist/js/bootstrap.min.js')
 
 import 'bootstrap';
 import '../stylesheets/application';
+require("trix")
+require("@rails/actiontext")
