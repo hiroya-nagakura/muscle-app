@@ -75,3 +75,25 @@ a{
 .select-target{
   margin-right: 1em;
 }
+
+//記事一覧//
+
+.article{
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+}
+
+.article-part{
+  width: 30%;
+  margin-bottom: 1em;
+  background-color: #eef0fd;
+  text-align: center;
+  border: outset;
+}
+
+.article-part-image{
+  width: 100%;
+  height: 90%;
+  object-fit: cover;
+}
