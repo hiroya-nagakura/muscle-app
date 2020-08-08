@@ -23,6 +23,27 @@ class ArticlesController < ApplicationController
     @article = Article.find(params[:id])
   end
 
+  def edit
+    @article = Article.find(params[:id])
+  end
+
+  def update
+    @article = Article.find(params[:id])
+    if @article.update(article_params)
+      redirect_to @article, notice: '投稿が編集されました。'
+    else
+      flash.now[:alert] = '編集に失敗しました。'
+      flash.now[:error_messages] = @article.errors.full_messages
+      render :edit
+    end
+  end
+
+  def destroy
+    @article = Article.find(params[:id])
+    @article.destroy
+    redirect_to articles_path, notice: 'メニューを削除しました'
+  end
+
   private
   def article_params
     params.require(:article).permit(:title, :target_site, :need, :recommended_target, :body, :important_point)

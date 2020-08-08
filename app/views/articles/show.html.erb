@@ -7,4 +7,9 @@
   <p>おすすめしたい人: <%= @article.recommended_target %></p>
   <p>メニューのやり方: <%= simple_format(@article.body) %></p>
   <p>コツや注意点、回数など: <%= @article.important_point %></p>
-</div>
+
+  <% if current_user.id == @article.user_id %>
+    <%= link_to '編集', edit_article_path(@article) %>
+    <%= link_to '削除', article_path(@article), method: :delete %>
+  <% end %>
+  </div>
