@@ -1,3 +1,5 @@
+@import "font-awesome-sprockets";
+@import "font-awesome";
 
 //universal//
 .contents{
@@ -8,6 +10,17 @@
 a{
   text-decoration: none;
   color: black;
+}
+
+// icon // 
+.icons {
+  padding: 10px;
+  display: flex;
+  flex-wrap: wrap;
+}
+
+.icon {
+  margin: 10px;
 }
 
 //top//
