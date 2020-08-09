@@ -2,7 +2,7 @@
   <% if current_user.already_favorite?(article) %>
     <%= link_to article_favorite_path(article_id: article.id, id: article.favorites[0].id), method: :delete, remote: true do%>
       <i class='fas fa-thumbs-up'></i>
-      <%= article.favorites.count%>
+      <%= article.favorites.count%> いいね！
     <% end %>
   <% else %>
     <%= link_to article_favorites_path(article_id: article.id), method: :post, remote: true do%>
