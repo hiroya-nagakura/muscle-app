@@ -1,7 +1,12 @@
 <div class='container'>
   <h1>メニュー一覧</h1>
+  <%= render 'search' %>
 
   <div class='article'>
-      <%= render @articles %>
+  <% if @search_articles %>
+    <%= render @search_articles %>
+  <% else %>
+    <%= render @articles %>
+  <% end %>
   </div>
 </div>
