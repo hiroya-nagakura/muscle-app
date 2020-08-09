@@ -12,4 +12,8 @@
     <%= link_to '編集', edit_article_path(@article) %>
     <%= link_to '削除', article_path(@article), method: :delete %>
   <% end %>
+
+  <div id="favorites_buttons_<%= @article.id %>">
+    <%= render 'favorites/favorite', article: @article %>
+  </div>
   </div>

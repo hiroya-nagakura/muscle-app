@@ -7,7 +7,9 @@ Rails.application.routes.draw do
   }
 
   resources :users, only: [:show]
-  resources :articles
+  resources :articles do 
+    resources :favorites, only: [:create, :destroy]
+  end
 
   # For details on the DSL available within this file, see https://guides.rubyonrails.org/routing.html
 end

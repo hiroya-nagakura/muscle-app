@@ -1,0 +1,11 @@
+<% unless current_user.id == article.user_id %>
+  <% if current_user.already_favorite?(article) %>
+    <%= link_to 'いいね解除', article_favorite_path(article_id: article.id, id: article.favorites[0].id), method: :delete, remote: true %>
+    <%= article.favorites.count%>
+  <% else %>
+    <%= link_to 'いいね', article_favorites_path(article_id: article.id), method: :post, remote: true %>
+    <%= article.favorites.count%>
+  <% end %>
+<% else %>
+  <%= article.favorites.count%>
+<% end %>

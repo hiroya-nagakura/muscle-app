@@ -1,18 +1,23 @@
 <div class='article-part'>
-  <p><%= article.title %></p>
-  <% if article.target_site == '大胸筋' %>
-    <%= link_to image_tag('chest', alt: 'chest', class: 'article-part-image'), article%>
-  <% elsif article.target_site == '腕' %>
-    <%= link_to image_tag('arm', alt: 'arm', class: 'article-part-image'), article%>
-  <% elsif article.target_site == '肩' %>
-    <%= link_to image_tag('sholder', alt: 'sholder', class: 'article-part-image'), article%>
-  <% elsif article.target_site == '腹筋' %>
-    <%= link_to image_tag('abs', alt: 'abs', class: 'article-part-image'), article%>
-  <% elsif article.target_site == '背中' %>
-    <%= link_to image_tag('back', alt: 'back', class: 'article-part-image'), article%>
+  <div>
+    <p><%= article.title %></p>
+    <% if article.target_site == '大胸筋' %>
+      <%= link_to image_tag('chest', alt: 'chest', class: 'article-part-image'), article%>
+    <% elsif article.target_site == '腕' %>
+      <%= link_to image_tag('arm', alt: 'arm', class: 'article-part-image'), article%>
+    <% elsif article.target_site == '肩' %>
+      <%= link_to image_tag('sholder', alt: 'sholder', class: 'article-part-image'), article%>
+    <% elsif article.target_site == '腹筋' %>
+      <%= link_to image_tag('abs', alt: 'abs', class: 'article-part-image'), article%>
+    <% elsif article.target_site == '背中' %>
+      <%= link_to image_tag('back', alt: 'back', class: 'article-part-image'), article%>
     <% elsif article.target_site == '脚' %>
-    <%= link_to image_tag('leg', alt: 'leg', class: 'article-part-image'), article%>
-  <% end %>
-  
+      <%= link_to image_tag('leg', alt: 'leg', class: 'article-part-image'), article%>
+    <% end %>
+  </div>
 
+  <div id="favorites_buttons_<%= article.id %>">
+    <%= render 'favorites/favorite', article: article %>
+  </div>
+  
 </div>
