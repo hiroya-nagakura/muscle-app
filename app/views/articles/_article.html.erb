@@ -19,5 +19,10 @@
   <div id="favorites_buttons_<%= article.id %>">
     <%= render 'favorites/favorite', article: article %>
   </div>
+
+  <div>
+    <%= article.created_at.to_s(:datetime_jp)%>
+    by <%= link_to article.user.user_name,article.user%>
+  </div>
   
 </div>
