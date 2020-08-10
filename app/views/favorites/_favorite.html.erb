@@ -7,9 +7,9 @@
   <% else %>
     <%= link_to article_favorites_path(article_id: article.id), method: :post, remote: true do%>
       <i class='far fa-thumbs-up'></i>
-      <%= article.favorites.count%>
+      <%= article.favorites.count%> いいね！
     <% end %>
   <% end %>
 <% else %>
-  <%= article.favorites.count%>
+  <%= article.favorites.count%> いいね！
 <% end %>
