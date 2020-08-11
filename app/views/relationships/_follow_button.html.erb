@@ -5,7 +5,7 @@
       <%= f.submit 'Unfollow', class: 'btn btn-danger btn-block' %>
     <% end %>
   <% else %>
-    <%= form_with url: current_user.relationships.build do |f| %>
+    <%= form_with url:current_user.relationships.build do |f| %>
       <%= hidden_field_tag :follow_id, user.id %>
       <%= f.submit 'Follow', class: 'btn btn-primary btn-block' %>
     <% end %>

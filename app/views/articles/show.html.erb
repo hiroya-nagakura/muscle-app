@@ -16,4 +16,12 @@
   <div id="favorites_buttons_<%= @article.id %>">
     <%= render 'favorites/favorite', article: @article %>
   </div>
+
+  <div class = 'comments'>
+  <h3>コメント一覧</h3>
+    <%= render @comments%>
   </div>
+  <div>
+  <%= render 'comments/comment_form'%>
+  </div>
+</div>

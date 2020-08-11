@@ -1,0 +1,5 @@
+<%= form_with model: [@article, @comment] do |f|%>
+      <%= f.hidden_field :article_id, value: @article.id %>
+      <%= f.text_field :content %>
+      <%= f.submit 'コメントする'%>
+    <% end %>

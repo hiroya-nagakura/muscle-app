@@ -1,0 +1,7 @@
+<div>
+<%= comment.user.user_name%>
+<%= comment.content%>
+<% if comment.user == current_user%>
+  <%= link_to 'コメントを削除', article_comment_path(article_id: @article.id, id: comment.id), method: :delete %>
+<% end %>
+</div>
