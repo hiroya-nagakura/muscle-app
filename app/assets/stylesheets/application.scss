@@ -119,12 +119,15 @@ a{
 
 .prof-follows{
   display: flex;
+  flex-wrap: wrap;
 }
 
 .follows-user{
   width: 30%;
+  display: flex;
   justify-content: center;
   align-items: center;
+  margin: 1.5%;
 }
 
 .follows-avatar-img{

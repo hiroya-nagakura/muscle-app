@@ -1,10 +1,10 @@
 <% users.each do |user|%>
-  <div class='row follows-user'>
+  <div class='follows-user'>
     <div class='prof-img'>
       <% if user.image? %>
-        <%= image_tag user.image.url, class: 'follows-avatar-img'  %>
+        <%= link_to image_tag(user.image.url, class: 'follows-avatar-img'), user %>
       <% else %>
-        <%= image_tag "/assets/default.png", class: 'follows-avatar-img' %>
+        <%= link_to image_tag("/assets/default.png", class: 'follows-avatar-img'), user %>
       <% end %>
     </div>
     <div class='prof-content'>
