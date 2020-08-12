@@ -1,11 +1,84 @@
 <div class='container'>
-<h2>show</h2>
-<%= current_user.user_name%>
-<%= render "relationships/follow_button", user: @user %>
-<% if @user.image? %>
-  <%= image_tag @user.image.url %>
-<% else %>
-  <%= image_tag "/assets/default.png", :size => '100x100' %>
-<% end %>
-<%= link_to 'プロフィール編集', edit_user_registration_path(current_user) %>
+  <div class='row prof-wrapper'>
+    <div class='prof-img'>
+      <% if @user.image? %>
+        <%= image_tag @user.image.url, class: 'avatar-img' %>
+      <% else %>
+        <%= image_tag "/assets/default.png", class: 'avatar-img' %>
+      <% end %>
+    </div>
+    <div class='prof-content'>
+      <div class='prof-name'>
+        <%= @user.user_name%>
+      </div>
+      <div class='prof-menu'>
+        <%= render "relationships/follow_button", user: @user %>
+        <% if @user.user_name == current_user.user_name%>
+          <%= link_to 'プロフィール編集',edit_user_registration_path(@user), class: 'btn btn-sm btn-outline-secondary'%>
+        <% end %>
+      </div>
+    </div>
+  </div>
+
+  <ul class='nav nav-tabs justify-content-center prof-nav'>
+    <li class ='nav-item'>
+      <a href='#prof-articles' class='nav-link active' data-toggle='tab' role="tab">投稿 <%= @articles.count%></a>
+    </li>
+    <li class ='nav-item'>
+      <a href='#prof-followings' class='nav-link' data-toggle='tab' >フォロー <%= @followings.count%></a>
+    </li>
+    <li class ='nav-item'>
+      <a href='#prof-followers' class='nav-link' data-toggle='tab' >フォロワー <%= @followers.count%></a>
+    </li>
+    <li class ='nav-item'>
+      <a href='#prof-favorites' class='nav-link' data-toggle='tab' >いいね！ <%= @favorite_articles.count%></a>
+    </li>
+  </ul>
+
+  <div class='tab-content'>
+    <div id='prof-articles' class='tab-pane active'>
+      <% if @articles.any? %>
+        <div class='article'>
+          <%= render @articles%>
+        </div>
+      <% else %>
+        <div class='no-content'>
+          投稿したメニューがありません
+        </div>
+      <% end %>
+    </div>
+    <div id='prof-followings' class='tab-pane'>
+      <% if @followings.any? %>
+        <div class='prof-follows'>
+          <%= render 'follows', users: @followings%>
+        </div>
+      <% else %>
+        <div class='no-content'>
+          誰もフォローしていません
+        </div>
+      <% end %>
+    </div>
+    <div id='prof-followers' class='tab-pane'>
+      <% if @followers.any? %>
+        <div class='prof-follows'>
+          <%= render 'follows', users: @followers%>
+        </div>
+      <% else %>
+        <div class='no-content'>
+          フォローされていません
+        </div>
+      <% end %>
+    </div>
+    <div id='prof-favorites' class='tab-pane'>
+      <% if @favorite_articles.any? %>
+        <div class='article'>
+          <%= render 'favorites', favorite_articles: @favorite_articles%>
+        </div>
+      <% else %>
+        <div class='no-content'>
+          いいね！したメニューがありません
+        </div>
+      <% end %>
+    </div>
+  </div>
 </div>

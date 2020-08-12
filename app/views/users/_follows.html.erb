@@ -1,0 +1,19 @@
+<% users.each do |user|%>
+  <div class='row follows-user'>
+    <div class='prof-img'>
+      <% if user.image? %>
+        <%= image_tag user.image.url, class: 'follows-avatar-img'  %>
+      <% else %>
+        <%= image_tag "/assets/default.png", class: 'follows-avatar-img' %>
+      <% end %>
+    </div>
+    <div class='prof-content'>
+      <div class='prof-name'>
+        <%= user.user_name%>
+      </div>
+      <div class='prof-menu'>
+        <%= render "relationships/follow_button", user: user %>
+      </div>
+    </div>
+  </div>
+<% end %>

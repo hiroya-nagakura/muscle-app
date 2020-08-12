@@ -6,6 +6,7 @@ class User < ApplicationRecord
   mount_uploader :image, ImageUploader
   has_many :articles, dependent: :destroy
   has_many :favorites, dependent: :destroy
+  has_many :favorite_articles, through: :favorites, source: :article
   has_many :relationships
   has_many :followings, through: :relationships, source: :follow
   has_many :reverse_of_relationships, class_name: 'Relationship', foreign_key: 'follow_id'

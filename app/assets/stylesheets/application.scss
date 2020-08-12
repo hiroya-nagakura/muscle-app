@@ -68,7 +68,7 @@ a{
 .footer{
   text-align: center;
 }
-
+// ユーザー関連//
 // フォーム//
 
 .user_form{
@@ -84,6 +84,62 @@ a{
 .select-target{
   margin-right: 1em;
 }
+
+//プロフィール//
+.prof-wrapper{
+  justify-content: center;
+}
+
+.avatar-img{
+  border-radius: 50%;
+  width: 200px;
+  height: 200px;
+  object-fit: cover;
+}
+
+.prof-content{
+  display: flex;
+  flex-direction: column;
+  margin: 2em;
+}
+
+.prof-name{
+  margin-bottom: 5px;
+  font-size: large;
+  font-weight: bold;
+}
+
+.prof-nav{
+  margin-top: 1em;
+}
+
+.tab-content{
+  margin-top: 1em;
+}
+
+.prof-follows{
+  display: flex;
+}
+
+.follows-user{
+  width: 30%;
+  justify-content: center;
+  align-items: center;
+}
+
+.follows-avatar-img{
+  border-radius: 50%;
+  width: 100px;
+  height: 100px;
+  object-fit: cover;
+}
+
+.no-content{
+  text-align: center;
+  margin-top: 2em;
+}
+
+
 
 //記事一覧//
 
