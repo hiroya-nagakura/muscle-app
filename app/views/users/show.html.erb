@@ -13,8 +13,10 @@
       </div>
       <div class='prof-menu'>
         <%= render "relationships/follow_button", user: @user %>
-        <% if @user.user_name == current_user.user_name%>
-          <%= link_to 'プロフィール編集',edit_user_registration_path(@user), class: 'btn btn-sm btn-outline-secondary'%>
+        <% if user_signed_in? %>
+          <% if current_user.user_name == @user.user_name%>
+            <%= link_to 'プロフィール編集',edit_user_registration_path(@user), class: 'btn btn-sm btn-outline-secondary'%>
+          <% end %>
         <% end %>
       </div>
     </div>
