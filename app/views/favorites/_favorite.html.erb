@@ -1,19 +1,14 @@
 <% if user_signed_in?%>
-  <% unless current_user.id == article.user_id %>
-    <% if current_user.already_favorite?(article) %>
-      <%= link_to article_favorite_path(article_id: article.id, id: article.favorites[0].id), method: :delete, remote: true do%>
-        <i class='fas fa-thumbs-up'></i>
-        <%= article.favorites.count%> いいね！
-      <% end %>
-    <% else %>
-      <%= link_to article_favorites_path(article_id: article.id), method: :post, remote: true do%>
-        <i class='far fa-thumbs-up'></i>
-        <%= article.favorites.count%> いいね！
-      <% end %>
+  <% if current_user.already_favorite?(article) %>
+    <%= link_to article_favorite_path(article_id: article.id, id: article.favorites[0].id), method: :delete, remote: true do%>
+      <i class='fas fa-thumbs-up'></i>
+      <%= article.favorites.count%> いいね！
     <% end %>
   <% else %>
-    <i class='far fa-thumbs-up'></i>
-    <%= article.favorites.count%> いいね！
+    <%= link_to article_favorites_path(article_id: article.id), method: :post, remote: true do%>
+      <i class='far fa-thumbs-up'></i>
+      <%= article.favorites.count%> いいね！
+    <% end %>
   <% end %>
 <% else %>
   <i class='far fa-thumbs-up'></i>
