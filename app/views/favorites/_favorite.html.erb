@@ -12,6 +12,10 @@
       <% end %>
     <% end %>
   <% else %>
+    <i class='far fa-thumbs-up'></i>
     <%= article.favorites.count%> いいね！
   <% end %>
+<% else %>
+  <i class='far fa-thumbs-up'></i>
+  <%= article.favorites.count%> いいね！
 <% end %>

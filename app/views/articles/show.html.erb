@@ -1,27 +1,31 @@
 <div class='container'>
-  <h2>Articles#show</h2>
+  <div class='article-wrapper'>
+    <div class= article_title>
+      <h2><%= @article.title %></h2>
+    </div>
+    <p>鍛えられる部位: <%= @article.target_site %></p>
+    <p>必要な器具: <%= @article.need %></p>
+    <p>おすすめしたい人: <%= @article.recommended_target %></p>
+    <p>メニューのやり方: <%= @article.content %></p>
+    <p>コツや注意点、回数など: <%= @article.important_point %></p>
 
-  <p>タイトル: <%= @article.title %></p>
-  <p>鍛えられる部位: <%= @article.target_site %></p>
-  <p>必要な器具: <%= @article.need %></p>
-  <p>おすすめしたい人: <%= @article.recommended_target %></p>
-  <p>メニューのやり方: <%= simple_format(@article.body) %></p>
-  <p>コツや注意点、回数など: <%= @article.important_point %></p>
+    <% if user_signed_in?%>
+      <% if current_user.id == @article.user_id %>
+        <%= link_to '編集', edit_article_path(@article) %>
+        <%= link_to '削除', article_path(@article), method: :delete %>
+      <% end %>
+    <% end %>
 
-  <% if current_user.id == @article.user_id %>
-    <%= link_to '編集', edit_article_path(@article) %>
-    <%= link_to '削除', article_path(@article), method: :delete %>
-  <% end %>
+    <div id="favorites_buttons_<%= @article.id %>">
+      <%= render 'favorites/favorite', article: @article %>
+    </div>
 
-  <div id="favorites_buttons_<%= @article.id %>">
-    <%= render 'favorites/favorite', article: @article %>
-  </div>
-
-  <div class = 'comments'>
-  <h3>コメント一覧</h3>
-    <%= render @comments%>
-  </div>
-  <div>
-  <%= render 'comments/comment_form'%>
+    <div class = 'comments'>
+    <h3>コメント一覧</h3>
+      <%= render @comments%>
+    </div>
+    <div>
+    <%= render 'comments/comment_form'%>
+    </div>
   </div>
 </div>
