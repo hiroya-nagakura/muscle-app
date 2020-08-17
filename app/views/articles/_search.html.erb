@@ -1,22 +1,11 @@
-<div class='searchbox'>
+<div class='search-box'>
   <%= search_form_for @search do |f| %>
-    <%= f.label :title, 'メニュー' %>
-    <%= f.search_field :title_cont %><br/>
 
-    <%= f.label :target_site, '鍛えられる部位' %>
-      <%= f.radio_button :target_site_eq, '', {:checked => true} %>指定なし
-      <%= f.radio_button :target_site_eq, :大胸筋 %>大胸筋
-      <%= f.radio_button :target_site_eq, :肩 %>肩
-      <%= f.radio_button :target_site_eq, :腕 %>腕
-      <%= f.radio_button :target_site_eq, :腹筋 %>腹筋
-      <%= f.radio_button :target_site_eq, :背中 %>背中
-      <%= f.radio_button :target_site_eq, :脚 %>脚<br/>
-
-      <%= f.label :need, '必要な器具' %>
-    <%= f.text_field :need %><br/>
-
-      <%= f.label :recommended_target, 'オススメしたい人' %>
-      <%= f.text_field :recommended_target_cont %><br/>
+      <%= f.label :target_site, '鍛えられる部位' %>
+      <%= f.select :target_site_eq, options_for_select({ 指定なし: '', 大胸筋: '大胸筋', 肩: '肩', 腕: '腕', 腹筋: '腹筋', 背中: '背中', 脚: '脚'}, '')%>
+      
+    <%= f.label :検索 %>
+    <%= f.search_field :title_or_need_or_recommended_target_cont, placeholder: 'キーワードを入力' %>
 
     <%= f.submit '検索'%>
   <% end %>
