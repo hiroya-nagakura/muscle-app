@@ -1,10 +1,10 @@
 class ArticlesController < ApplicationController
   
   def index
-    @articles = Article.all
+    @articles = Article.page(params[:page]).per(10)
     @search = Article.ransack(params[:q])
-    @search_articles = @search.result(distinct: true)
-    @search_ary = @articles.select(:target_site).distinct
+    @search_articles = @search.result(distinct: true).page(params[:page]).per(10)
+    @search_ary = Article.all.select(:target_site).distinct
   end
 
   def new

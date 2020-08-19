@@ -27,7 +27,7 @@
         </div>
         <div class='card-comment'>
           <i class="far fa-comments"></i>
-          <%= article.favorites.count %>件
+          <%= article.comments.count %>件
       </div>
       </div>
 
@@ -51,5 +51,8 @@
     <% elsif article.target_site == '脚' %>
       <%= link_to image_tag('leg', alt: 'leg', class: 'card-image'), article%>
     <% end %>
+    <div class='text-center'>
+      <p>鍛えられる部位</p>
+    </div>
   </div>
 </div>
