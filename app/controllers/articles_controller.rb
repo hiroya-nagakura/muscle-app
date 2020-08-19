@@ -4,6 +4,9 @@ class ArticlesController < ApplicationController
     @articles = Article.page(params[:page]).per(10)
     @search = Article.ransack(params[:q])
     @search_articles = @search.result(distinct: true).page(params[:page]).per(10)
+    if @search_header
+      @search_articles = @search_header.result(distinct: true).page(params[:page]).per(10)
+    end
     @search_ary = Article.all.select(:target_site).distinct
   end
 
