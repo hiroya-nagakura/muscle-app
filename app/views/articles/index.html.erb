@@ -6,7 +6,13 @@
 
   <div class='article'>
   <% if @search_articles %>
-    <%= render @search_articles %>
+    <% if @search_articles.count == 0%>
+      <div class = 'no-hit'>
+        <h2>一致する項目は見つかりません</h2>
+      </div>
+    <% else %>
+      <%= render @search_articles %>
+    <% end %>
   <% else %>
     <%= render @articles %>
   <% end %>

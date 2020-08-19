@@ -4,6 +4,7 @@ class ArticlesController < ApplicationController
     @articles = Article.all
     @search = Article.ransack(params[:q])
     @search_articles = @search.result(distinct: true)
+    @search_ary = @articles.select(:target_site).distinct
   end
 
   def new
