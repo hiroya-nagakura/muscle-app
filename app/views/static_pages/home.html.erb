@@ -1,15 +1,23 @@
-<div class ='top'>
-  <div class ='top-contents'>
-    <div class='top-title'>
-      <h2>FitMenu</h2>
+<% unless user_signed_in? %>
+  <div class ='top'>
+    <div class ='top-contents'>
+      <div class='top-title'>
+        <h2>FitMenu</h2>
+      </div>
+      <p>おすすめのトレーニングメニューを</p>
+      <p>投稿、シェアすることができるサイトです</p>
+      <p>お気に入りのメニューをみんなと共有しましょう！</p>
+      <div class='top-link'>
+        <%= link_to '新規登録', new_user_registration_path, class: 'btn btn-primary btn-lg'%>
+        <%= link_to 'ログイン', user_session_path, class: 'btn btn-secondary btn-lg'%>
+      </div>
     </div>
-    <p>おすすめのトレーニングメニューを</p>
-    <p>投稿、シェアすることができるサイトです</p>
-    <p>お気に入りのメニューをみんなと共有しましょう！</p>
-    <div class='top-link'>
-      <%= link_to '新規登録', new_user_registration_path, class: 'btn btn-primary btn-lg'%>
-      <%= link_to 'ログイン', user_session_path, class: 'btn btn-secondary btn-lg'%>
-    </div>
+  </div>
+<% end %>
 
+<div class='container'>
+  <h2>人気のメニュー</h2>
+  <div class='article'>
+    <%= render @articles %>
   </div>
 </div>
