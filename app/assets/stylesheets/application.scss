@@ -55,6 +55,22 @@ a{
   }
 }
 
+.top-article{
+  display: flex;
+  overflow-x: auto;
+}
+
+.top-article-card{
+  min-width: 40%;
+  margin: 1em;
+  padding: 1em;
+  background-color: #fdfdff;
+  border: outset;
+  box-shadow: 4px 4px 2px;
+  display: flex;
+  flex-wrap: wrap;
+}
+
 //header//
 
 .navbar{
@@ -63,6 +79,12 @@ a{
 
 .header-logo{
   width: 150px;
+}
+
+.header-search{
+  border: 1px solid #999;
+  border-radius: 3px;
+  min-width: 290px;
 }
 
 // footer//
@@ -162,7 +184,15 @@ a{
   border: outset;
   box-shadow: 4px 4px 2px;
   display: flex;
+  flex-wrap: wrap;
 
+}
+
+.card-title{
+  text-align: center;
+  margin: 5px;
+  border-bottom: double 5px;
+  width: 100%;
 }
 
 .card-wrapper{
@@ -170,12 +200,6 @@ a{
   display: flex;
   flex-direction: column;
   justify-content: space-between;
-}
-
-.card-title{
-  text-align: center;
-  margin: 5px;
-  border-bottom: double 5px;
 }
 
 .card-content{

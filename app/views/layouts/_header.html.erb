@@ -4,8 +4,8 @@
 
     <div class='navbar-nav'>
       <%= search_form_for @search_header, url: articles_path do |f| %>
-        <%= f.search_field :title_or_need_or_recommended_target_cont, placeholder: 'メニューなどを入力' %>
-        <button id="search-btn" type="submit"><i class="fas fa-search"></i></button>
+        <%= f.search_field :title_or_need_or_recommended_target_cont, placeholder: 'メニューなどを入力', class: 'header-search' %>
+        <button type="submit"><i class="fas fa-search"></i></button>
       <% end %>
     </div>
       <div>

@@ -17,7 +17,12 @@
 
 <div class='container'>
   <h2>人気のメニュー</h2>
-  <div class='article'>
-    <%= render @articles %>
+  <div class='top-article'>
+    <%= render partial: 'static_pages/article', collection: @all_ranks %>
+  </div>
+
+  <h2>新着のメニュー</h2>
+  <div class='top-article'>
+    <%= render partial: 'static_pages/article', collection: @new_menu %>
   </div>
 </div>

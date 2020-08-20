@@ -1,12 +1,11 @@
-<div class='article-card'>
+<div class='top-article-card'>
   <div class='card-title'>
     <h3><%= article.title %></h3>
   </div>
   <div class='card-wrapper'>
     <div class='card-top'>
-
       <div class='card-content'>
-        　<%= strip_tags(article.content.to_s).truncate(70) %>
+        　<%= strip_tags(article.content.to_s).truncate(50) %>
         <%= link_to 'もっと読む',article%>
       </div>
     </div>
