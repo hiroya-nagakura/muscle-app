@@ -13,6 +13,8 @@ class User < ApplicationRecord
   has_many :followers, through: :reverse_of_relationships, source: :user
   has_many :comments, dependent: :destroy
 
+  validates :user_name, presence: true
+
   # いいねしているかどうかの確認
   def already_favorite?(article)
     self.favorites.exists?(article_id: article.id)
