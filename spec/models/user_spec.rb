@@ -102,4 +102,23 @@ RSpec.describe User, type: :model do
       expect { user.destroy }.to change(user.comments, :count).by(-1)
     end
   end
+
+  describe 'メソッドの検証' do
+    it 'いいねしていたらtrueを返すこと' 
+
+    it 'フォローすることができること' do
+      expect { user.follow(user1) }.to change(user1.followers, :count).by(1)
+    end
+
+    it 'フォローを解除することができること' do
+      user.follow(user1)
+      expect { user.unfollow(user1) }.to change(user1.followers, :count).by(-1)
+    end
+
+    it 'フォローしてたらtrue,フォローしてなかったらfalseを返すこと' do
+      user.follow(user1)
+      expect(user.following?(user1)).to be_truthy
+      expect(user.following?(user2)).to be_falsy
+    end
+  end
 end

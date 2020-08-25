@@ -5,6 +5,7 @@ class Article < ApplicationRecord
 
   has_rich_text :content
 
-  validates :title, :target_site, :content, presence: true
+  validates :title, presence: true, length: { maximum: 30 }
+  validates :target_site, :content, presence: true
   
 end
