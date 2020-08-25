@@ -46,7 +46,7 @@ RSpec.describe Article, type: :model do
   end
 
   describe '文字数の検証' do
-    it 'タイトルが30文字以内だと有効であることt' do
+    it 'タイトルが30文字以内だと有効であること' do
       article.title = 'あ'*30
       expect(article).to be_valid
     end
