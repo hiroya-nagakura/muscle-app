@@ -57,4 +57,16 @@ RSpec.describe Article, type: :model do
       expect(article.errors[:title]).to include("は30文字以内で入力してください")
     end
   end
+
+  describe '削除の検証' do
+    it '記事を削除したら紐づくいいねも削除されること' do
+      create(:favorite, article: article)
+      expect { article.destroy }.to change(article.favorites, :count).by(-1)
+    end
+
+    it '記事を削除したら紐づくコメントも削除されること' do
+      create(:comment, article: article)
+      expect { article.destroy }.to change(article.comments, :count).by(-1)
+    end
+  end
 end
