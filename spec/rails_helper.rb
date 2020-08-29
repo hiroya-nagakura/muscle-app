@@ -57,4 +57,5 @@ RSpec.configure do |config|
   
   #追加
   config.include FactoryBot::Syntax::Methods
+  config.include ActionTextHelper, type: :feature
 end
