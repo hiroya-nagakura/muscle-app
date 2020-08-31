@@ -104,7 +104,14 @@ RSpec.describe User, type: :model do
   end
 
   describe 'メソッドの検証' do
-    it 'いいねしていたらtrueを返すこと' 
+    it 'いいねしていたらtrueを返すこと' do
+      article1 = create(:article)
+      article2 = create(:article)
+      user = create(:user)
+      create(:favorite, user_id: user.id, article_id: article1.id)
+      expect(user.already_favorite?(article1)).to be_truthy
+      expect(user.already_favorite?(article2)).to be_falsy
+    end
 
     it 'フォローすることができること' do
       expect { user.follow(user1) }.to change(user1.followers, :count).by(1)
