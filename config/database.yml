@@ -26,6 +26,6 @@ test:
 production:
   <<: *default
   host: fitmenu-mysql.cahix3ckj0ot.ap-northeast-1.rds.amazonaws.com
-  database: FitMenu_production
+  database: Fitmenu_production
   username: admin
   password: 79181219
