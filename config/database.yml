@@ -25,6 +25,6 @@ test:
 
 production:
   <<: *default
-  database: Muscle_app_production
-  username: FitMenu
-  password: <%= ENV['Muscle_app_DATABASE_PASSWORD'] %>
+  database: FitMenu_production
+  username: admin
+  password: 
