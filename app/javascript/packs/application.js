@@ -20,6 +20,5 @@ require('jquery')
 // const imagePath = (name) => images(name, true)
 
 
-import 'bootstrap';
 import '../stylesheets/application';
-import '../stylesheets/actiontext'
+import '../stylesheets/actiontext';
