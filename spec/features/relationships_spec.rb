@@ -28,6 +28,7 @@ RSpec.feature "Relationships", type: :feature do
     #フォローする
     expect do
       click_button 'フォローする'
+      sleep 0.5
     end.to change(Relationship.all, :count).by(1)
 
     #フォローが反映されたか検証
@@ -36,6 +37,7 @@ RSpec.feature "Relationships", type: :feature do
     #フォロー解除する
     expect do
       click_button 'フォロー中'
+      sleep 0.5
     end.to change(Relationship.all, :count).by(-1)
 
     #フォローが解除できたか検証

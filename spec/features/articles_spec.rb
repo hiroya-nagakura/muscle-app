@@ -33,6 +33,7 @@ RSpec.feature "Articles", type: :feature do
       fill_in_rich_text_area 'article_content', with: 'テスト'
       fill_in 'コツや注意点、回数など', with: 'テスト'
       click_button '投稿する'
+      sleep 0.5
     end.to change(Article.all, :count).by(1)
 
     #投稿が反映されたことを検証する
@@ -63,6 +64,7 @@ RSpec.feature "Articles", type: :feature do
       click_button '投稿する'
 
     #編集が反映されたか検証
+    sleep 0.5
     article.reload
     aggregate_failures do
       expect(article.title).to eq 'スクワット'

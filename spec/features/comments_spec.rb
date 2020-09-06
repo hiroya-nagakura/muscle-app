@@ -32,6 +32,7 @@ RSpec.feature "Comments", type: :feature do
     expect do
       fill_in 'comment_content', with:'コメント投稿のテスト'
       click_button 'コメントする'
+      sleep 0.5
     end.to change(Comment.all, :count).by(1)
 
     #コメントが反映されたか検証
