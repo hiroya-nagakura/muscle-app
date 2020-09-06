@@ -58,4 +58,11 @@ RSpec.configure do |config|
   #追加
   config.include FactoryBot::Syntax::Methods
   config.include ActionTextHelper, type: :feature
+  config.before(:each, type: :system) do
+    driven_by :selenium_chrome
+  end
+
+  config.before(:each, type: :system, js: true) do
+    driven_by :selenium_chrome
+  end
 end
