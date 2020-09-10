@@ -22,6 +22,8 @@ development:
 test:
   <<: *default
   database: Muscle_app_test
+  host: localhost
+  password: 
 
 production:
   <<: *default
