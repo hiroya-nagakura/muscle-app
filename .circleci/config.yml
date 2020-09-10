@@ -33,21 +33,21 @@ jobs:
         - ./vendor/bundle
         key: v1-dependencies-{{ checksum "Gemfile.lock" }}
 
-      - restore_cache:
-          keys:
-            - rails-demo-yarn-{{ checksum "yarn.lock" }}
-            - rails-demo-yarn-
+    - restore_cache:
+        keys:
+          - rails-demo-yarn-{{ checksum "yarn.lock" }}
+          - rails-demo-yarn-
 
-      - run:
-          name: Yarn のインストール
-          command: yarn install --cache-folder ~/.cache/yarn
+    - run:
+        name: Yarn のインストール
+        command: yarn install --cache-folder ~/.cache/yarn
 
-      # Yarn または Webpacker のキャッシュを保存します
+    # Yarn または Webpacker のキャッシュを保存します
 
-      - save_cache:
-          key: rails-demo-yarn-{{ checksum "yarn.lock" }}
-          paths:
-            - ~/.cache/yarn
+    - save_cache:
+        key: rails-demo-yarn-{{ checksum "yarn.lock" }}
+        paths:
+          - ~/.cache/yarn
 
 
     # Database setup
