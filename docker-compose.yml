@@ -1,0 +1,45 @@
+# docker-composeのバージョン
+version: '3'
+
+# コンテナの情報
+services:
+  db:
+    image: mysql:5.7
+    environment:
+      MYSQL_DATABASE: root
+      MYSQL_PASSWORD: 'yes'
+    ports:
+      - '3306:3306'
+    volumes:
+      # 初期データを投入するSQLが格納されているdir
+      - ./db/mysql_init:/docker-entrypoint-initdb.d
+      # 永続化するときにマウントするdir
+      - ./db/mysql_data:/var/lib/mysql
+
+  # コンテナ名(webが一般的？)
+  web:
+    # Dockerfileを元にbuildする
+    build:
+      # Dockerfileの配置ディレクトリ
+      context: .
+      # imageのビルドに用いるDockerfileの指定
+      dockerfile: Dockerfile
+
+    # 環境変数の設定
+    # RAILS_ENVにdevelopmentを指定で、実行モードを開発モードに
+    environment:
+      RAILS_ENV: development
+
+    # コンテナ起動時に実行するコマンド
+    # pid情報の削除とRailsサーバー起動
+    command: /bin/sh -c "rm -f tmp/pids/server.pid && bundle exec rails s -p 3000 -b '0.0.0.0'"
+
+    # 既存のRailsプロジェクトをマウントする
+    volumes:
+      - .:/muscle-app
+    # コンテナの3000ポートとlocalhostの3000ポートをマッピング
+    ports:
+      - "3000:3000"
+    depends_on:
+      - db 
+    # DB側のコンテナが出来上がってからwebを実行する
