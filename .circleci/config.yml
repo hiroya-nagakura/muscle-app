@@ -33,20 +33,20 @@ jobs:
         - ./vendor/bundle
         key: v1-dependencies-{{ checksum "Gemfile.lock" }}
 
-# Restore yarn cache
-      - type: cache-restore
-        name: Restore bundle cache
-        key: rails-demo-bundle-{{ checksum "yarn.lock" }}
+    # Restore yarn cache
+    - type: cache-restore
+      name: Restore bundle cache
+      key: rails-demo-bundle-{{ checksum "yarn.lock" }}
 
-      - run:
-          name: yarn Install
-          command: yarn install
+    - run:
+        name: yarn Install
+        command: yarn install
 
-      # Store yarn cache
-      - type: cache-save
-        name: Save bundle cache
-        key: rails-demo-bundle-{{ checksum 'yarn.lock' }}
-        paths: .yarn-cache
+    # Store yarn cache
+    - type: cache-save
+      name: Save bundle cache
+      key: rails-demo-bundle-{{ checksum 'yarn.lock' }}
+      paths: .yarn-cache
 
 
     # Database setup
