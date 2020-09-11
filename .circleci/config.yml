@@ -40,7 +40,7 @@ jobs:
 
     - run:
         name: yarn Install
-        command: yarn install
+        command: yarn install --ignore-engines
 
     # Store yarn cache
     - type: cache-save
