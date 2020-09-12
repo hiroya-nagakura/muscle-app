@@ -85,6 +85,6 @@ jobs:
         fingerprints:
           - "5b:90:0b:31:d0:4d:c3:ce:d7:9d:b9:02:0a:db:50:3f"
 
-    #- deploy:
-    #    name: Capistrano deploy
-    #    command: bundle exec cap production deploy
+    - deploy:
+        name: Capistrano deploy
+        command: bundle exec cap production deploy
