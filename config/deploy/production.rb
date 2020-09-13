@@ -62,7 +62,7 @@
 
 server "54.199.24.167", user: "hiroya", roles: %w{app db web}
 
-set :ssh_options, {
-  keys: %w(~/.ssh/FitMenu_key_rsa),
-  forward_agent: true
-}
+#set :ssh_options, {
+  #keys: %w(~/.ssh/FitMenu_key_rsa),
+  #forward_agent: true
+#}
