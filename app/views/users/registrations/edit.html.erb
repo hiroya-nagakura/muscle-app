@@ -15,7 +15,7 @@
       <div class="field form-group">
         <%= f.label :image,'プロフィール画像' %>
           <% if @user.image? %>
-            <%= image_tag @user.image.url %>
+            <%= image_tag @user.image.url, class: 'avatar-img' %>
           <% else %>
             <%= image_tag "/assets/default.png", :size => '100x100' %>
           <% end %>
