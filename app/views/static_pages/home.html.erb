@@ -17,12 +17,20 @@
 
 <div class='container'>
   <h2>人気のメニュー</h2>
-  <div class='top-article'>
-    <%= render partial: 'static_pages/article', collection: @all_ranks %>
+  <div class='top-articles-wrapper favorite-wrapper'>
+    <button id='favorite-scroll-left' class='scroll-btn favorite-scroll-btn'> < </button>
+    <div class='top-article' id='favorite-menu-card'>
+      <%= render partial: 'static_pages/article', collection: @all_ranks %>
+    </div>
+    <button id='favorite-scroll-right' class='scroll-btn favorite-scroll-btn'> > </button>
   </div>
 
   <h2>新着のメニュー</h2>
-  <div class='top-article'>
-    <%= render partial: 'static_pages/article', collection: @new_menu %>
+  <div class='top-articles-wrapper new-wrapper'>
+    <button id='new-scroll-left' class='scroll-btn new-scroll-btn'> < </button>
+    <div class='top-article' id='new-menu-card'>
+      <%= render partial: 'static_pages/article', collection: @new_menu %>
+    </div>
+    <button id='new-scroll-right'class='scroll-btn new-scroll-btn'> > </button>
   </div>
 </div>
