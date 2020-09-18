@@ -4,7 +4,7 @@
 
 //universal//
 .contents{
-  padding-top: 60px;
+  padding-top: 150px;
   min-height: 90vh;
 }
 
@@ -98,9 +98,8 @@ a{
 
 }
 //header//
-
-.navbar{
-  height: 60px
+.navbar-collapse{
+  flex-grow: 0 !important;
 }
 
 .header-logo{
