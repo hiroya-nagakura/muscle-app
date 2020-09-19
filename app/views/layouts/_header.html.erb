@@ -1,27 +1,25 @@
-<header class="navbar fixed-top navbar-light navbar-expand-lg">
-  <div class="container">
-    <%= link_to image_tag('logo.png', class: 'header-logo' ), root_path, id: "logo" , class: 'navbar-brand'%>
-
+<header class="navbar fixed-top navbar-expand-lg navbar-dark bg-dark justify-content-between">
+  <%= link_to image_tag('logo.png', class: 'header-logo' ), root_path, id: "logo" , class: 'navbar-brand'%>
     <div class='navbar-nav'>
-      <%= search_form_for @search_header, url: articles_path do |f| %>
-        <%= f.search_field :title_or_need_or_recommended_target_cont, placeholder: 'メニューなどを入力', class: 'header-search' %>
-        <button type="submit"><i class="fas fa-search"></i></button>
-      <% end %>
+        <%= search_form_for @search_header, url: articles_path do |f| %>
+          <%= f.search_field :title_or_need_or_recommended_target_cont, placeholder: 'メニューなどを入力', class: 'header-search' %>
+          <button type="submit"><i class="fas fa-search"></i></button>
+        <% end %>
     </div>
-      <div>
-        <ul class="navbar-nav">
-          <li class="nav-item"><%= link_to "メニュー一覧", articles_path ,class: 'nav-link' %></li>
-          <% if user_signed_in? %>
-            <li class="nav-item"><%= link_to "メニュー投稿", new_article_path ,class: 'nav-link' %></li>
-            <li class="nav-item"><%= link_to "#{current_user.user_name}さん", user_path(current_user), class: 'nav-link' %></li>
-            <li class="nav-item"><%= link_to 'ログアウト', destroy_user_session_path, method: :delete, class: 'nav-link' %>
-              </div>
-            </li>
-          <% else %>
-            <li class="nav-item"><%= link_to "ユーザー登録", new_user_registration_path ,class: 'nav-link' %></li>
-            <li class="nav-item"><%= link_to "ログイン", user_session_path ,class: 'nav-link' ,id: 'login'%></li>
-          <% end %>
-        </ul>
-      </div>
-  </div>
+    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+    <div class="collapse navbar-collapse text-center" id="navbarSupportedContent">
+      <ul class="navbar-nav mr-auto">
+        <li class="nav-item"><%= link_to "メニュー一覧", articles_path ,class: 'nav-link' %></li>
+        <% if user_signed_in? %>
+          <li class="nav-item"><%= link_to "メニュー投稿", new_article_path ,class: 'nav-link' %></li>
+          <li class="nav-item"><%= link_to "#{current_user.user_name}さん", user_path(current_user), class: 'nav-link' %></li>
+          <li class="nav-item"><%= link_to 'ログアウト', destroy_user_session_path, method: :delete, class: 'nav-link' %></li>
+        <% else %>
+          <li class="nav-item"><%= link_to "ユーザー登録", new_user_registration_path ,class: 'nav-link' %></li>
+          <li class="nav-item"><%= link_to "ログイン", user_session_path ,class: 'nav-link' ,id: 'login'%></li>
+        <% end %>
+      </ul>
+    </div>
 </header>
