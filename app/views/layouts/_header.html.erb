@@ -1,6 +1,5 @@
 <header class="navbar fixed-top navbar-expand-lg navbar-dark bg-dark justify-content-between">
   <%= link_to image_tag('logo.png', class: 'header-logo' ), root_path, id: "logo" , class: 'navbar-brand'%>
-  <!--<div class='d-flex'> -->
     <div class='navbar-nav'>
         <%= search_form_for @search_header, url: articles_path do |f| %>
           <%= f.search_field :title_or_need_or_recommended_target_cont, placeholder: 'メニューなどを入力', class: 'header-search' %>
@@ -23,5 +22,4 @@
         <% end %>
       </ul>
     </div>
-  <!--</div> -->
 </header>

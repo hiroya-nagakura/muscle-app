@@ -2,6 +2,9 @@
 @import "font-awesome";
 @import '../stylesheets/actiontext.scss';
 
+@mixin tablet {@media screen and (max-width: 768px) {@content;}}
+
+
 //universal//
 .contents{
   padding-top: 150px;
@@ -79,7 +82,7 @@ a{
   background-color: #fdfdff;
   border: outset;
   box-shadow: 4px 4px 2px;
-  display: flex;
+  display: flex !important;
   flex-wrap: wrap;
 }
 
@@ -95,7 +98,13 @@ a{
   &:hover {
     background-color: rgba(0,0,0,0.2);
   }
+  @include tablet{
+    display: none;
+  }
+}
 
+.slick-dots{
+  position: static !important;
 }
 //header//
 .navbar-collapse{
