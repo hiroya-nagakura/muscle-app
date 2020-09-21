@@ -3,11 +3,12 @@
 @import '../stylesheets/actiontext.scss';
 
 @mixin tablet {@media screen and (max-width: 768px) {@content;}}
+@mixin smartphone {@media screen and (max-width: 425px) {@content;}}
 
 
 //universal//
 .contents{
-  padding-top: 150px;
+  margin-top: 5em;
   min-height: 90vh;
 }
 
@@ -28,34 +29,75 @@ a{
   background-size: cover;
   background-position: center;
   width: 100%;
-  min-height: 90vh ;
+  min-height: 70vh ;
   display: flex;
   align-items: center;
-  justify-content: flex-end;
+  justify-content: center;
   margin-bottom: 2em;
+  margin-top: -5em;
+  @include tablet {
+    min-height: 60vh;
+  }
+  @include smartphone{
+    min-height: 50vh;
+    background-image: url(Top2.jpg);
+  }
 }
 
 .top-contents{
   background-color: rgba(0,0,0,0.3);
-  font-size: 25px;
-  color: white;
-  width: 27em;
-  margin-right: 5%;
-  padding: 1em 2em;
+  width: 90%;
+  padding: 1em 1em;
   border-radius: 2em;
-}
-
-.top-link{
-  margin-top:10px;
-  text-align: center;
-}
-
-.top-title{
-  text-align: center;
-  margin-bottom: 20px;
-  & h2{
-    font-size: 70px;
+  @include smartphone{
+    width: 95%;
+    padding: 0.5em 0.5em;
   }
+}
+
+.top-search{
+  width: 90%;
+  margin: auto;
+  font-size: 2em;
+  @include tablet{
+    font-size: 1.5em;
+  }
+  @include smartphone{
+    font-size: 1em;
+  }
+}
+.top-search-form{
+  position: relative;
+  box-sizing: border-box;
+  display: block;
+  border-radius: 3px;
+  height: 2.3em;
+  overflow: hidden;
+  width: 100%;
+}
+
+.top-search-input{
+  border: none;
+  height: 2.0em;
+  width: 100%;
+  text-align: center;
+  @include smartphone{
+    text-align: left;
+    padding-left: 1em;
+  }
+}
+
+.top-search-btn{
+  cursor: pointer;
+  border: none;
+  background: #3879D9;
+  color: #fff;
+  position: absolute;
+  width: 3.5em;
+  height: 2em;
+  right:0px;
+  outline : none;
+
 }
 
 .top-articles-wrapper{
@@ -84,6 +126,9 @@ a{
   box-shadow: 4px 4px 2px;
   display: flex !important;
   flex-wrap: wrap;
+  @include tablet {
+    min-width: auto;
+  }
 }
 
 
@@ -107,6 +152,9 @@ a{
   position: static !important;
 }
 //header//
+.navbar-color {
+  background-color: rgba(0,0,0,0.7)
+}
 .navbar-collapse{
   flex-grow: 0 !important;
 }
@@ -115,12 +163,44 @@ a{
   width: 150px;
 }
 
+.header-search-wrapper{
+  @include tablet{
+    display: none !important;
+  }
+}
+.modal-search-btn{
+  display: none;
+  padding: 0.25rem 0.75rem;
+    font-size: 1.25rem;
+    line-height: 1;
+    background-color: transparent;
+    border: 1px solid transparent;
+    border-radius: 0.25rem;
+  @include tablet{
+    display: inline;
+  }
+}
 .header-search{
   border: 1px solid #999;
   border-radius: 3px;
   min-width: 290px;
 }
 
+.navbar-btn{
+  font-size: 2em;
+}
+
+.navbar-icon{
+  color: white;
+}
+
+.modal-search{
+  pointer-events: auto;
+}
+
+.navbar-link-color{
+  color: white;
+}
 // footer//
 
 .footer{
@@ -133,6 +213,9 @@ a{
   margin: auto;
   width: 40%;
   padding-top: 20px;
+  @include tablet {
+    width: auto;
+  }
 }
 
 .select-target-group{
@@ -169,6 +252,20 @@ a{
 
 .prof-nav{
   margin-top: 1em;
+}
+
+.prof-tab{
+  text-align: center;
+}
+
+.prof-tab-color{
+  color: black;
+}
+
+.tab-name{
+  @include smartphone{
+    font-size: 0.8em;
+  }
 }
 
 .tab-content{
