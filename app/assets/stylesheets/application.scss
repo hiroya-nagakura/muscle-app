@@ -7,7 +7,7 @@
 
 //universal//
 .contents{
-  padding-top: 150px;
+  margin-top: 5em;
   min-height: 90vh;
 }
 
@@ -33,6 +33,7 @@ a{
   align-items: center;
   justify-content: flex-end;
   margin-bottom: 2em;
+  margin-top: -5em;
 }
 
 .top-contents{
@@ -84,6 +85,9 @@ a{
   box-shadow: 4px 4px 2px;
   display: flex !important;
   flex-wrap: wrap;
+  @include tablet {
+    min-width: auto;
+  }
 }
 
 
@@ -107,6 +111,9 @@ a{
   position: static !important;
 }
 //header//
+.navbar-color {
+  background-color: rgba(0,0,0,0.7)
+}
 .navbar-collapse{
   flex-grow: 0 !important;
 }
@@ -115,12 +122,44 @@ a{
   width: 150px;
 }
 
+.header-search-wrapper{
+  @include tablet{
+    display: none !important;
+  }
+}
+.modal-search-btn{
+  display: none;
+  padding: 0.25rem 0.75rem;
+    font-size: 1.25rem;
+    line-height: 1;
+    background-color: transparent;
+    border: 1px solid transparent;
+    border-radius: 0.25rem;
+  @include tablet{
+    display: inline;
+  }
+}
 .header-search{
   border: 1px solid #999;
   border-radius: 3px;
   min-width: 290px;
 }
 
+.navbar-btn{
+  font-size: 2em;
+}
+
+.navbar-icon{
+  color: white;
+}
+
+.modal-search{
+  pointer-events: auto;
+}
+
+.navbar-link-color{
+  color: white;
+}
 // footer//
 
 .footer{
@@ -133,6 +172,9 @@ a{
   margin: auto;
   width: 40%;
   padding-top: 20px;
+  @include tablet {
+    width: auto;
+  }
 }
 
 .select-target-group{
