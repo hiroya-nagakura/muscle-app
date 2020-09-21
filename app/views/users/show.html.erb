@@ -25,17 +25,37 @@
   </div>
 
   <ul class='nav nav-tabs justify-content-center prof-nav'>
-    <li class ='nav-item'>
-      <a href='#prof-articles' class='nav-link active' data-toggle='tab' role="tab">投稿 <%= @articles.count%></a>
+    <li class ='nav-item prof-tab'>
+      <a href='#prof-articles' class='nav-link active prof-tab-color' data-toggle='tab' role="tab">
+        <span class='tab-name'>投稿</span>
+        <div>
+          <%= @articles.count%>
+        </div>
+      </a>
     </li>
-    <li class ='nav-item'>
-      <a href='#prof-followings' class='nav-link' data-toggle='tab' >フォロー <%= @followings.count%></a>
+    <li class ='nav-item prof-tab'>
+      <a href='#prof-followings' class='nav-link prof-tab-color' data-toggle='tab' >
+        <span class='tab-name'>フォロー</span>
+        <div>
+          <%= @followings.count%>
+        </div>
+      </a>
     </li>
-    <li class ='nav-item'>
-      <a href='#prof-followers' class='nav-link' data-toggle='tab' >フォロワー <%= @followers.count%></a>
+    <li class ='nav-item prof-tab'>
+      <a href='#prof-followers' class='nav-link prof-tab-color' data-toggle='tab' >
+        <span class='tab-name'>フォロワー</span>
+        <div>
+          <%= @followers.count%>
+        </div>
+      </a>
     </li>
-    <li class ='nav-item'>
-      <a href='#prof-favorites' class='nav-link' data-toggle='tab' >いいね！ <%= @favorite_articles.count%></a>
+    <li class ='nav-item prof-tab'>
+      <a href='#prof-favorites' class='nav-link prof-tab-color' data-toggle='tab' >
+        <span class='tab-name'>いいね！</span>
+        <div>
+          <%= @favorite_articles.count%>
+        </div>
+      </a>
     </li>
   </ul>
 
