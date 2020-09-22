@@ -1,7 +1,5 @@
 /*
  *= require simple_calendar
- *= require_tree .
- *= require_self
  */
 
 @import "font-awesome-sprockets";
@@ -390,4 +388,29 @@ a{
   border-bottom: double;
   margin-top: 2em;
   margin-bottom: 2em;
+}
+
+//メニュー記録//
+//カレンダー変更//
+.calendar-heading{
+  text-align: center;
+}
+
+.calendar-pagenation{
+  font-size: 1.5em;
+  margin: 1em;
+}
+
+.calendar-title{
+  font-size: 2.5em;
+}
+.day{
+  
+}
+.wday-0{
+  background-color: #ff8c8c;
+}
+
+.wday-6{
+  background-color: #7ea5ec;
 }

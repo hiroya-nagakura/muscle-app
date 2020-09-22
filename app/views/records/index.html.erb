@@ -1,5 +1,5 @@
 <%= month_calendar events: @records do |date, records| %>
-  <%= date %>
+  <%= date.day %>
 
   <% records.each do |record| %>
     <div>
