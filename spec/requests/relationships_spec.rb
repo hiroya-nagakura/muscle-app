@@ -9,22 +9,18 @@ RSpec.describe "Relationships", type: :request do
 
   describe "#create" do
     context '未ログイン状態のとき' do
-      it 'フォローできず、ログインページにリダイレクトされること' do
+      it 'フォローできないこと' do
         expect do
-          post relationships_path, params: { follow_id: @follow.id }
+          post relationships_path, params: { follow_id: @follow.id }, xhr: true
         end.to change(Relationship.all, :count).by(0)
-        expect(response).to have_http_status(302)
-        expect(response).to redirect_to '/users/sign_in'
       end
     end
     context 'ログイン状態のとき' do
-      it 'フォローすることができ、フォローしたユーザーページにリダイレクトされること' do
+      it 'フォローすることができること' do
         sign_in(@user)
         expect do
-          post relationships_path, params: { follow_id: @follow.id }
+          post relationships_path, params: { follow_id: @follow.id }, xhr: true
         end.to change(Relationship.all, :count).by(1)
-        expect(response).to have_http_status(302)
-        expect(response).to redirect_to @follow
       end
     end
   end
@@ -34,22 +30,18 @@ RSpec.describe "Relationships", type: :request do
       @relationship = create(:relationship, user: @user, follow: @follow)
     end
     context '未ログイン状態のとき' do
-      it 'フォロー解除することができず、ログインページにリダイレクトされること' do
+      it 'フォロー解除することができないこと' do
         expect do
-          delete relationship_path(@relationship), params: {follow_id: @follow.id}
+          delete relationship_path(@relationship), params: {follow_id: @follow.id}, xhr: true
         end.to change(Relationship.all, :count).by (0)
-        expect(response).to have_http_status(302)
-        expect(response).to redirect_to '/users/sign_in'
       end
     end
     context 'ログイン状態のとき' do
-      it 'フォローを解除でき、フォローしていたユーザーページにリダイレクトされること' do
+      it 'フォローを解除できるこ' do
         sign_in(@user)
         expect do
-          delete relationship_path(@relationship), params: {follow_id: @follow.id}
+          delete relationship_path(@relationship), params: {follow_id: @follow.id}, xhr: true
         end.to change(Relationship.all, :count).by (-1)
-        expect(response).to have_http_status(302)
-        expect(response).to redirect_to @follow
       end
     end
   end
