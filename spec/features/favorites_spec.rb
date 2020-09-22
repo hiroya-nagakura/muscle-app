@@ -28,7 +28,7 @@ RSpec.feature "Favorites", type: :feature do
     #いいねする
     expect do
       find(".fa-thumbs-up").click
-      sleep 1
+      sleep 3
     end.to change(Favorite.all, :count).by(1)
     
 
