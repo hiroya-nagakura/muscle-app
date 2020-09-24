@@ -1,9 +1,18 @@
-<%= month_calendar events: @records do |date, records| %>
-  <%= date.day %>
+<% provide :title, 'トレーニング記録' %>
 
-  <% records.each do |record| %>
-    <div>
-      <%= record.menu %>
-    </div>
+<div class='container-fluid'>
+  <% if user_signed_in? %>
+    <% if current_user == @user %>
+      <%= link_to 'トレーニングメニューを記録する',new_user_record_path(@user)%>
+    <% end %>
   <% end %>
-<% end %>
+    <%= month_calendar events: @records do |date, records| %>
+    <%= date.day %>
+
+    <% records.each do |record| %>
+      <div>
+        <%= link_to '詳細',user_record_path(user_id: @user, id: record.id) %>
+      </div>
+    <% end %>
+  <% end %>
+</div>

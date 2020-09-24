@@ -1,20 +1,28 @@
 class RecordsController < ApplicationController
-  
+  before_action :set_user
+
   def index
     @records = Record.all
   end
 
   def new
-    @records = Record.new
+    @record = Record.new
+    @traning_menu = @record.traning_menus.build
   end
 
   def show
-    @records = Record.find(params[:id])
+    @record = Record.find(params[:id])
   end
 
   def create
-    Record.create(record_parameter)
-    #redirect_to blogs_path
+    @record = current_user.records.build(record_parameter)
+    if @record.save
+      redirect_to user_records_path(@user), notice: 'トレーニングメニューを記録しました'
+    else
+      flash.now[:alert] = '記録に失敗しました'
+      flash.now[:error_messages] = @record.errors.full_messages
+      render :new
+    end
   end
 
   def destroy
@@ -38,8 +46,12 @@ class RecordsController < ApplicationController
 
   private
 
-  def blog_parameter
-    params.require(:record).permit(:menu, :weight, :rep, :set, :start_time)
+  def record_parameter
+    params.require(:record).permit(:start_time, traning_menus_attributes: [:id, :menu, :weight, :rep, :set, :note, :_destroy])
+  end
+
+  def set_user
+    @user = User.find(params[:user_id])
   end
 
 end

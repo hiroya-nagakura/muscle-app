@@ -404,13 +404,19 @@ a{
 .calendar-title{
   font-size: 2.5em;
 }
-.day{
-  
-}
 .wday-0{
   background-color: #ff8c8c;
 }
 
 .wday-6{
   background-color: #7ea5ec;
+}
+
+//フォーム//
+.record-set{
+  display: flex;
+}
+
+.record-field{
+  margin-right: 1em;
 }

@@ -11,6 +11,7 @@ require("trix")
 require("@rails/actiontext")
 require('bootstrap/dist/js/bootstrap.min.js')
 require('jquery')
+require("@nathanvda/cocoon")
 
 //追加
 import 'javascripts/scroll-button'

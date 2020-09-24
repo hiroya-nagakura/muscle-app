@@ -94,3 +94,5 @@ gem 'fog-aws'
 gem 'activeadmin'
 #メニュー記録のカレンダー
 gem 'simple_calendar'
+#ネストフォーム
+gem "cocoon"
