@@ -418,5 +418,28 @@ a{
 }
 
 .record-field{
-  margin-right: 1em;
+  padding-left: 5px !important;
+  padding-right: 5px !important;
+}
+
+//詳細画面//
+.record-table-wrapper{
+  padding: 1em;
+  background: aliceblue;
+  border-radius: 2em;
+  @include smartphone{
+    padding: 0.5em
+  }
+}
+.record-table{
+  width: 90%;
+  font-size: 2em;
+  margin: auto;
+  @include tablet {
+    font-size: 1.5em;
+  }
+  @include smartphone {
+    font-size : 1em;
+    width: 100%;
+  }
 }
