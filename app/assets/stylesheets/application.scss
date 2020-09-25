@@ -21,6 +21,11 @@ a{
   color: black;
 }
 
+.form-wrapper{
+  background-color: #e0e0e0;
+  padding: 1em;
+  border-radius: 1em;
+}
 // icon // 
 .fas{
   font-size: large;
@@ -432,6 +437,10 @@ a{
 }
 
 //フォーム//
+.record-target-form {
+  width: 50%;
+  margin-bottom: 3em !important;
+}
 .record-set{
   display: flex;
 }

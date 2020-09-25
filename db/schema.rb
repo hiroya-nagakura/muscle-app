@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_09_24_035204) do
+ActiveRecord::Schema.define(version: 2020_09_25_160319) do
 
   create_table "action_text_rich_texts", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
     t.string "name", null: false
@@ -102,10 +102,7 @@ ActiveRecord::Schema.define(version: 2020_09_24_035204) do
   end
 
   create_table "records", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
-    t.string "menu"
-    t.integer "weight"
-    t.integer "rep"
-    t.integer "set"
+    t.string "main_target"
     t.datetime "start_time"
     t.bigint "user_id", null: false
     t.datetime "created_at", precision: 6, null: false
@@ -128,7 +125,6 @@ ActiveRecord::Schema.define(version: 2020_09_24_035204) do
     t.integer "weight"
     t.integer "rep"
     t.integer "set"
-    t.string "note"
     t.bigint "record_id", null: false
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false

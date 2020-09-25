@@ -1,61 +1,63 @@
-<%= form_with model: @article do |f| %>
+<div class='form-wrapper'>
+  <%= form_with model: @article do |f| %>
 
-  <div class="field form-group">
-    <%= f.label :title, 'メニュー' %><br />
-    <%= f.text_field :title, class: 'form-control' %>
-  </div>
+    <div class="field form-group">
+      <%= f.label :title, 'メニュー' %><br />
+      <%= f.text_field :title, class: 'form-control' %>
+    </div>
 
-  <div class="field form-group">
-    <%= f.label :target_site, '鍛えられる部位' %><br />
-    <div class='select-target-group'>
-      <div class='select-target'>
-      <%= f.radio_button :target_site, :大胸筋 %>
-      <%= f.label :target_site, "大胸筋" %>
-      </div>
-      <div class='select-target'>
-      <%= f.radio_button :target_site, :肩 %>
-      <%= f.label :target_site, "肩" %>
-      </div>
-      <div class='select-target'>
-      <%= f.radio_button :target_site, :腕 %>
-      <%= f.label :target_site, "腕" %>
-      </div>
-      <div class='select-target'>
-      <%= f.radio_button :target_site, :腹筋 %>
-      <%= f.label :target_site, "腹筋" %>
-      </div>
-      <div class='select-target'>
-      <%= f.radio_button :target_site, :背中 %>
-      <%= f.label :target_site, "背中" %>
-      </div>
-      <div class='select-target'>
-      <%= f.radio_button :target_site, :脚 %>
-      <%= f.label :target_site, "脚" %>
+    <div class="field form-group">
+      <%= f.label :target_site, '鍛えられる部位' %><br />
+      <div class='select-target-group'>
+        <div class='select-target'>
+        <%= f.radio_button :target_site, :大胸筋 %>
+        <%= f.label :target_site, "大胸筋" %>
+        </div>
+        <div class='select-target'>
+        <%= f.radio_button :target_site, :肩 %>
+        <%= f.label :target_site, "肩" %>
+        </div>
+        <div class='select-target'>
+        <%= f.radio_button :target_site, :腕 %>
+        <%= f.label :target_site, "腕" %>
+        </div>
+        <div class='select-target'>
+        <%= f.radio_button :target_site, :腹筋 %>
+        <%= f.label :target_site, "腹筋" %>
+        </div>
+        <div class='select-target'>
+        <%= f.radio_button :target_site, :背中 %>
+        <%= f.label :target_site, "背中" %>
+        </div>
+        <div class='select-target'>
+        <%= f.radio_button :target_site, :脚 %>
+        <%= f.label :target_site, "脚" %>
+        </div>
       </div>
     </div>
-  </div>
 
-  <div class="field form-group">
-    <%= f.label :need, '必要な器具' %><br />
-    <%= f.text_field :need, class: 'form-control' %>
-  </div>
+    <div class="field form-group">
+      <%= f.label :need, '必要な器具' %><br />
+      <%= f.text_field :need, class: 'form-control' %>
+    </div>
 
-  <div class="field form-group">
-    <%= f.label :recommended_target, 'オススメしたい人' %><br />
-    <%= f.text_field :recommended_target, class: 'form-control' %>
-  </div>
+    <div class="field form-group">
+      <%= f.label :recommended_target, 'オススメしたい人' %><br />
+      <%= f.text_field :recommended_target, class: 'form-control' %>
+    </div>
 
-  <div class="field form-group">
-    <%= f.label :content, 'メニューのやり方' %>
-    <%= f.rich_text_area :content %>
-  </div>
+    <div class="field form-group">
+      <%= f.label :content, 'メニューのやり方' %>
+      <%= f.rich_text_area :content, class: 'form-control'%>
+    </div>
 
-  <div class="field form-group">
-    <%= f.label :important_point, 'コツや注意点、回数など' %><br />
-    <%= f.text_area :important_point, class: 'form-control' %>
-  </div>
+    <div class="field form-group">
+      <%= f.label :important_point, 'コツや注意点、回数など' %><br />
+      <%= f.text_area :important_point, class: 'form-control' %>
+    </div>
 
-  <div class="actions">
-    <%= f.submit "投稿する" %>
-  </div>
-<% end %>
+    <div class="actions">
+      <%= f.submit "投稿する" %>
+    </div>
+  <% end %>
+</div>
