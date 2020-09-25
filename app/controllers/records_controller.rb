@@ -1,8 +1,11 @@
 class RecordsController < ApplicationController
+  before_action :authenticate_user!, only: %i[new create edit update destroy]
   before_action :set_user
+  before_action :correct_user, only: %i[new create edit update destroy]
 
   def index
-    @records = Record.all
+    @records = Record.where(user: @user)
+    @last_record = @records.order(start_time: :'DESC').first
   end
 
   def new
@@ -28,7 +31,7 @@ class RecordsController < ApplicationController
   def destroy
     @records = Record.find(params[:id])
     @records.destroy
-    #redirect_to blogs_path, notice:"削除しました"
+    redirect_to user_records_path(@user), notice: 'トレーニングメニューを削除しました'
   end
 
   def edit
@@ -38,7 +41,7 @@ class RecordsController < ApplicationController
   def update
     @record = Record.find(params[:id])
     if @record.update(record_parameter)
-      #redirect_to blogs_path, notice: "編集しました"
+      redirect_to user_records_path(@user), notice: 'トレーニングメニューを編集しました'
     else
       render 'edit'
     end
@@ -52,6 +55,10 @@ class RecordsController < ApplicationController
 
   def set_user
     @user = User.find(params[:user_id])
+  end
+
+  def correct_user
+    redirect_to(user_records_path(@user)) unless (@user == current_user)
   end
 
 end

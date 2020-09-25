@@ -391,6 +391,19 @@ a{
 }
 
 //メニュー記録//
+//一覧画面//
+.record-logo{
+  width: 90%;
+  transform: rotate( -15deg );
+  @include tablet{
+    width: 4em;
+  }
+}
+
+.record-top-wrapper{
+  margin-top: 70px;
+}
+
 //カレンダー変更//
 .calendar-heading{
   text-align: center;

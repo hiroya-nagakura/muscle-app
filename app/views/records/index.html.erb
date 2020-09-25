@@ -11,8 +11,15 @@
 
     <% records.each do |record| %>
       <div>
-        <%= link_to '詳細',user_record_path(user_id: @user, id: record.id) %>
+        <%= link_to image_tag('stamp.png', class: 'record-logo' ),user_record_path(user_id: @user, id: record.id)%>
       </div>
     <% end %>
+  <% end %>
+</div>
+
+<div class='container record-top-wrapper'>
+  <h2>直近のトレーニングメニュー</h2>
+  <% if @last_record%>
+    <%= render 'record_table', record: @last_record%>
   <% end %>
 </div>
