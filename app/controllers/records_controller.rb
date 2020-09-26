@@ -10,7 +10,7 @@ class RecordsController < ApplicationController
 
   def new
     @record = Record.new
-    @traning_menu = @record.traning_menus.build
+    @training_menu = @record.training_menus.build
   end
 
   def show
@@ -50,7 +50,7 @@ class RecordsController < ApplicationController
   private
 
   def record_parameter
-    params.require(:record).permit(:start_time, traning_menus_attributes: [:id, :menu, :weight, :rep, :set, :note, :_destroy])
+    params.require(:record).permit(:start_time, training_menus_attributes: [:id, :menu, :weight, :rep, :set, :note, :_destroy])
   end
 
   def set_user

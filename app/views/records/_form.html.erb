@@ -29,18 +29,18 @@
     </div>
     <% if request.path_info == new_user_record_path(@user) %>
       <% 4.times do %>
-        <%= f.fields_for :traning_menus do |f| %>
-            <%= render "traning_menu_fields", f: f %>
+        <%= f.fields_for :training_menus do |f| %>
+            <%= render "training_menu_fields", f: f %>
         <% end %>
       <% end %>
     <% else %>
       <%= f.fields_for :traning_menus do |f| %>
-          <%= render "traning_menu_fields", f: f %>
+          <%= render "training_menu_fields", f: f %>
       <% end %>
     <% end %>
 
     <div class="links">
-      <%= link_to_add_association "メニューを追加", f, :traning_menus %>
+      <%= link_to_add_association "メニューを追加", f, :training_menus %>
     </div>
     <div class="actions text-right">
       <% if request.path_info == new_user_record_path(@user) %>
