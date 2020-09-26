@@ -35,6 +35,8 @@ group :development, :test do
   gem 'factory_bot_rails', '~> 4.10.0'
   gem 'faker', git: 'https://github.com/stympy/faker.git', branch: 'master'
   gem 'forgery_ja'
+  #rspecでrender_templateを使うため
+  gem 'rails-controller-testing'
 end
 
 group :development do

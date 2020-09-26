@@ -18,7 +18,7 @@ class RecordsController < ApplicationController
   end
 
   def create
-    @record = current_user.records.build(record_parameter)
+    @record = current_user.records.build(record_params)
     if @record.save
       redirect_to user_records_path(@user), notice: 'トレーニングメニューを記録しました'
     else
@@ -40,7 +40,7 @@ class RecordsController < ApplicationController
 
   def update
     @record = Record.find(params[:id])
-    if @record.update(record_parameter)
+    if @record.update(record_params)
       redirect_to user_records_path(@user), notice: 'トレーニングメニューを編集しました'
     else
       render 'edit'
@@ -49,8 +49,8 @@ class RecordsController < ApplicationController
 
   private
 
-  def record_parameter
-    params.require(:record).permit(:start_time, training_menus_attributes: [:id, :menu, :weight, :rep, :set, :note, :_destroy])
+  def record_params
+    params.require(:record).permit(:start_time, :main_target, training_menus_attributes: [:id, :menu, :weight, :rep, :set, :note, :_destroy])
   end
 
   def set_user
