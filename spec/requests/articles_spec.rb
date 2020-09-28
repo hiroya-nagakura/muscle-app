@@ -1,8 +1,8 @@
 require 'rails_helper'
 
 RSpec.describe "Articles", type: :request do
-    let(:user) { create(:user) }
-    let(:other) { create(:user) }
+  let(:user) { create(:user) }
+  let(:other) { create(:user) }
   
   describe "#index" do
     it "正常にアクセスできること" do

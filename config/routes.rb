@@ -8,7 +8,9 @@ Rails.application.routes.draw do
     sessions: 'users/sessions',
   }
 
-  resources :users, only: [:show]
+  resources :users do
+    resources :records
+  end
   resources :articles do 
     resources :favorites, only: [:create, :destroy]
     resources :comments, only: [:create, :destroy]

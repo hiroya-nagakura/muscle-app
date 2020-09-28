@@ -1,3 +1,7 @@
+/*
+ *= require simple_calendar
+ */
+
 @import "font-awesome-sprockets";
 @import "font-awesome";
 @import '../stylesheets/actiontext.scss';
@@ -17,6 +21,11 @@ a{
   color: black;
 }
 
+.form-wrapper{
+  background-color: #e0e0e0;
+  padding: 1em;
+  border-radius: 1em;
+}
 // icon // 
 .fas{
   font-size: large;
@@ -250,6 +259,12 @@ a{
   font-weight: bold;
 }
 
+.record-btn{
+  color: white !important;
+  background-color: #384cd9 !important;
+  border-color: #384cd9 !important;
+}
+
 .prof-nav{
   margin-top: 1em;
 }
@@ -384,4 +399,75 @@ a{
   border-bottom: double;
   margin-top: 2em;
   margin-bottom: 2em;
+}
+
+//メニュー記録//
+//一覧画面//
+.record-logo{
+  width: 90%;
+  transform: rotate( -15deg );
+  @include tablet{
+    width: 4em;
+  }
+}
+
+.record-top-wrapper{
+  margin-top: 70px;
+}
+
+//カレンダー変更//
+.calendar-heading{
+  text-align: center;
+}
+
+.calendar-pagenation{
+  font-size: 1.5em;
+  margin: 1em;
+}
+
+.calendar-title{
+  font-size: 2.5em;
+}
+.wday-0{
+  background-color: #ff8c8c;
+}
+
+.wday-6{
+  background-color: #7ea5ec;
+}
+
+//フォーム//
+.record-target-form {
+  width: 50%;
+  margin-bottom: 3em !important;
+}
+.record-set{
+  display: flex;
+}
+
+.record-field{
+  padding-left: 5px !important;
+  padding-right: 5px !important;
+}
+
+//詳細画面//
+.record-table-wrapper{
+  padding: 1em;
+  background: aliceblue;
+  border-radius: 2em;
+  @include smartphone{
+    padding: 0.5em
+  }
+}
+.record-table{
+  width: 90%;
+  font-size: 2em;
+  margin: auto;
+  @include tablet {
+    font-size: 1.5em;
+  }
+  @include smartphone {
+    font-size : 1em;
+    width: 100%;
+  }
 }

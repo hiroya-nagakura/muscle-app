@@ -35,6 +35,8 @@ group :development, :test do
   gem 'factory_bot_rails', '~> 4.10.0'
   gem 'faker', git: 'https://github.com/stympy/faker.git', branch: 'master'
   gem 'forgery_ja'
+  #rspecでrender_templateを使うため
+  gem 'rails-controller-testing'
 end
 
 group :development do
@@ -54,9 +56,10 @@ group :test do
   gem 'selenium-webdriver'
   # Easy installation and use of web drivers to run system tests with browsers
   gem 'webdrivers'
+  #circleciでのテストで必要
   gem 'rspec_junit_formatter'
 end
-
+#自動デプロイ
 group :development, :test do
   gem 'capistrano'
   gem 'capistrano-bundler'
@@ -69,16 +72,29 @@ end
 # Windows does not include zoneinfo files, so bundle the tzinfo-data gem
 gem 'tzinfo-data', platforms: [:mingw, :mswin, :x64_mingw, :jruby]
 
+#追加
+#ユーザー
 gem 'devise'
+#DBにmysql採用
 gem 'mysql2'
+#画像保存
 gem 'carrierwave'
 gem 'mini_magick'
+#日本語変換
 gem 'rails-i18n'
 gem 'devise-i18n'
+#検索機能
 gem 'ransack'
+#アイコン表示
 gem 'font-awesome-sass'
+#ページネーション
 gem 'kaminari'
 gem 'ed25519'
 gem 'bcrypt_pbkdf'
 gem 'fog-aws'
+#管理画面
 gem 'activeadmin'
+#メニュー記録のカレンダー
+gem 'simple_calendar'
+#ネストフォーム
+gem "cocoon"

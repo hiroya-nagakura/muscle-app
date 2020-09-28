@@ -1,0 +1,26 @@
+<div class='record-set nested-fields'>
+  <div class="form-group col-4 record-field">
+    <%= f.text_field :menu, class: 'form-control' %>
+  </div>
+
+  <div class='d-flex col-7'>
+    <div class="form-group col-4 record-field">
+      <%= f.number_field :weight, class: 'form-control' %>
+      <p class='text-right'>kg</p>
+    </div>
+
+    <div class="form-group col-4 record-field">
+      <%= f.number_field :rep, class: 'form-control' %>
+      <p class='text-right'>rep</p>
+    </div>
+
+    <div class="form-group col-4 record-field">
+      <%= f.number_field :set, class: 'form-control' %>
+      <p class='text-right'>set</p>
+    </div>
+  </div>
+  <div class="form-group col-1 ">
+    <%= link_to_remove_association "削除", f %>
+  </div>
+</div>
+

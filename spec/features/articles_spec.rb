@@ -56,12 +56,12 @@ RSpec.feature "Articles", type: :feature do
 
     #記事の編集
     fill_in 'メニュー', with: 'スクワット'
-      find("input[value='脚']").set(true)
-      fill_in '必要な器具', with: 'なし'
-      fill_in 'オススメしたい人', with: '痩せたい人'
-      fill_in_rich_text_area 'article_content', with: 'テスト２'
-      fill_in 'コツや注意点、回数など', with: 'テスト２'
-      click_button '投稿する'
+    find("input[value='脚']").set(true)
+    fill_in '必要な器具', with: 'なし'
+    fill_in 'オススメしたい人', with: '痩せたい人'
+    fill_in_rich_text_area 'article_content', with: 'テスト２'
+    fill_in 'コツや注意点、回数など', with: 'テスト２'
+    click_button '投稿する'
 
     #編集が反映されたか検証
     sleep 0.5

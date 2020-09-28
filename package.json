@@ -2,6 +2,7 @@
   "name": "muscle_app",
   "private": true,
   "dependencies": {
+    "@nathanvda/cocoon": "^1.2.14",
     "@rails/actioncable": "^6.0.0",
     "@rails/actiontext": "^6.0.3-2",
     "@rails/activestorage": "^6.0.0",

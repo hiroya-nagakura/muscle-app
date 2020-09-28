@@ -125,6 +125,7 @@ GEM
       mimemagic (>= 0.3.0)
       mini_mime (>= 0.1.3)
     childprocess (3.0.0)
+    cocoon (1.2.14)
     concurrent-ruby (1.1.6)
     crass (1.0.6)
     devise (4.7.2)
@@ -259,6 +260,10 @@ GEM
       bundler (>= 1.3.0)
       railties (= 6.0.3.2)
       sprockets-rails (>= 2.0.0)
+    rails-controller-testing (1.0.5)
+      actionpack (>= 5.0.1.rc1)
+      actionview (>= 5.0.1.rc1)
+      activesupport (>= 5.0.1.rc1)
     rails-dom-testing (2.0.3)
       activesupport (>= 4.2.0)
       nokogiri (>= 1.6)
@@ -322,6 +327,8 @@ GEM
     selenium-webdriver (3.142.7)
       childprocess (>= 0.5, < 4.0)
       rubyzip (>= 1.2.2)
+    simple_calendar (2.4.1)
+      rails (>= 3.0)
     spring (2.1.0)
     spring-commands-rspec (1.0.4)
       spring (>= 0.9.1)
@@ -384,6 +391,7 @@ DEPENDENCIES
   capistrano3-puma
   capybara (>= 2.15)
   carrierwave
+  cocoon
   devise
   devise-i18n
   ed25519
@@ -400,12 +408,14 @@ DEPENDENCIES
   mysql2
   puma (~> 4.1)
   rails (~> 6.0.3, >= 6.0.3.2)
+  rails-controller-testing
   rails-i18n
   ransack
   rspec-rails (~> 3.6.0)
   rspec_junit_formatter
   sass-rails (>= 6)
   selenium-webdriver
+  simple_calendar
   spring
   spring-commands-rspec
   spring-watcher-listen (~> 2.0.0)
