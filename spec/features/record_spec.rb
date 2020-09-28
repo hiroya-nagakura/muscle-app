@@ -27,8 +27,7 @@ RSpec.feature "Records", type: :feature do
 
     #トレーニング記録ページへ
     click_link 'トレーニング記録'
-    sleep 1
-    expect(page).to have_text('トレーニング記録')
+    find 'h2', text: 'トレーニング記録'
     expect(page).to have_text('9月26日のメニュー')
 
     #新規記録ページへ
@@ -37,7 +36,7 @@ RSpec.feature "Records", type: :feature do
     
     #新規記録をする
     expect do
-      fill_in 'record_start_time', with: "002020/09/27"
+      fill_in 'record_start_time', with: "002020-09-27"
       fill_in '特に鍛えたい場所', with: '大胸筋'
       click_button '記録する'
       sleep 5
@@ -59,7 +58,7 @@ RSpec.feature "Records", type: :feature do
     click_link '編集'
 
     #記録の編集
-    fill_in 'record_start_time', with: "002020/09/28"
+    fill_in 'record_start_time', with: "002020-09-28"
     fill_in '特に鍛えたい場所', with: '三角筋'
     click_button '編集する'
 
