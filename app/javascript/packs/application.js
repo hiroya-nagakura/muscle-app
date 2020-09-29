@@ -7,15 +7,23 @@ require("@rails/ujs").start()
 require("turbolinks").start()
 require("@rails/activestorage").start()
 require("channels")
+//actiontext
 require("trix")
 require("@rails/actiontext")
+//Bootstrap
 require('bootstrap/dist/js/bootstrap.min.js')
+//Jquery
 require('jquery')
+//ネストフォーム
 require("@nathanvda/cocoon")
+//グラフ
+require("chartkick")
+require("chart.js")
 
 //追加
 import 'javascripts/scroll-button'
 import 'javascripts/slide'
+import 'javascripts/chart-change'
 
 // Uncomment to copy all static images under ../images to the output folder and reference
 // them with the image_pack_tag helper in views (e.g <%= image_pack_tag 'rails.png' %>)

@@ -471,3 +471,33 @@ a{
     width: 100%;
   }
 }
+//体重管理//
+.weight-chart{
+  opacity :0 ;
+  &.active {
+    opacity: 1;
+  }
+}
+.chart-box {
+  position: relative;
+}
+.daily-chart{
+  width: 100%;
+  position: absolute;
+}
+
+.weekly-chart{
+  width: 100%;
+  position: absolute;
+  z-index: 1;
+}
+
+.monthly-chart{
+  width: 100%;
+  position: absolute;
+  z-index: 2;
+}
+
+.chart-btn{
+  background-color: rgb(118, 118, 118);
+}

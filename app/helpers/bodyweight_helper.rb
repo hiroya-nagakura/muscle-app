@@ -1,0 +1,2 @@
+module BodyweightHelper
+end

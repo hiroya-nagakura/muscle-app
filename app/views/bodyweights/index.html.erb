@@ -1,0 +1,76 @@
+<% provide :title, '体重管理' %>
+
+<div class='container-fluid'>
+  <h2>体重管理</h2>
+  <div>
+    <%= form_with model: [@user, @bodyweight], local: true do |f| %>
+      <div>
+      <%= f.label :day, '日付'%>
+      <%= f.date_field :day, value: Date.today%>
+      </div>
+
+      <div>
+      <%= f.label :weight, '体重'%>
+      <%= f.number_field :weight%><span> kg</span>
+      </div>
+
+      <div>
+        <%= f.submit '記録する'%>
+      </div>
+    <% end%>
+  </div>
+  <div class='row'>
+    <div class='col-9'>
+      <div class="btn-group btn-group-sm" role="group" aria-label="Basic example">
+        <button type="button" id ='daily-chart-btn' class="btn btn-secondary active">day</button>
+        <button type="button" id ='weekly-chart-btn' class="btn btn-secondary">week</button>
+        <button type="button" id ='monthly-chart-btn' class="btn btn-secondary">month</button>
+      </div>
+      <div class='chart-box'>
+        <div class='weight-chart active daily-chart' id='daily-chart'>
+        <%= line_chart @bodyweights.day_chart_date, ytitle: "体重（kg）"  %>
+        </div>
+        <div class='weight-chart weekly-chart' id='weekly-chart'>
+        <%= line_chart @bodyweights.week_chart_date, ytitle: "体重（kg）" %>
+        </div>
+        <div class='weight-chart monthly-chart' id='monthly-chart'>
+        <%= line_chart @bodyweights.month_chart_date, ytitle: "体重（kg）" %>
+        </div>
+      </div>
+    </div>
+
+    <div class='col-3'>
+      <%= link_to "先週",user_bodyweights_path(@user, date: params[:date].to_i + 1) %>
+      <%= link_to "来週",user_bodyweights_path(@user, date: params[:date].to_i - 1) %>
+      <table>
+        <thead>
+          <tr>
+            <th>日付</th>
+            <th>体重</th>
+            <th>前回比</th>
+          </tr>
+        </thead>
+        <tbody>
+          <% @date_range.each do |date| %>
+            <tr>
+              <td><%= date.strftime("%-m/%d(#{@weeks[date.wday]})")%></td>
+              <% @bodyweights.order(day: 'asc').each do |bodyweight| %>
+                <% if bodyweight.day == date %>
+                  <td>
+                    <%= bodyweight.weight %>
+                    <span> kg</span>
+                  </td>
+                  <td> 
+                    <%= '+' if (bodyweight.weight - @last_weight.weight) > 0%><%=bodyweight.weight - @last_weight.weight%>
+                    <span> kg</span>
+                  </td>
+                  <% @last_weight.weight = bodyweight.weight%>
+                <% end %>
+              <% end %>
+            </tr>
+          <% end %>
+        </tbody>
+      </table>
+    </div>
+  </div>
+</div>
