@@ -24,13 +24,3 @@
     <%= render 'record_table', record: @last_record%>
   <% end %>
 </div>
-
-<%= week_calendar events: @records do |date, records| %>
-    <%= date.day %>
-
-    <% records.each do |record| %>
-      <div>
-        <%= link_to image_tag('stamp.png', class: 'record-logo' ),user_record_path(user_id: @user, id: record.id)%>
-      </div>
-    <% end %>
-  <% end %>

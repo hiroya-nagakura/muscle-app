@@ -10,7 +10,7 @@ Rails.application.routes.draw do
 
   resources :users do
     resources :records
-    resources :bodyweights, only: [:index, :create, :update, :destory]
+    resources :bodyweights, only: [:index, :create, :update, :destroy]
   end
   resources :articles do 
     resources :favorites, only: [:create, :destroy]

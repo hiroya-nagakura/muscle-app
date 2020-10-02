@@ -426,7 +426,7 @@ a{
 }
 
 .calendar-title{
-  font-size: 2.5em;
+  font-size: 2em;
 }
 .wday-0{
   background-color: #ff8c8c;
@@ -472,14 +472,33 @@ a{
   }
 }
 //体重管理//
+.weight-new-form{
+  width: fit-content;
+}
+.chart-wrapper{
+  margin-top: 2em;
+}
+.chart-btn-group{
+  display: flex !important;
+}
 .weight-chart{
   opacity :0 ;
   &.active {
     opacity: 1;
+    z-index: 3;
   }
 }
 .chart-box {
   position: relative;
+  height: 400px;
+  margin-top: 1em;
+  display: flex;
+}
+.chart-label{
+  writing-mode: vertical-rl;
+  text-orientation: sideways;
+  transform: rotate( -180deg );
+  text-align: center;
 }
 .daily-chart{
   width: 100%;
@@ -498,6 +517,86 @@ a{
   z-index: 2;
 }
 
-.chart-btn{
-  background-color: rgb(118, 118, 118);
+.weight-table-wrapper{
+  margin: auto;
+  margin-top: 2em;
+  background: aliceblue;
+  border-radius: 1em;
+  padding: 1em;
+}
+.next-back{
+  display: flex;
+  justify-content: space-between;
+  font-size: 1.5em;
+  margin: auto;
+  @include tablet{
+    width: 70%;
+  }
+  @include smartphone{
+    width: 100%;
+  }
+}
+.weight-table{
+  font-size: 1.5em;
+  margin: auto;
+  width: 100%;
+  @include tablet {
+    font-size: 1.5em;
+    width: 70%;
+  }
+  @include smartphone {
+    font-size : 1.2em;
+    width: 100%;
+  }
+}
+.weight-edit-form{
+  text-align: center;
+  &:hover{
+    background: #e0e0e0;
+    border-radius: 5px;
+    & .weight-edit-field{
+      background-color: #fff;
+      border-style: outset;
+      border-radius: 5px;
+    }
+  }
+}
+.weight-edit-field{
+  position: relative;
+  width: 5em;
+  border-style: none;
+  text-align: center;
+  background-color: transparent;
+  z-index: 2;
+  &:focus {
+    background-color: #fff;
+    & ~ .weight-edit-icon {
+      display: none;
+    }
+    & ~ .weight-edit-btn{
+      display: inline-block;
+    }
+  }
+}
+
+.weight-edit-icon{
+  position: absolute;
+  margin-left: -1.5em;
+  margin-right: 1em;
+  opacity: 0.5;
+  z-index: 1;
+}
+.weight-edit-btn{
+  display: none;
+  margin-top: 5px;
+  float: right;
+  border-radius: 5px;
+}
+
+.positive-weight{
+  color: #4c4cff;
+}
+
+.negative-weight{
+  color: #ff4d4d;
 }
