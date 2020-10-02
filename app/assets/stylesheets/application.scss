@@ -106,7 +106,6 @@ a{
   height: 2em;
   right:0px;
   outline : none;
-
 }
 
 .top-articles-wrapper{
@@ -139,8 +138,6 @@ a{
     min-width: auto;
   }
 }
-
-
 
 .scroll-btn{
   background-color: rgba(0,0,0,0.2);
@@ -259,10 +256,18 @@ a{
   font-weight: bold;
 }
 
-.record-btn{
+.management-link{
+  display: flex;
+  justify-content: center;
+  margin: auto;
+  margin-top: 1em;
+}
+
+.prof-btn{
   color: white !important;
   background-color: #384cd9 !important;
   border-color: #384cd9 !important;
+  margin-left: 1em;
 }
 
 .prof-nav{
