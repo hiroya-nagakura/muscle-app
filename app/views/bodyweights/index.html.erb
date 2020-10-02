@@ -2,23 +2,27 @@
 
 <div class='container-fluid'>
   <h2>体重管理</h2>
-  <div class='form-wrapper weight-new-form'>
-    <%= form_with model: [@user, @bodyweight], local: true do |f| %>
-      <div>
-      <%= f.label :day, '日付'%>
-      <%= f.date_field :day, value: Date.today%>
-      </div>
+  <% if user_signed_in? %>
+    <% if current_user == @user %>
+      <div class='form-wrapper weight-new-form'>
+        <%= form_with model: [@user, @bodyweight], local: true do |f| %>
+          <div>
+          <%= f.label :day, '日付'%>
+          <%= f.date_field :day, value: Date.today%>
+          </div>
 
-      <div>
-      <%= f.label :weight, '体重'%>
-      <%= f.number_field :weight%><span> kg</span>
-      </div>
+          <div>
+          <%= f.label :weight, '体重'%>
+          <%= f.number_field :weight%><span> kg</span>
+          </div>
 
-      <div>
-        <%= f.submit '記録する'%>
+          <div>
+            <%= f.submit '記録する'%>
+          </div>
+        <% end %>
       </div>
-    <% end%>
-  </div>
+    <% end %>
+  <% end %>
   <div class='row'>
     <div class='col-12 col-lg-7 chart-wrapper'>
       <div class="btn-group btn-group-sm chart-btn-group" role="group">
@@ -60,14 +64,20 @@
                 <td><%= date.strftime("%-m/%d(#{@weeks[date.wday]})")%></td>
                 <% @bodyweights.each do |bodyweight| %>
                   <% if bodyweight.day == date %>
-                    <td class='weight-edit-form' >
-                      <%= form_with model: [@user, bodyweight] do |f|%>
-                        <%= f.number_field :weight, class: 'weight-edit-field' %>
-                        <span class='weight-edit-icon'><i class="fas fa-edit"></i></span>
-                        <span> kg</span><br>
-                        <%= f.submit '編集する', class: 'weight-edit-btn'%>
+                    <% if user_signed_in? %>
+                      <% if current_user == @user %>
+                        <td class='weight-edit-form' >
+                          <%= form_with model: [@user, bodyweight] do |f|%>
+                            <%= f.number_field :weight, class: 'weight-edit-field' %>
+                            <span class='weight-edit-icon'><i class="fas fa-edit"></i></span>
+                            <span> kg</span><br>
+                            <%= f.submit '編集する', class: 'weight-edit-btn'%>
+                          <% end %>
+                        </td>
+                      <% else %>
+                        <td class='text-center'><%= bodyweight.weight %><span> kg</span></td>
                       <% end %>
-                    </td>
+                    <% end %>
                     <td> 
                       <% unless @last_weight == 0 %>
                         <% if (bodyweight.weight - @last_weight) > 0%>

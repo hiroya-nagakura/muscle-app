@@ -65,6 +65,6 @@ class BodyweightsController < ApplicationController
   end
 
   def correct_user
-    redirect_to(user_records_path(@user)) unless (@user == current_user)
+    redirect_to(user_bodyweights_path(@user)) unless (@user == current_user)
   end
 end
