@@ -564,6 +564,9 @@ a{
       border-style: outset;
       border-radius: 5px;
     }
+    & .weight-edit-btn{
+      display: inline-block;
+    }
   }
 }
 .weight-edit-field{
