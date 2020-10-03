@@ -1,7 +1,7 @@
 class Bodyweight < ApplicationRecord
   belongs_to :user
-  validates :weight, presence: :true
-  validates :day , uniqueness: {scope: :user}
+  validates :weight, presence: :true, numericality: {greater_than: 0}
+  validates :day , presence: :true, uniqueness: {scope: :user}
 
   #グラフ作成用
   def self.day_chart_date
