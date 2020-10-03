@@ -20,6 +20,7 @@
       <% if user_signed_in? %>
         <li class="nav-item"><%= link_to "メニュー投稿", new_article_path ,class: 'nav-link navbar-link-color' %></li>
         <li class="nav-item"><%= link_to "トレーニング記録", user_records_path(current_user) ,class: 'nav-link navbar-link-color' %></li>
+        <li class="nav-item"><%= link_to "体重記録", user_bodyweights_path(current_user) ,class: 'nav-link navbar-link-color' %></li>
         <li class="nav-item"><%= link_to "#{current_user.user_name}さん", user_path(current_user), class: 'nav-link navbar-link-color' %></li>
         <li class="nav-item"><%= link_to 'ログアウト', destroy_user_session_path, method: :delete, class: 'nav-link navbar-link-color' %></li>
       <% else %>

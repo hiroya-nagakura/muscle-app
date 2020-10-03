@@ -1,0 +1,103 @@
+<% provide :title, '体重管理' %>
+
+<div class='container-fluid'>
+  <h2>体重記録</h2>
+  <% if user_signed_in? %>
+    <% if current_user == @user %>
+      <div class='form-wrapper weight-new-form'>
+        <%= form_with model: [@user, @bodyweight], local: true do |f| %>
+          <div>
+          <%= f.label :day, '日付'%>
+          <%= f.date_field :day, value: Date.today%>
+          </div>
+
+          <div>
+          <%= f.label :weight, '体重'%>
+          <%= f.number_field :weight, step: '0.1' %><span> kg</span>
+          </div>
+
+          <div>
+            <%= f.submit '記録する'%>
+          </div>
+        <% end %>
+      </div>
+    <% end %>
+  <% end %>
+  <div class='row'>
+    <div class='col-12 col-lg-7 chart-wrapper'>
+      <div class="btn-group btn-group-sm chart-btn-group" role="group">
+        <button type="button" id ='daily-chart-btn' class="btn btn-secondary active">day</button>
+        <button type="button" id ='weekly-chart-btn' class="btn btn-secondary">week</button>
+        <button type="button" id ='monthly-chart-btn' class="btn btn-secondary">month</button>
+      </div>
+      <div class='chart-box'>
+        <span class=chart-label>体重 (kg)</span>
+        <div class='weight-chart active daily-chart' id='daily-chart'>
+        <%= line_chart @bodyweights.day_chart_date,height:'400px', curve: false, precision: 4 %>
+        </div>
+        <div class='weight-chart weekly-chart' id='weekly-chart'>
+        <%= line_chart @bodyweights.week_chart_date,height:'400px', curve: false, precision: 4 %>
+        </div>
+        <div class='weight-chart monthly-chart' id='monthly-chart'>
+        <%= line_chart @bodyweights.month_chart_date,height:'400px', curve: false, precision: 4 %>
+        </div>
+      </div>
+    </div>
+
+    <div class='col-lg-5'>
+      <div class='weight-table-wrapper'>
+        <div class='next-back'>
+          <%= link_to "<< 先週",user_bodyweights_path(@user, date: params[:date].to_i + 1) %>
+          <%= link_to "来週 >>",user_bodyweights_path(@user, date: params[:date].to_i - 1) %>
+        </div>
+        <table class='weight-table'>
+          <thead>
+            <tr>
+              <th>日付</th>
+              <th class='text-center'>体重</th>
+              <th>前回比</th>
+            </tr>
+          </thead>
+          <tbody>
+            <% @date_range.each do |date| %>
+              <tr>
+                <td><%= date.strftime("%-m/%d(#{@weeks[date.wday]})")%></td>
+                <% @bodyweights.each do |bodyweight| %>
+                  <% if bodyweight.day == date %>
+                    <% if user_signed_in? %>
+                      <% if current_user == @user %>
+                        <td class='weight-edit-form' >
+                          <%= form_with model: [@user, bodyweight] do |f|%>
+                            <%= f.number_field :weight, step: '0.1', class: 'weight-edit-field' %>
+                            <span class='weight-edit-icon'><i class="fas fa-edit"></i></span>
+                            <span> kg</span><br>
+                            <%= f.submit '編集する', class: 'weight-edit-btn'%>
+                          <% end %>
+                        </td>
+                      <% else %>
+                        <td class='text-center'><%= bodyweight.weight %><span> kg</span></td>
+                      <% end %>
+                    <% end %>
+                    <td> 
+                      <% unless @last_weight == 0 %>
+                        <% if (bodyweight.weight - @last_weight) > 0%>
+                          <p class='positive-weight'>+<%= (bodyweight.weight - @last_weight).round(1) %> kg</p>
+                        <% else%>
+                          <p class='negative-weight'><%= (bodyweight.weight - @last_weight).round(1) %> kg</p>
+                        <% end %>
+                      <% end %>
+                    </td>
+                      <% @last_weight = bodyweight.weight%>
+                    <td>
+                      <%= link_to '×', user_bodyweight_path(user_id: @user, id: bodyweight), method: :delete %>
+                    </td>
+                  <% end %>
+                <% end %>
+              </tr>
+            <% end %>
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </div>
+</div>

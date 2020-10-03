@@ -7,7 +7,7 @@
       <%= link_to 'トレーニングメニューを記録する',new_user_record_path(@user)%>
     <% end %>
   <% end %>
-    <%= month_calendar events: @records do |date, records| %>
+  <%= month_calendar events: @records do |date, records| %>
     <%= date.day %>
 
     <% records.each do |record| %>

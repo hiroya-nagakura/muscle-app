@@ -73,6 +73,7 @@ RSpec.feature "Records", type: :feature do
     expect(current_path).to eq user_records_path(@user)
     expect(page).to have_text('トレーニングメニューを編集しました')
     expect(page).to have_text('9月28日のメニュー')
+    
     #ーーーーー記事の削除ーーーーー
     #詳細ページへ
     visit user_record_path(user_id: @user.id, id: record.id)

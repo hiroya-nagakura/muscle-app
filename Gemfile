@@ -98,3 +98,6 @@ gem 'activeadmin'
 gem 'simple_calendar'
 #ネストフォーム
 gem "cocoon"
+#グラフ
+gem "chartkick"
+gem 'groupdate'
