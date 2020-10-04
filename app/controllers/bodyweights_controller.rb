@@ -5,26 +5,30 @@ class BodyweightsController < ApplicationController
 
   def index
     @bodyweight = Bodyweight.new
-    allweight = Bodyweight.where(user: @user)
+    @bodyweights = Bodyweight.where(user: @user)
     if params[:date]
-      start_date= Date.today.ago(params[:date].to_i.weeks)
+      standard_date= Date.current.ago(params[:date].to_i.weeks)
     else
-      start_date = Date.today
+      standard_date = Date.current
     end
-    #チャートでの描写範囲の設定
-    @bodyweights = allweight.where("day <= ?", start_date.end_of_week)
-    #一週間の取得
-    @date_range = start_date.beginning_of_week.to_date..start_date.end_of_week.to_date
-    #一週間より一つ前のレコードの取得
-    last_weight_record = allweight.order(day: :desc).where("day < ? ", start_date.beginning_of_week).first
-    #一つ前のレコードの体重の取得
-    if last_weight_record
-      @last_weight = last_weight_record.weight
-    else
-      @last_weight = 0
-    end
+    #表示用範囲設定
+    @date_range = standard_date.beginning_of_week.to_date..standard_date.end_of_week.to_date #一週間分
+    @dailychart_range = standard_date.prev_week(:monday)..standard_date.end_of_week.to_date #二週間分
+    @weeklychart_range = standard_date.ago(1.month).beginning_of_month..standard_date.end_of_month #二ヶ月分
+    @monthlychart_range = standard_date.all_year #一年分
+    #一週間より一つ前のレコードの体重の取得（前回比用）
+    last_weight_record = @bodyweights.order(day: :desc).where("day < ? ", standard_date.beginning_of_week).first
+    @last_weight = last_weight_record.weight if last_weight_record
     #曜日表示用
     @weeks = ["日","月","火","水","木","金","土"]
+    #チャートの最大値、最小値の設定
+    @dailychart_max = max_value(@dailychart_range)
+    @dailychart_min = min_value(@dailychart_range)
+    @weeklychart_max = max_value(@weeklychart_range)
+    @weeklychart_min = min_value(@weeklychart_range)
+    @monthlychart_max = max_value(@monthlychart_range)
+    @monthlychart_min = min_value(@monthlychart_range)
+
   end
 
   def create
@@ -66,5 +70,17 @@ class BodyweightsController < ApplicationController
 
   def correct_user
     redirect_to(user_bodyweights_path(@user)) unless (@user == current_user)
+  end
+
+  def max_value(range)
+    max_weight = @bodyweights.where(day: range).maximum(:weight)
+    value = max_weight.round + 1 if max_weight
+    return value
+  end
+
+  def min_value(range)
+    min_weight = @bodyweights.where(day: range).minimum(:weight)
+    value = min_weight.round - 1 if min_weight
+    return value
   end
 end
