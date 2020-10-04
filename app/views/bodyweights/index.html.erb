@@ -33,13 +33,25 @@
       <div class='chart-box'>
         <span class=chart-label>体重 (kg)</span>
         <div class='weight-chart active daily-chart' id='daily-chart'>
-        <%= line_chart @bodyweights.day_chart_date,height:'400px', curve: false, precision: 4 %>
+        <%= line_chart @bodyweights.day_chart_date(@dailychart_range),height:'400px', 
+                                                                      curve: false, 
+                                                                      precision: 4,
+                                                                      min: @dailychart_min,
+                                                                      max: @dailychart_max %>
         </div>
         <div class='weight-chart weekly-chart' id='weekly-chart'>
-        <%= line_chart @bodyweights.week_chart_date,height:'400px', curve: false, precision: 4 %>
-        </div>
+        <%= line_chart @bodyweights.week_chart_date(@weeklychart_range),height:'400px', 
+                                                                        curve: false, 
+                                                                        precision: 4,
+                                                                        min: @weeklychart_min,
+                                                                        max: @weeklychart_max %>
+          </div>
         <div class='weight-chart monthly-chart' id='monthly-chart'>
-        <%= line_chart @bodyweights.month_chart_date,height:'400px', curve: false, precision: 4 %>
+        <%= line_chart @bodyweights.month_chart_date(@montylychart_range),height:'400px', 
+                                                                          curve: false, 
+                                                                          precision: 4,
+                                                                          min: @monthlychart_min,
+                                                                          max: @monthychart_max %>
         </div>
       </div>
     </div>
@@ -79,7 +91,7 @@
                       <% end %>
                     <% end %>
                     <td> 
-                      <% unless @last_weight == 0 %>
+                      <% if @last_weight.present? %>
                         <% if (bodyweight.weight - @last_weight) > 0%>
                           <p class='positive-weight'>+<%= (bodyweight.weight - @last_weight).round(1) %> kg</p>
                         <% else%>
@@ -87,10 +99,14 @@
                         <% end %>
                       <% end %>
                     </td>
-                      <% @last_weight = bodyweight.weight%>
-                    <td>
-                      <%= link_to '×', user_bodyweight_path(user_id: @user, id: bodyweight), method: :delete %>
-                    </td>
+                    <% @last_weight = bodyweight.weight%>
+                    <% if user_signed_in? %>
+                      <% if current_user == @user %>
+                        <td>
+                          <%= link_to '×', user_bodyweight_path(user_id: @user, id: bodyweight), method: :delete %>
+                        </td>
+                      <% end %>
+                    <% end %>
                   <% end %>
                 <% end %>
               </tr>
