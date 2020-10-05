@@ -4,7 +4,7 @@ RSpec.describe Bodyweight, type: :model do
   let(:user) { create(:user) }
   let(:bodyweight) { create(:bodyweight) }
 
-  it "有効なファクトリを持つこと" do
+  it '有効なファクトリを持つこと' do
     expect(build(:bodyweight)).to be_valid
   end
 
@@ -21,19 +21,19 @@ RSpec.describe Bodyweight, type: :model do
     it 'weightがなければ無効な状態であること' do
       bodyweight.weight = nil
       bodyweight.valid?
-      expect(bodyweight.errors[:weight]).to include("を入力してください")
+      expect(bodyweight.errors[:weight]).to include('を入力してください')
     end
 
     it 'dayがなければ無効な状態であること' do
       bodyweight.day = nil
       bodyweight.valid?
-      expect(bodyweight.errors[:day]).to include("を入力してください")
+      expect(bodyweight.errors[:day]).to include('を入力してください')
     end
 
     it 'userがなければ無効な状態であること' do
       bodyweight.user = nil
       bodyweight.valid?
-      expect(bodyweight.errors[:user]).to include("を入力してください")
+      expect(bodyweight.errors[:user]).to include('を入力してください')
     end
   end
 
@@ -46,13 +46,13 @@ RSpec.describe Bodyweight, type: :model do
     it 'weightは0では無効なこと' do
       bodyweight.weight = 0
       bodyweight.valid?
-      expect(bodyweight.errors[:weight]).to include("は0より大きい値にしてください")
+      expect(bodyweight.errors[:weight]).to include('は0より大きい値にしてください')
     end
 
     it 'weightは負の数では無効なこと' do
       bodyweight.weight = -70
       bodyweight.valid?
-      expect(bodyweight.errors[:weight]).to include("は0より大きい値にしてください")
+      expect(bodyweight.errors[:weight]).to include('は0より大きい値にしてください')
     end
   end
 
@@ -61,7 +61,7 @@ RSpec.describe Bodyweight, type: :model do
       bodyweight.save
       dupulicate_bodyweight = build(:bodyweight, user: bodyweight.user, day: bodyweight.day)
       dupulicate_bodyweight.valid?
-      expect(dupulicate_bodyweight.errors[:day]).to include("はすでに存在します")
+      expect(dupulicate_bodyweight.errors[:day]).to include('はすでに存在します')
     end
   end
 end

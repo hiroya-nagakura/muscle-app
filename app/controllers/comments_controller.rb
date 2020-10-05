@@ -8,18 +8,17 @@ class CommentsController < ApplicationController
       redirect_to article_path(@article), notice: 'コメントを投稿しました。'
     else
       flash.now[:alert] = '投稿に失敗しました。'
-      redirect_to article_path(@article) 
+      redirect_to article_path(@article)
     end
   end
 
   def destroy
     @comment = Comment.find(params[:id])
-    if @comment.destroy
-      redirect_to article_path(@article) 
-    end
+    redirect_to article_path(@article) if @comment.destroy
   end
 
   private
+
   def comment_params
     params.require(:comment).permit(:content, :article_id)
   end
@@ -27,5 +26,4 @@ class CommentsController < ApplicationController
   def set_target_article
     @article = Article.find(params[:article_id])
   end
-
 end

@@ -1,11 +1,11 @@
 require 'rails_helper'
 
-RSpec.describe "Articles", type: :request do
+RSpec.describe 'Articles', type: :request do
   let(:user) { create(:user) }
   let(:other) { create(:user) }
-  
-  describe "#index" do
-    it "正常にアクセスできること" do
+
+  describe '#index' do
+    it '正常にアクセスできること' do
       get articles_path
       expect(response).to have_http_status(200)
     end
@@ -100,7 +100,7 @@ RSpec.describe "Articles", type: :request do
         article = create(:article, user: user)
         sign_in(user)
         article_params = attributes_for(:article, title: 'ベンチプレス')
-        patch article_path(article), params: {article: article_params}
+        patch article_path(article), params: { article: article_params }
         article.reload
         expect(article.title).to eq('ベンチプレス')
       end
@@ -108,7 +108,7 @@ RSpec.describe "Articles", type: :request do
         article = create(:article, user: user)
         sign_in(user)
         article_params = attributes_for(:article)
-        patch article_path(article), params: {article: article_params}
+        patch article_path(article), params: { article: article_params }
         expect(response).to have_http_status 302
         expect(response).to redirect_to article_path(article)
       end
@@ -116,7 +116,7 @@ RSpec.describe "Articles", type: :request do
         article = create(:article, user: user)
         sign_in(other)
         article_params = attributes_for(:article, title: 'ベンチプレス')
-        patch article_path(article), params: {article: article_params}
+        patch article_path(article), params: { article: article_params }
         article.reload
         expect(article.title).not_to eq('ベンチプレス')
       end
@@ -124,7 +124,7 @@ RSpec.describe "Articles", type: :request do
         article = create(:article, user: user)
         sign_in(other)
         article_params = attributes_for(:article)
-        patch article_path(article), params: {article: article_params}
+        patch article_path(article), params: { article: article_params }
         expect(response).to have_http_status 302
         expect(response).to redirect_to articles_path
       end
@@ -153,14 +153,14 @@ RSpec.describe "Articles", type: :request do
         sign_in(user)
         expect do
           delete article_path(article)
-        end.to change(Article.all, :count).by (-1)
+        end.to change(Article.all, :count).by(-1)
       end
       it '投稿者以外だと記事を削除できないこと' do
         article = create(:article, user: user)
         sign_in(other)
         expect do
           delete article_path(article)
-        end.to change(Article.all, :count).by (0)
+        end.to change(Article.all, :count).by(0)
       end
     end
   end

@@ -6,5 +6,4 @@ class ApplicationController < ActionController::Base
     @search = Article.ransack(params[:q])
     @search_ary = Article.all.select(:target_site).distinct
   end
-
 end

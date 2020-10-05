@@ -1,8 +1,8 @@
 # config valid for current version and patch releases of Capistrano
-lock "~> 3.14.1"
+lock '~> 3.14.1'
 
-set :application, "muscle-app"
-set :repo_url, "git@github.com:hiroya-nagakura/muscle-app.git"
+set :application, 'muscle-app'
+set :repo_url, 'git@github.com:hiroya-nagakura/muscle-app.git'
 set :deploy_to, '/var/www/rails/muscle-app'
 
 # Pumaに関する設定（後述）
@@ -21,17 +21,17 @@ set :pty, true
 # シンボリックリンクのファイルを指定、具体的にはsharedに入るファイル
 set :linked_files, fetch(:linked_files, []).push('config/secrets.yml')
 # シンボリックリンクのディレクトリを生成
-append :linked_dirs, "log", "tmp/pids", "tmp/cache", "tmp/sockets", "public/system", "public/uploads", "public/storage"
+append :linked_dirs, 'log', 'tmp/pids', 'tmp/cache', 'tmp/sockets', 'public/system', 'public/uploads', 'public/storage'
 
 # 環境変数の設定
-set :default_env, { path: "/usr/local/rbenv/shims:/usr/local/rbenv/bin:$PATH" }
+set :default_env, { path: '/usr/local/rbenv/shims:/usr/local/rbenv/bin:$PATH' }
 # 保存しておく過去分のアプリ数
 set :keep_releases, 3
 
 namespace :deploy do
   desc 'Create database'
   task :db_create do
-    on roles(:db) do |host|
+    on roles(:db) do
       with rails_env: fetch(:rails_env) do
         within current_path do
           execute :bundle, :exec, :rails, 'db:create'

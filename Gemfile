@@ -48,6 +48,9 @@ group :development do
   gem 'spring-watcher-listen', '~> 2.0.0'
   #追加
   gem 'spring-commands-rspec'
+  #静的解析ツール
+  gem 'rubocop'
+  gem 'rubocop-rails'
 end
 
 group :test do

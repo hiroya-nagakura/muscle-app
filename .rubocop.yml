@@ -1,0 +1,45 @@
+inherit_from: .rubocop_todo.yml
+
+require:
+  - rubocop-rails
+
+Rails:
+  Enabled: true
+
+AllCops:
+  Exclude:
+    - 'db/schema.rb'
+    - 'vendor/**/*'
+    - 'node_modules/**/*'
+    - 'Gemfile' # 追加した順などがわかりやすいように
+    - 'bin/bundle'
+    - 'db/migrate/*'
+    - 'config/environments/*'
+    - 'bin/yarn'
+
+Metrics/BlockLength:
+  Exclude:
+    - 'app/admin/*' # ActiveAdminでの行数無視
+    - 'spec/**/*' # RSpecでの行数を無視
+
+Style/ClassAndModuleChildren:
+  Exclude:
+    - 'app/controllers/users/*'
+
+Style/Documentation:
+  Enabled: false
+
+# # frozen_string_literal: true の記述無視
+Style/FrozenStringLiteralComment:
+  Enabled: false
+
+# 文字数制限を154まで伸ばす
+Layout/LineLength:
+  Max: 154
+
+# 日本語でのコメントを許可
+AsciiComments:
+  Enabled: false
+
+HashSyntax:
+  EnforcedStyle: ruby19
