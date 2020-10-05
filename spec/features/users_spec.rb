@@ -46,4 +46,18 @@ RSpec.feature "Users", type: :feature do
     expect(current_path).to eq root_path
     expect(page).to have_text('アカウント情報を変更しました。')
   end
+
+  scenario 'ゲストユーザーでログインする' do
+    #トップページを開く
+    visit root_path
+
+    #ログインページへ
+    click_link 'login'
+
+    #ゲストログイン機能を使ってログイン
+    click_link 'ゲストログイン（閲覧用）'
+
+    #ログインできたか検証
+    expect(page).to have_text('ゲストユーザーとしてログインしました。')
+  end
 end
