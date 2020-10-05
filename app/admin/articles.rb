@@ -1,6 +1,4 @@
 ActiveAdmin.register Article do
-
-
   index do
     selectable_column
     id_column
@@ -24,7 +22,7 @@ ActiveAdmin.register Article do
 
   show do |article|
     attributes_table(*article.class.columns.collect { |column| column.name.to_sym })
-    panel "記事内容" do
+    panel '記事内容' do
       article.content
     end
     panel 'いいねしたユーザー' do

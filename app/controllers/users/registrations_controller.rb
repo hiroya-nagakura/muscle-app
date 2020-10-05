@@ -11,9 +11,9 @@ class Users::RegistrationsController < Devise::RegistrationsController
   # end
 
   # POST /resource
-  # def create
-  #   super
-  # end
+  def create
+    super
+  end
 
   # GET /resource/edit
   # def edit
@@ -21,14 +21,14 @@ class Users::RegistrationsController < Devise::RegistrationsController
   # end
 
   # PUT /resource
-  # def update
-  #   super
-  # end
+  def update
+    super
+  end
 
   # DELETE /resource
-  # def destroy
-  #   super
-  # end
+  def destroy
+    super
+  end
 
   # GET /resource/cancel
   # Forces the session data which is usually expired after sign
@@ -48,7 +48,7 @@ class Users::RegistrationsController < Devise::RegistrationsController
 
   # If you have extra params to permit, append them to the sanitizer.
   def configure_account_update_params
-    devise_parameter_sanitizer.permit(:account_update, keys: [:user_name, :image])
+    devise_parameter_sanitizer.permit(:account_update, keys: %i[user_name image])
   end
 
   # The path used after sign up.
@@ -62,6 +62,6 @@ class Users::RegistrationsController < Devise::RegistrationsController
   # end
 
   def check_guest
-    redirect_to root_path, alert: 'ゲストユーザーのため変更できません' unless (@user == current_user)
+    redirect_to root_path, alert: 'ゲストユーザーのため変更できません' unless @user == current_user
   end
 end

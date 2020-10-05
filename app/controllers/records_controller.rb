@@ -5,7 +5,7 @@ class RecordsController < ApplicationController
 
   def index
     @records = Record.where(user: @user)
-    @last_record = @records.order(start_time: :'DESC').first
+    @last_record = @records.order(start_time: :DESC).first
   end
 
   def new
@@ -50,7 +50,7 @@ class RecordsController < ApplicationController
   private
 
   def record_params
-    params.require(:record).permit(:start_time, :main_target, training_menus_attributes: [:id, :menu, :weight, :rep, :set, :note, :_destroy])
+    params.require(:record).permit(:start_time, :main_target, training_menus_attributes: %i[id menu weight rep set note _destroy])
   end
 
   def set_user
@@ -58,7 +58,6 @@ class RecordsController < ApplicationController
   end
 
   def correct_user
-    redirect_to(user_records_path(@user)) unless (@user == current_user)
+    redirect_to(user_records_path(@user)) unless @user == current_user
   end
-
 end

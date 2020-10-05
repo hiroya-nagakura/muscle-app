@@ -6,7 +6,7 @@ ActiveAdmin.register User do
     id_column
     column :email
     column :user_name
-    column 'フォロー数' do |user| 
+    column 'フォロー数' do |user|
       user.followings.count
     end
     column 'フォロワー数' do |user|
@@ -35,10 +35,10 @@ ActiveAdmin.register User do
       if user.image?
         image_tag user.image.url(:thumb)
       else
-        image_tag "/assets/default.png"
+        image_tag '/assets/default.png'
       end
     end
-    panel "フォロー" do
+    panel 'フォロー' do
       table_for user.followings do
         column :id
         column :user_name

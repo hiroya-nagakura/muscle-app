@@ -1,18 +1,18 @@
 require 'rails_helper'
 
-RSpec.describe "Records", type: :request do
+RSpec.describe 'Records', type: :request do
   let(:user) { create(:user) }
   let(:other) { create(:user) }
   let(:record) { create(:record) }
 
-  describe "#index" do
-    it "正常にアクセスできること" do
+  describe '#index' do
+    it '正常にアクセスできること' do
       get user_records_path(user)
       expect(response).to have_http_status(200)
     end
   end
 
-  describe "#new" do
+  describe '#new' do
     context '未ログイン状態のとき' do
       it 'ログインページにリダイレクトされること' do
         get new_user_record_path(user)
@@ -37,14 +37,14 @@ RSpec.describe "Records", type: :request do
     end
   end
 
-  describe "#show" do
-    it "正常にアクセスできること" do
-      get user_record_path(user_id: user, id:record )
+  describe '#show' do
+    it '正常にアクセスできること' do
+      get user_record_path(user_id: user, id: record)
       expect(response).to have_http_status(200)
     end
   end
 
-  describe "#create" do
+  describe '#create' do
     context '未ログイン状態のとき' do
       it '記録できないこと' do
         record_params = attributes_for(:record)
@@ -61,13 +61,13 @@ RSpec.describe "Records", type: :request do
     end
     context '記録ページ本人でログイン状態のとき' do
       before { sign_in(user) }
-      it "正常に記録できること" do
+      it '正常に記録できること' do
         record_params = attributes_for(:record)
         expect do
           post user_records_path(user), params: { record: record_params }
         end.to change(Record.all, :count).by(1)
       end
-      it "レコードトップページにリダイレクトされること" do
+      it 'レコードトップページにリダイレクトされること' do
         record_params = attributes_for(:record)
         post user_records_path(user), params: { record: record_params }
         expect(response).to have_http_status(302)
@@ -77,7 +77,7 @@ RSpec.describe "Records", type: :request do
         record_params = attributes_for(:record, start_time: nil)
         post user_records_path(user), params: { record: record_params }
         expect(response).to have_http_status(200)
-        expect(response).to render_template :new 
+        expect(response).to render_template :new
       end
     end
     context '記録ページ本人以外でログイン状態のとき' do
@@ -88,7 +88,7 @@ RSpec.describe "Records", type: :request do
           post user_records_path(user), params: { record: record_params }
         end.to change(Record.all, :count).by(0)
       end
-      it "レコードトップページにリダイレクトされること" do
+      it 'レコードトップページにリダイレクトされること' do
         record_params = attributes_for(:record)
         post user_records_path(user), params: { record: record_params }
         expect(response).to have_http_status(302)
@@ -96,8 +96,8 @@ RSpec.describe "Records", type: :request do
       end
     end
   end
-  
-  describe "#destroy" do
+
+  describe '#destroy' do
     before { @record = create(:record, user: user) }
     context '未ログイン状態のとき' do
       it 'トレーニング記録を削除できないこと' do
@@ -138,9 +138,9 @@ RSpec.describe "Records", type: :request do
       end
     end
   end
-  
-  describe "#edit" do
-  before { @record = create(:record, user: user) }
+
+  describe '#edit' do
+    before { @record = create(:record, user: user) }
     context '未ログイン状態のとき' do
       it 'ログインページにリダイレクトされること' do
         get edit_user_record_path(user_id: user, id: @record)
@@ -165,18 +165,18 @@ RSpec.describe "Records", type: :request do
     end
   end
 
-  describe "update" do
+  describe 'update' do
     before { @record = create(:record, user: user) }
     context '未ログイン状態のとき' do
       it 'トレーニング記録を更新できないこと' do
         record_params = attributes_for(:record, main_target: '三角筋')
-        patch user_record_path(user_id: user, id: @record), params: {record: record_params}
+        patch user_record_path(user_id: user, id: @record), params: { record: record_params }
         @record.reload
         expect(@record.main_target).not_to eq('三角筋')
       end
       it 'ログインページにリダイレクトされること' do
         record_params = attributes_for(:record, main_target: '三角筋')
-        patch user_record_path(user_id: user, id: @record), params: {record: record_params}
+        patch user_record_path(user_id: user, id: @record), params: { record: record_params }
         expect(response).to have_http_status(302)
         expect(response).to redirect_to '/users/sign_in'
       end
@@ -185,19 +185,19 @@ RSpec.describe "Records", type: :request do
       before { sign_in(user) }
       it '記録を更新できること' do
         record_params = attributes_for(:record, main_target: '三角筋')
-        patch user_record_path(user_id: user, id: @record), params: {record: record_params}
+        patch user_record_path(user_id: user, id: @record), params: { record: record_params }
         @record.reload
         expect(@record.main_target).to eq('三角筋')
       end
       it 'レコードトップページにリダイレクトされること' do
         record_params = attributes_for(:record, main_target: '三角筋')
-        patch user_record_path(user_id: user, id: @record), params: {record: record_params}
+        patch user_record_path(user_id: user, id: @record), params: { record: record_params }
         expect(response).to have_http_status(302)
         expect(response).to redirect_to user_records_path(user)
       end
       it '更新失敗時、編集画面がレンダリングされること' do
         record_params = attributes_for(:record, start_time: '')
-        patch user_record_path(user_id: user, id: @record), params: {record: record_params}
+        patch user_record_path(user_id: user, id: @record), params: { record: record_params }
         expect(response).to have_http_status(200)
         expect(response).to render_template :edit
       end
@@ -206,13 +206,13 @@ RSpec.describe "Records", type: :request do
       before { sign_in(other) }
       it '記録を更新できないこと' do
         record_params = attributes_for(:record, main_target: '三角筋')
-        patch user_record_path(user_id: user, id: @record), params: {record: record_params}
+        patch user_record_path(user_id: user, id: @record), params: { record: record_params }
         @record.reload
         expect(@record.main_target).not_to eq('三角筋')
       end
       it 'レコードトップページにリダイレクトされること' do
         record_params = attributes_for(:record, main_target: '三角筋')
-        patch user_record_path(user_id: user, id: @record), params: {record: record_params}
+        patch user_record_path(user_id: user, id: @record), params: { record: record_params }
         expect(response).to have_http_status(302)
         expect(response).to redirect_to user_records_path(user)
       end

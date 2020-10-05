@@ -6,9 +6,7 @@ class ArticlesController < ApplicationController
     @articles = Article.page(params[:page]).per(10)
     @search = Article.ransack(params[:q])
     @search_articles = @search.result(distinct: true).page(params[:page]).per(10)
-    if @search_header
-      @search_articles = @search_header.result(distinct: true).page(params[:page]).per(10)
-    end
+    @search_articles = @search_header.result(distinct: true).page(params[:page]).per(10) if @search_header
     @search_ary = Article.all.select(:target_site).distinct
   end
 
@@ -32,8 +30,7 @@ class ArticlesController < ApplicationController
     @comment = Comment.new
   end
 
-  def edit
-  end
+  def edit; end
 
   def update
     if @article.update(article_params)
@@ -51,6 +48,7 @@ class ArticlesController < ApplicationController
   end
 
   private
+
   def article_params
     params.require(:article).permit(:title, :target_site, :need, :recommended_target, :body, :important_point, :content)
   end
@@ -60,6 +58,6 @@ class ArticlesController < ApplicationController
   end
 
   def correct_user
-    redirect_to(articles_path) unless (@article.user == current_user)
+    redirect_to(articles_path) unless @article.user == current_user
   end
 end

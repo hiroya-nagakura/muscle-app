@@ -1,13 +1,12 @@
 require 'rails_helper'
 
-RSpec.describe "Relationships", type: :request do
+RSpec.describe 'Relationships', type: :request do
   before do
     @user = create(:user)
     @follow = create(:user)
   end
-  
 
-  describe "#create" do
+  describe '#create' do
     context '未ログイン状態のとき' do
       it 'フォローできないこと' do
         expect do
@@ -32,16 +31,16 @@ RSpec.describe "Relationships", type: :request do
     context '未ログイン状態のとき' do
       it 'フォロー解除することができないこと' do
         expect do
-          delete relationship_path(@relationship), params: {follow_id: @follow.id}, xhr: true
-        end.to change(Relationship.all, :count).by (0)
+          delete relationship_path(@relationship), params: { follow_id: @follow.id }, xhr: true
+        end.to change(Relationship.all, :count).by(0)
       end
     end
     context 'ログイン状態のとき' do
       it 'フォローを解除できるこ' do
         sign_in(@user)
         expect do
-          delete relationship_path(@relationship), params: {follow_id: @follow.id}, xhr: true
-        end.to change(Relationship.all, :count).by (-1)
+          delete relationship_path(@relationship), params: { follow_id: @follow.id }, xhr: true
+        end.to change(Relationship.all, :count).by(-1)
       end
     end
   end
