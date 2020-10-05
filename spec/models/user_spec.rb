@@ -127,5 +127,24 @@ RSpec.describe User, type: :model do
       expect(user.following?(user1)).to be_truthy
       expect(user.following?(user2)).to be_falsy
     end
+
+    it 'ゲストユーザーの作成ができる' do
+      expect do
+        @guest_user = User.guest
+      end.to change(User.all, :count).by(1)
+      expect(@guest_user.user_name).to eq 'ゲストユーザー'
+      expect(@guest_user.email).to eq 'guest@example.com'
+    end
+
+    it 'ゲストユーザーがいた場合、ゲストユーザーをfindできる' do
+      user = User.create(
+        email: 'guest@example.com',
+        user_name: 'ゲストユーザー',
+        password: 'password'
+      )
+      guest_user = User.guest
+      expect(guest_user.user_name).to eq user.user_name
+      expect(guest_user.email).to eq user.email
+    end
   end
 end

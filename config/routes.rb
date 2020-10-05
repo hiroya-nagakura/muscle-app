@@ -7,8 +7,11 @@ Rails.application.routes.draw do
     registrations: 'users/registrations',
     sessions: 'users/sessions',
   }
+  devise_scope :user do
+    post 'users/guest_sign_in', to: 'users/sessions#guest_login'
+  end
 
-  resources :users do
+  resources :users, only: [:show] do
     resources :records
     resources :bodyweights, only: [:index, :create, :update, :destroy]
   end

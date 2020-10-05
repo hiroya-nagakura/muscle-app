@@ -40,4 +40,12 @@ class User < ApplicationRecord
     self.followings.include?(other_user)
   end
 
+  # ゲストログイン用設定
+  def self.guest
+    find_or_create_by!(email: 'guest@example.com') do |user|
+      user.password = SecureRandom.urlsafe_base64
+      user.user_name = 'ゲストユーザー'
+    end
+  end
+
 end
