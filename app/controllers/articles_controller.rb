@@ -12,6 +12,10 @@ class ArticlesController < ApplicationController
 
   def new
     @article = Article.new
+    @muscles_check = Tag.where(tag_group_id: 1)
+    @tools_check = Tag.where(tag_group_id: 2)
+    @recommends_check = Tag.where(tag_group_id: 3)
+    @others_check = Tag.where(tag_group_id: 4)
   end
 
   def create
@@ -50,7 +54,7 @@ class ArticlesController < ApplicationController
   private
 
   def article_params
-    params.require(:article).permit(:title, :target_site, :need, :recommended_target, :body, :important_point, :content)
+    params.require(:article).permit(:title, :target_site, :need, :recommended_target, :body, :important_point, :content, tag_ids: [])
   end
 
   def set_target_article

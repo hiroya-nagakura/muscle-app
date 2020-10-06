@@ -46,6 +46,21 @@
       <%= f.text_field :recommended_target, class: 'form-control' %>
     </div>
 
+    <div class='field form-group'>
+      <div class='form-check'>
+        <%= f.collection_check_boxes(:tag_ids, @muscles_check, :id, :name) %>
+      </div>
+      <div class='form-check'>
+        <%= f.collection_check_boxes(:tag_ids, @tools_check, :id, :name) %>
+      </div>
+      <div class='form-check'>
+        <%= f.collection_check_boxes(:tag_ids, @recommends_check, :id, :name) %>
+      </div>
+      <div class='form-check'>
+        <%= f.collection_check_boxes(:tag_ids, @others_check, :id, :name) %>
+      </div>
+    </div>
+
     <div class="field form-group">
       <%= f.label :content, 'メニューのやり方' %>
       <%= f.rich_text_area :content, class: 'form-control'%>

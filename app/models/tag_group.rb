@@ -1,3 +1,3 @@
 class TagGroup < ApplicationRecord
-  has_many :tag, dependent: :destroy
+  has_many :tags, dependent: :destroy
 end

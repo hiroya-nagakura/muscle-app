@@ -5,6 +5,9 @@
     <div class= article_title>
       <h2><%= @article.title %></h2>
     </div>
+    <% @article.tags.each do |tag| %>
+      <%= tag.name %>
+    <% end %>
     <p>鍛えられる部位: <%= @article.target_site %></p>
     <p>必要な器具: <%= @article.need %></p>
     <p>おすすめしたい人: <%= @article.recommended_target %></p>
