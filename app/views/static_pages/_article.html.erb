@@ -10,12 +10,13 @@
       </div>
     </div>
     <div>
-      <span>タグ：</span>
-      <% if article.tags.present? %>
-        <% article.tags.each do |tag| %>
-          <%= tag.name %>
-        <% end %>
-      <% end %>
+      <ul class='tag-list'>
+          <% if article.tags.present? %>
+            <% article.tags.each do |tag| %>
+              <li class='tag-item tag-style'><%= tag.name%></li>
+            <% end %>
+          <% end %>
+        </ul>
     </div>
     <div class='card-bottom'>
         <div class='card-info'>

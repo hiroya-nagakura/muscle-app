@@ -1,6 +1,6 @@
 FactoryBot.define do
   factory :tag do
-    name "MyString"
-    tag_group nil
+    name  { 'タグ' }
+    association :tag_group
   end
 end

@@ -2,8 +2,10 @@
   <div class ='top-contents'>
     <div class='top-search'>
       <%= search_form_for @search_header ,class: 'top-search-form', url: articles_path do |f|%>
-        <%= f.search_field :title_or_target_site_or_tags_name_cont, placeholder: 'メニューや鍛えたい場所で検索', class: 'top-search-input' %>
-        <button class="top-search-btn" type="button"><i class="fas fa-search"></i></button>
+        <%= f.search_field :title_or_target_site_or_tags_name_cont, placeholder: 'メニューや鍛えたい部位で検索', class: 'top-search-input' %>
+        <%= button_tag type: 'submit', class: 'top-search-btn' do %>
+          <i class="fas fa-search"></i>
+        <% end %>
       <% end %>
     </div>
     <div class='tag-search'>

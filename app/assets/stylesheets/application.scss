@@ -90,6 +90,7 @@ a{
   height: 2.0em;
   width: 100%;
   text-align: center;
+  padding-right: 3em;
   @include smartphone{
     text-align: left;
     padding-left: 1em;
@@ -102,10 +103,11 @@ a{
   background: #3879D9;
   color: #fff;
   position: absolute;
-  width: 3.5em;
+  width: 3em;
   height: 2em;
   right:0px;
   outline : none;
+  z-index: 1;
 }
 .tag-search{
   display: flex;

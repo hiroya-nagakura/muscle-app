@@ -27,8 +27,6 @@ RSpec.feature 'Articles', type: :feature do
     expect do
       fill_in 'メニュー', with: 'ベンチプレス'
       find("input[value='大胸筋']").set(true)
-      fill_in '必要な器具', with: 'バーベル'
-      fill_in 'オススメしたい人', with: '鍛えたい人'
       fill_in_rich_text_area 'article_content', with: 'テスト'
       fill_in 'コツや注意点、回数など', with: 'テスト'
       click_button '投稿する'
@@ -40,8 +38,6 @@ RSpec.feature 'Articles', type: :feature do
     aggregate_failures do
       expect(article.title).to eq 'ベンチプレス'
       expect(article.target_site).to eq '大胸筋'
-      expect(article.need).to eq 'バーベル'
-      expect(article.recommended_target).to eq '鍛えたい人'
       # expect(article.content).to eq 'テスト'
       expect(article.important_point).to eq 'テスト'
     end
@@ -56,8 +52,6 @@ RSpec.feature 'Articles', type: :feature do
     # 記事の編集
     fill_in 'メニュー', with: 'スクワット'
     find("input[value='脚']").set(true)
-    fill_in '必要な器具', with: 'なし'
-    fill_in 'オススメしたい人', with: '痩せたい人'
     fill_in_rich_text_area 'article_content', with: 'テスト２'
     fill_in 'コツや注意点、回数など', with: 'テスト２'
     click_button '投稿する'
@@ -68,8 +62,6 @@ RSpec.feature 'Articles', type: :feature do
     aggregate_failures do
       expect(article.title).to eq 'スクワット'
       expect(article.target_site).to eq '脚'
-      expect(article.need).to eq 'なし'
-      expect(article.recommended_target).to eq '痩せたい人'
       # expect(article.content).to eq 'テスト２'
       expect(article.important_point).to eq 'テスト２'
     end
