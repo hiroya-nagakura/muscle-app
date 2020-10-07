@@ -5,12 +5,14 @@
     <div class= article_title>
       <h2><%= @article.title %></h2>
     </div>
-    <% @article.tags.each do |tag| %>
-      <%= tag.name %>
-    <% end %>
+    <ul class='tag-list'>
+      <% if @article.tags.present? %>
+        <% @article.tags.each do |tag| %>
+          <li class='tag-item tag-style'><%= tag.name%></li>
+        <% end %>
+      <% end %>
+    </ul>
     <p>鍛えられる部位: <%= @article.target_site %></p>
-    <p>必要な器具: <%= @article.need %></p>
-    <p>おすすめしたい人: <%= @article.recommended_target %></p>
     <p>メニューのやり方: <%= @article.content %></p>
     <p>コツや注意点、回数など: <%= @article.important_point %></p>
 
