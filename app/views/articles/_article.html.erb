@@ -5,33 +5,30 @@
     </div>
     <div class='card-wrapper'>
       <div class='card-top'>
-
         <div class='card-content'>
           　<%= strip_tags(article.content.to_s).truncate(70) %>
           <%= link_to 'もっと読む',article%>
         </div>
       </div>
-
-      <div class='card-middle'>
-        <div class='card-need'>
-          必要なもの:　<%= article.need %>
-        </div>
-        <div class='card-reco'>
-          おすすめな人:　<%= article.recommended_target%>
-        </div>
+      <div>
+        <ul class='tag-list'>
+          <% if article.tags.present? %>
+            <% article.tags.each do |tag| %>
+              <li class='tag-item tag-style'><%= tag.name%></li>
+            <% end %>
+          <% end %>
+        </ul>
       </div>
-
       <div class='card-bottom'>
-          <div class='card-info'>
+        <div class='card-info'>
           <div id="favorites_buttons_<%= article.id %>">
             <%= render 'favorites/favorite', article: article %>
           </div>
           <div class='card-comment'>
             <i class="far fa-comments"></i>
             <%= article.comments.count %>
+          </div>
         </div>
-        </div>
-
         <div class='card-time'>
           <%= article.created_at.to_s(:datetime_jp)%>
           by <%= link_to article.user.user_name,article.user%>

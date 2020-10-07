@@ -2,7 +2,7 @@
   <%= link_to image_tag('logo.png', class: 'header-logo' ), root_path, id: "logo" , class: 'navbar-brand'%>
   <div class='navbar-nav header-search-wrapper'>
       <%= search_form_for @search_header, url: articles_path do |f| %>
-        <%= f.search_field :title_or_need_or_recommended_target_or_target_site_cont, placeholder: 'メニューなどを入力', class: 'header-search' %>
+        <%= f.search_field :title_or_target_site_or_tags_name_cont, placeholder: 'メニューなどを入力', class: 'header-search' %>
         <button type="submit"><i class="fas fa-search"></i></button>
       <% end %>
   </div>
