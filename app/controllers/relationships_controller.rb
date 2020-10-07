@@ -4,10 +4,12 @@ class RelationshipsController < ApplicationController
 
   def create
     current_user.follow(@user)
+    @msg = "#{@user.user_name}さんをフォローしました。"
   end
 
   def destroy
     current_user.unfollow(@user)
+    @msg = "#{@user.user_name}さんのフォローを解除しました。"
   end
 
   private
