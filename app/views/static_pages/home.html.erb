@@ -5,13 +5,14 @@
         <%= f.search_field :title_or_target_site_or_tags_name_cont, placeholder: 'メニューや鍛えたい場所で検索', class: 'top-search-input' %>
         <button class="top-search-btn" type="button"><i class="fas fa-search"></i></button>
       <% end %>
+    </div>
+    <div class='tag-search'>
+      <p>人気のタグ：</p>
+      <ul class='tag-list'>
       <% @top5_tag.each do |tag| %>
-          <%= search_form_for @search_header, url: articles_path do |f|%>
-          <%= f.hidden_field :tags_name_eq, value: tag.name %>
-          <%= f.submit tag.name%>
-        <% end %>
+        <li class='tag-item'><%= link_to tag.name, articles_path(q: { tags_name_eq: tag.name }), class: 'tag-style tag-search-item'%></li>
       <% end %>
-
+      </ul>
     </div>
   </div>
 </div>

@@ -54,7 +54,7 @@ a{
 }
 
 .top-contents{
-  background-color: rgba(0,0,0,0.3);
+  background-color: rgba(0,0,0,0.5);
   width: 90%;
   padding: 1em 1em;
   border-radius: 2em;
@@ -106,6 +106,31 @@ a{
   height: 2em;
   right:0px;
   outline : none;
+}
+.tag-search{
+  display: flex;
+  justify-content: center;
+  color: white;
+  margin: auto;
+  & p{
+    margin-top: 0.3em;
+    margin-right: 1em;
+  }
+}
+.tag-search-item{
+  &:hover{
+    text-decoration: none;
+    background-color: #4391c2;
+    &:before {
+      border-color: transparent #4391c2 transparent transparent;
+    }
+  }
+  &:active{
+    background-color: #8cacc0;
+    &:before {
+      border-color: transparent #8cacc0 transparent transparent;
+    }
+  }
 }
 
 .top-articles-wrapper{
@@ -421,6 +446,9 @@ a{
 	color: #fff;
 	text-decoration: none;
   background-color: #0089e0;
+  @include tablet{
+    font-size: 0.8em;
+  }
   &:before {
     position: absolute;
     top: 0;
@@ -437,6 +465,9 @@ a{
     content: '●';
     font-size: 0.5em;
     color: #fff;
+    @include tablet{
+      font-size: 0.4em;
+    }
   }
 }
 //メニュー記録//
