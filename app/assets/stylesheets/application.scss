@@ -54,7 +54,7 @@ a{
 }
 
 .top-contents{
-  background-color: rgba(0,0,0,0.3);
+  background-color: rgba(0,0,0,0.5);
   width: 90%;
   padding: 1em 1em;
   border-radius: 2em;
@@ -90,6 +90,7 @@ a{
   height: 2.0em;
   width: 100%;
   text-align: center;
+  padding-right: 3em;
   @include smartphone{
     text-align: left;
     padding-left: 1em;
@@ -102,10 +103,36 @@ a{
   background: #3879D9;
   color: #fff;
   position: absolute;
-  width: 3.5em;
+  width: 3em;
   height: 2em;
   right:0px;
   outline : none;
+  z-index: 1;
+}
+.tag-search{
+  display: flex;
+  justify-content: center;
+  color: white;
+  margin: auto;
+  & p{
+    margin-top: 0.3em;
+    margin-right: 1em;
+  }
+}
+.tag-search-item{
+  &:hover{
+    text-decoration: none;
+    background-color: #4391c2;
+    &:before {
+      border-color: transparent #4391c2 transparent transparent;
+    }
+  }
+  &:active{
+    background-color: #8cacc0;
+    &:before {
+      border-color: transparent #8cacc0 transparent transparent;
+    }
+  }
 }
 
 .top-articles-wrapper{
@@ -361,16 +388,6 @@ a{
   margin-top: 2em;
 }
 
-.card-need{
-  border-bottom: solid;
-  padding-left: 1em;
-}
-
-.card-reco{
-  border-bottom: solid;
-  margin-top: 1em;
-}
-
 .card-bottom{
   display: flex;
   flex-direction: column;
@@ -411,6 +428,50 @@ a{
   margin-bottom: 2em;
 }
 
+.tag-list{
+  list-style: none;
+	margin: 0;
+	overflow: hidden;
+	padding: 0;
+}
+
+.tag-item{
+  display: inline-block;
+}
+
+.tag-style{
+  position: relative;
+	display: inline-block;
+	margin: 0 .6em .6em 1em;
+	padding: .6em .6em .6em 1.2em;
+	line-height: 1;
+	color: #fff;
+	text-decoration: none;
+  background-color: #0089e0;
+  @include tablet{
+    font-size: 0.8em;
+  }
+  &:before {
+    position: absolute;
+    top: 0;
+    left: -1em;
+    content: '';
+    border-width: 1.1em 1em 1.1em 0;
+    border-style: solid;
+    border-color: transparent #0089e0 transparent transparent;
+  }
+  &:after {
+    position: absolute;
+    top: 1.5em;
+    left: 0;
+    content: '●';
+    font-size: 0.5em;
+    color: #fff;
+    @include tablet{
+      font-size: 0.4em;
+    }
+  }
+}
 //メニュー記録//
 //一覧画面//
 .record-logo{

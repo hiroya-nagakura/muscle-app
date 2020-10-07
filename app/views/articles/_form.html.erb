@@ -36,14 +36,19 @@
       </div>
     </div>
 
-    <div class="field form-group">
-      <%= f.label :need, '必要な器具' %><br />
-      <%= f.text_field :need, class: 'form-control' %>
-    </div>
-
-    <div class="field form-group">
-      <%= f.label :recommended_target, 'オススメしたい人' %><br />
-      <%= f.text_field :recommended_target, class: 'form-control' %>
+    <div class='field form-group'>
+      <div class='form-check'>
+        <%= f.collection_check_boxes(:tag_ids, @muscles_check, :id, :name) %>
+      </div>
+      <div class='form-check'>
+        <%= f.collection_check_boxes(:tag_ids, @tools_check, :id, :name) %>
+      </div>
+      <div class='form-check'>
+        <%= f.collection_check_boxes(:tag_ids, @recommends_check, :id, :name) %>
+      </div>
+      <div class='form-check'>
+        <%= f.collection_check_boxes(:tag_ids, @others_check, :id, :name) %>
+      </div>
     </div>
 
     <div class="field form-group">

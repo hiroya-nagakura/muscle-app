@@ -1,6 +1,7 @@
 class ArticlesController < ApplicationController
   before_action :authenticate_user!, only: %i[new create edit update destroy]
-  before_action :set_target_article, only: %i[show edit update destroy]
+  before_action :set_article, only: %i[show edit update destroy]
+  before_action :tag_checkbox, only: %i[new edit]
   before_action :correct_user, only: %i[edit update destroy]
   def index
     @articles = Article.page(params[:page]).per(10)
@@ -50,11 +51,18 @@ class ArticlesController < ApplicationController
   private
 
   def article_params
-    params.require(:article).permit(:title, :target_site, :need, :recommended_target, :body, :important_point, :content)
+    params.require(:article).permit(:title, :target_site, :important_point, :content, tag_ids: [])
   end
 
-  def set_target_article
+  def set_article
     @article = Article.find(params[:id])
+  end
+
+  def tag_checkbox
+    @muscles_check = Tag.where(tag_group_id: 1)
+    @tools_check = Tag.where(tag_group_id: 2)
+    @recommends_check = Tag.where(tag_group_id: 3)
+    @others_check = Tag.where(tag_group_id: 4)
   end
 
   def correct_user

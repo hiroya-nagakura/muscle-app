@@ -5,7 +5,7 @@
       <%= f.collection_select :target_site_eq, @search_ary, :target_site, :target_site, include_blank: '部位を選択してください' %>
       <%= f.select( :sorts, {'並び替え': 'updated_at desc', '日付の新しい順': 'updated_at desc', '日付の古い順': 'updated_at asc' })%>
     <%= f.label :検索 %>
-    <%= f.search_field :title_or_need_or_recommended_target_cont, placeholder: 'キーワードを入力' %>
+    <%= f.search_field :title_or_tags_name_cont, placeholder: 'キーワードを入力' %>
 
 
     <%= f.submit '検索'%>
