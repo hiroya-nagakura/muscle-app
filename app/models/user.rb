@@ -15,7 +15,10 @@ class User < ApplicationRecord
   has_many :records, dependent: :destroy
   has_many :bodyweights, dependent: :destroy
 
+  # emailの正規表現
+  VALID_EMAIL_REGEX = /\A[\w+\-.]+@[a-z\d\-.]+\.[a-z]+\z/i
   validates :user_name, presence: true, length: { maximum: 20 }
+  validates :email, presence: true, length: { maximum: 255}, format: {with: VALID_EMAIL_REGEX, allow_blank: true}
 
   # いいねしているかどうかの確認
   def already_favorite?(article)
