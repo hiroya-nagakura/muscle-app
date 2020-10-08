@@ -41,14 +41,14 @@ RSpec.describe User, type: :model do
   end
 
   describe '文字数の検証' do
-    it 'passwordが6文字以上の場合、有効であること' do
-      user.password = user.password_confirmation = 'a' * 6
+    it 'passwordが8文字以上の場合、有効であること' do
+      user.password = user.password_confirmation = 'a' * 8
       expect(user).to be_valid
     end
-    it 'passwordが6文字未満の場合、無効であること' do
-      user.password = user.password_confirmation = 'a' * 5
+    it 'passwordが7文字以下の場合、無効であること' do
+      user.password = user.password_confirmation = 'a' * 7
       user.valid?
-      expect(user.errors[:password]).to include('は6文字以上で入力してください')
+      expect(user.errors[:password]).to include('は8文字以上で入力してください')
     end
     it 'user_nameが20文字以下の場合、有効であること' do
       user.user_name = 'a' * 20

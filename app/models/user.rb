@@ -19,6 +19,7 @@ class User < ApplicationRecord
   VALID_EMAIL_REGEX = /\A[\w+\-.]+@[a-z\d\-.]+\.[a-z]+\z/i
   validates :user_name, presence: true, length: { maximum: 20 }
   validates :email, presence: true, length: { maximum: 255}, format: {with: VALID_EMAIL_REGEX, allow_blank: true}
+  validates :password, presence: true, length: { minimum: 8 }
 
   # いいねしているかどうかの確認
   def already_favorite?(article)
