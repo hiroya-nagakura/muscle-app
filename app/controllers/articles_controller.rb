@@ -36,7 +36,7 @@ class ArticlesController < ApplicationController
     if @article.update(article_params)
       redirect_to @article, notice: '投稿が編集されました。'
     else
-      flash.now[:alert] = '編集に失敗しました。'
+      flash.now[:alert] = '編集に失敗しました'
       flash.now[:error_messages] = @article.errors.full_messages
       render :edit
     end

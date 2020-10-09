@@ -12,7 +12,7 @@ class RecordsController < ApplicationController
 
   def new
     @record = Record.new
-    @training_menu = @record.training_menus.build
+    @record.training_menus.build
   end
 
   def show
@@ -38,6 +38,7 @@ class RecordsController < ApplicationController
 
   def edit
     @record = Record.find(params[:id])
+    @record.training_menus.build
   end
 
   def update
