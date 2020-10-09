@@ -1,7 +1,9 @@
 class RecordsController < ApplicationController
   before_action :authenticate_user!, only: %i[new create edit update destroy]
   before_action :set_user
+  before_action :unreleased
   before_action :correct_user, only: %i[new create edit update destroy]
+  
 
   def index
     @records = Record.where(user: @user)
@@ -59,5 +61,11 @@ class RecordsController < ApplicationController
 
   def correct_user
     redirect_to(user_records_path(@user)) unless @user == current_user
+  end
+
+  def unreleased
+    unless current_user == @user && @user.records_is_released
+      redirect_to root_path, alert: "#{@user.user_name}さんはトレーニング記録を非公開に設定しています"
+    end
   end
 end
