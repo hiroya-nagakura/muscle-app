@@ -33,25 +33,25 @@
       <div class='chart-box'>
         <span class=chart-label>体重 (kg)</span>
         <div class='weight-chart active daily-chart' id='daily-chart'>
-        <%= line_chart @bodyweights.day_chart_date(@dailychart_range),height:'400px', 
-                                                                      curve: false, 
-                                                                      precision: 4,
-                                                                      min: @dailychart_min,
-                                                                      max: @dailychart_max %>
-        </div>
-        <div class='weight-chart weekly-chart' id='weekly-chart'>
-        <%= line_chart @bodyweights.week_chart_date(@weeklychart_range),height:'400px', 
+          <%= line_chart @bodyweights.day_chart_date(@dailychart_range),height:'400px', 
                                                                         curve: false, 
                                                                         precision: 4,
-                                                                        min: @weeklychart_min,
-                                                                        max: @weeklychart_max %>
-          </div>
-        <div class='weight-chart monthly-chart' id='monthly-chart'>
-        <%= line_chart @bodyweights.month_chart_date(@montylychart_range),height:'400px', 
+                                                                        min: @dailychart_min,
+                                                                        max: @dailychart_max %>
+        </div>
+        <div class='weight-chart weekly-chart' id='weekly-chart'>
+          <%= line_chart @bodyweights.week_chart_date(@weeklychart_range),height:'400px', 
                                                                           curve: false, 
                                                                           precision: 4,
-                                                                          min: @monthlychart_min,
-                                                                          max: @monthychart_max %>
+                                                                          min: @weeklychart_min,
+                                                                          max: @weeklychart_max %>
+        </div>
+        <div class='weight-chart monthly-chart' id='monthly-chart'>
+          <%= line_chart @bodyweights.month_chart_date(@montylychart_range),height:'400px', 
+                                                                            curve: false, 
+                                                                            precision: 4,
+                                                                            min: @monthlychart_min,
+                                                                            max: @monthychart_max %>
         </div>
       </div>
     </div>

@@ -5,7 +5,7 @@ class RecordsController < ApplicationController
 
   def index
     @records = Record.where(user: @user)
-    @last_record = @records.order(start_time: :DESC).first
+    @last_record = @records.order(start_time: :desc).first
   end
 
   def new
