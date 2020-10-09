@@ -3,6 +3,7 @@ require 'rails_helper'
 RSpec.describe 'Articles', type: :request do
   let(:user) { create(:user) }
   let(:other) { create(:user) }
+  let(:target_site) { create(:target_site) }
 
   describe '#index' do
     it '正常にアクセスできること' do
@@ -42,7 +43,7 @@ RSpec.describe 'Articles', type: :request do
     context 'ログイン状態のとき' do
       it '記事を作成でき一覧ページにリダイレクトされること' do
         sign_in(user)
-        article_params = attributes_for(:article, user: user)
+        article_params = attributes_for(:article, user: user, target_site_id: target_site.id)
         expect do
           post articles_path, params: { article: article_params }
         end.to change(Article.all, :count).by(1)

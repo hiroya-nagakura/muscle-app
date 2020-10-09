@@ -29,7 +29,7 @@ RSpec.feature 'Comments', type: :feature do
     click_link 'もっと読む'
 
     # コメント作成
-    find 'h3', text: 'メニュー一覧'
+    find 'h2', text: @article.title
     expect do
       fill_in 'comment_content', with: 'コメント投稿のテスト'
       click_button 'コメントする'

@@ -3,8 +3,7 @@ ActiveAdmin.register Article do
     selectable_column
     id_column
     column :title
-    column :target_site
-    column :recommended_target
+    column :target_sites_id
     column :important_point
     column '記事内容', class: :admin_article_content do |article|
       article.content.to_s

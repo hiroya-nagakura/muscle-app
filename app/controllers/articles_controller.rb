@@ -8,7 +8,6 @@ class ArticlesController < ApplicationController
     @search = Article.ransack(params[:q])
     @search_articles = @search.result(distinct: true).page(params[:page]).per(10)
     @search_articles = @search_header.result(distinct: true).page(params[:page]).per(10) if @search_header
-    @search_ary = Article.all.select(:target_site).distinct
   end
 
   def new
@@ -51,7 +50,7 @@ class ArticlesController < ApplicationController
   private
 
   def article_params
-    params.require(:article).permit(:title, :target_site, :important_point, :content, tag_ids: [])
+    params.require(:article).permit(:title, :target_site_id, :important_point, :content, tag_ids: [])
   end
 
   def set_article

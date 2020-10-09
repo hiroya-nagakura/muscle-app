@@ -5,8 +5,11 @@ class StaticPagesController < ApplicationController
     #チャート表示に必要な情報の取得
     @bodyweights = Bodyweight.where(user: current_user)
     @dailychart_range = Date.current.prev_week(:monday)..Date.current.end_of_week.to_date
-    @max = @bodyweights.where(day: @dailychart_range).maximum(:weight) + 1
-    @min = @bodyweights.where(day: @dailychart_range).minimum(:weight) - 1
+    chart_bodyweight = @bodyweights.where(day: @dailychart_range)
+    if chart_bodyweight.present?
+      @max = chart_bodyweight.maximum(:weight).round + 1
+      @min = chart_bodyweight.minimum(:weight).round - 1
+    end
     # 人気の記事のIDを上から順に10番目まで配列で取得
     article_rank_ary = Favorite.group(:article_id).order('count(article_id) desc').limit(10).pluck(:article_id)
     # それをもとに記事を取得

@@ -5,4 +5,9 @@
 #
 #   movies = Movie.create([{ name: 'Star Wars' }, { name: 'Lord of the Rings' }])
 #   Character.create(name: 'Luke', movie: movies.first)
-AdminUser.create!(email: 'admin@example.com', password: 'password', password_confirmation: 'password')
+TargetSite.create!(muscle_name: '胸')
+TargetSite.create!(muscle_name: '肩')
+TargetSite.create!(muscle_name: '腕')
+TargetSite.create!(muscle_name: '腹')
+TargetSite.create!(muscle_name: '背中')
+TargetSite.create!(muscle_name: '脚')

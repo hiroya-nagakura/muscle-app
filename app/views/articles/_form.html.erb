@@ -7,47 +7,21 @@
     </div>
 
     <div class="field form-group">
-      <%= f.label :target_site, '鍛えられる部位' %><br />
-      <div class='select-target-group'>
-        <div class='select-target'>
-        <%= f.radio_button :target_site, :大胸筋 %>
-        <%= f.label :target_site, "大胸筋" %>
-        </div>
-        <div class='select-target'>
-        <%= f.radio_button :target_site, :肩 %>
-        <%= f.label :target_site, "肩" %>
-        </div>
-        <div class='select-target'>
-        <%= f.radio_button :target_site, :腕 %>
-        <%= f.label :target_site, "腕" %>
-        </div>
-        <div class='select-target'>
-        <%= f.radio_button :target_site, :腹筋 %>
-        <%= f.label :target_site, "腹筋" %>
-        </div>
-        <div class='select-target'>
-        <%= f.radio_button :target_site, :背中 %>
-        <%= f.label :target_site, "背中" %>
-        </div>
-        <div class='select-target'>
-        <%= f.radio_button :target_site, :脚 %>
-        <%= f.label :target_site, "脚" %>
-        </div>
-      </div>
+      <%= f.collection_radio_buttons(:target_site_id, TargetSite.all, :id , :muscle_name) %>
     </div>
 
     <div class='field form-group'>
       <div class='form-check'>
-        <%= f.collection_check_boxes(:tag_ids, @muscles_check, :id, :name) %>
+        <%= f.collection_check_boxes(:tag_ids, @muscles_check, :id, :name) if @muscles_check.present? %>
       </div>
       <div class='form-check'>
-        <%= f.collection_check_boxes(:tag_ids, @tools_check, :id, :name) %>
+        <%= f.collection_check_boxes(:tag_ids, @tools_check, :id, :name) if @tools_check.present? %>
       </div>
       <div class='form-check'>
-        <%= f.collection_check_boxes(:tag_ids, @recommends_check, :id, :name) %>
+        <%= f.collection_check_boxes(:tag_ids, @recommends_check, :id, :name) if @recommends_check.present? %>
       </div>
       <div class='form-check'>
-        <%= f.collection_check_boxes(:tag_ids, @others_check, :id, :name) %>
+        <%= f.collection_check_boxes(:tag_ids, @others_check, :id, :name) if @others_check.present? %>
       </div>
     </div>
 

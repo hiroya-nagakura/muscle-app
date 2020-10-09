@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_10_06_144636) do
+ActiveRecord::Schema.define(version: 2020_10_09_034248) do
 
   create_table "action_text_rich_texts", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
     t.string "name", null: false
@@ -80,11 +80,12 @@ ActiveRecord::Schema.define(version: 2020_10_06_144636) do
 
   create_table "articles", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
     t.string "title", null: false
-    t.string "target_site", null: false
     t.text "important_point"
     t.bigint "user_id", null: false
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
+    t.bigint "target_site_id"
+    t.index ["target_site_id"], name: "index_articles_on_target_site_id"
     t.index ["user_id"], name: "index_articles_on_user_id"
   end
 
@@ -150,6 +151,12 @@ ActiveRecord::Schema.define(version: 2020_10_06_144636) do
     t.index ["tag_group_id"], name: "index_tags_on_tag_group_id"
   end
 
+  create_table "target_sites", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
+    t.string "muscle_name"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+  end
+
   create_table "training_menus", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
     t.string "menu"
     t.integer "weight"
@@ -178,6 +185,7 @@ ActiveRecord::Schema.define(version: 2020_10_06_144636) do
   add_foreign_key "active_storage_attachments", "active_storage_blobs", column: "blob_id"
   add_foreign_key "article_tags", "articles"
   add_foreign_key "article_tags", "tags"
+  add_foreign_key "articles", "target_sites"
   add_foreign_key "articles", "users"
   add_foreign_key "bodyweights", "users"
   add_foreign_key "comments", "articles"

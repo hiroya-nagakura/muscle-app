@@ -3,6 +3,7 @@ require 'rails_helper'
 RSpec.describe Article, type: :model do
   let(:user) { create(:user) }
   let(:article) { create(:article) }
+  let(:target_site) { create(:target_site) }
 
   it '有効なファクトリを持つこと' do
     expect { create(:article) }.to change(Article.all, :count).by(1)
@@ -11,9 +12,9 @@ RSpec.describe Article, type: :model do
   it 'タイトル、標的部位、記事内容,ユーザーがあれば有効な状態であること' do
     article = Article.new(
       title: 'タイトル',
-      target_site: '鍛えたい部位',
       content: '記事内容',
-      user: user
+      user: user,
+      target_site: target_site
     )
     expect(article).to be_valid
   end

@@ -36,17 +36,17 @@
       </div>
     </div>
     <div class='card-wrapper'>
-      <% if article.target_site == '大胸筋' %>
+      <% if article.target_site_id == 1 %>
         <%= link_to image_tag('chest.png', alt: 'chest', class: 'card-image'), article%>
-      <% elsif article.target_site == '腕' %>
+      <% elsif article.target_site_id == 2 %>
         <%= link_to image_tag('arm.png', alt: 'arm', class: 'card-image'), article%>
-      <% elsif article.target_site == '肩' %>
+      <% elsif article.target_site_id == 3 %>
         <%= link_to image_tag('sholder.png', alt: 'sholder', class: 'card-image'), article%>
-      <% elsif article.target_site == '腹筋' %>
+      <% elsif article.target_site_id == 4 %>
         <%= link_to image_tag('abs.png', alt: 'abs', class: 'card-image'), article%>
-      <% elsif article.target_site == '背中' %>
+      <% elsif article.target_site_id == 5 %>
         <%= link_to image_tag('back.png', alt: 'back', class: 'card-image'), article%>
-      <% elsif article.target_site == '脚' %>
+      <% elsif article.target_site_id == 6 %>
         <%= link_to image_tag('leg.png', alt: 'leg', class: 'card-image'), article%>
       <% end %>
       <div class='text-center'>
