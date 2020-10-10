@@ -1,6 +1,7 @@
 class User < ApplicationRecord
   # Include default devise modules. Others available are:
   # :confirmable, :lockable, :timeoutable, :trackable and :omniauthable
+  attr_accessor :current_password
   devise :database_authenticatable, :registerable,
          :recoverable, :rememberable, :validatable
   mount_uploader :image, ImageUploader
@@ -15,11 +16,8 @@ class User < ApplicationRecord
   has_many :records, dependent: :destroy
   has_many :bodyweights, dependent: :destroy
 
-  # emailの正規表現
-  VALID_EMAIL_REGEX = /\A[\w+\-.]+@[a-z\d\-.]+\.[a-z]+\z/i
   validates :user_name, presence: true, length: { maximum: 20 }
-  validates :email, presence: true, length: { maximum: 255}, format: {with: VALID_EMAIL_REGEX, allow_blank: true}
-  validates :password, presence: true, length: { minimum: 8 }
+  validates :email, presence: true, length: { maximum: 255}
 
   # いいねしているかどうかの確認
   def already_favorite?(article)
