@@ -70,6 +70,6 @@ class Users::RegistrationsController < Devise::RegistrationsController
   # end
 
   def check_guest
-    redirect_to root_path, alert: 'ゲストユーザーのため変更できません' unless @user == current_user
+    redirect_to root_path, alert: 'ゲストユーザーのため変更できません' if current_user.email == 'guest@example.com'
   end
 end

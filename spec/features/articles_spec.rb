@@ -75,7 +75,8 @@ RSpec.feature 'Articles', type: :feature do
     # 削除されたか検証
     expect do
       click_link '削除'
+      expect(page.accept_confirm).to eq "削除しますか？"
+      expect(page).to have_text('メニューを削除しました')
     end.to change(Article.all, :count).by(-1)
-    expect(page).to have_text('メニューを削除しました')
   end
 end

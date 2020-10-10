@@ -14,7 +14,7 @@ class CommentsController < ApplicationController
 
   def destroy
     @comment = Comment.find(params[:id])
-    redirect_to article_path(@article) if @comment.destroy
+    redirect_to article_path(@article), notice: 'コメントを削除しました。' if @comment.destroy
   end
 
   private

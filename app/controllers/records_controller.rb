@@ -67,8 +67,10 @@ class RecordsController < ApplicationController
   end
 
   def unreleased
-    unless current_user == @user && @user.records_is_released
-      redirect_to root_path, alert: "#{@user.user_name}さんはトレーニング記録を非公開に設定しています"
+    unless current_user == @user
+      unless @user.records_is_released
+        redirect_to root_path, flash: { alert: "#{@user.user_name}さんは体重管理を非公開に設定しています" }
+      end
     end
   end
 end

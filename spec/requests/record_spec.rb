@@ -4,6 +4,7 @@ RSpec.describe 'Records', type: :request do
   let(:user) { create(:user) }
   let(:other) { create(:user) }
   let(:record) { create(:record) }
+  let(:training_menu) { create(:training_menu) }
 
   describe '#index' do
     it '正常にアクセスできること' do
@@ -47,13 +48,13 @@ RSpec.describe 'Records', type: :request do
   describe '#create' do
     context '未ログイン状態のとき' do
       it '記録できないこと' do
-        record_params = attributes_for(:record)
+        record_params = attributes_for(:record, training_menus_attributes:[ attributes_for(:training_menu)])
         expect do
           post user_records_path(user), params: { record: record_params }
         end.to change(Record.all, :count).by(0)
       end
       it 'ログインページにリダイレクトされること' do
-        record_params = attributes_for(:record)
+        record_params = attributes_for(:record, training_menus_attributes:[ attributes_for(:training_menu)])
         post user_records_path(user), params: { record: record_params }
         expect(response).to have_http_status(302)
         expect(response).to redirect_to '/users/sign_in'
@@ -62,13 +63,13 @@ RSpec.describe 'Records', type: :request do
     context '記録ページ本人でログイン状態のとき' do
       before { sign_in(user) }
       it '正常に記録できること' do
-        record_params = attributes_for(:record)
+        record_params = attributes_for(:record, training_menus_attributes:[ attributes_for(:training_menu)])
         expect do
           post user_records_path(user), params: { record: record_params }
         end.to change(Record.all, :count).by(1)
       end
       it 'レコードトップページにリダイレクトされること' do
-        record_params = attributes_for(:record)
+        record_params = attributes_for(:record, training_menus_attributes:[ attributes_for(:training_menu)])
         post user_records_path(user), params: { record: record_params }
         expect(response).to have_http_status(302)
         expect(response).to redirect_to user_records_path(user)
