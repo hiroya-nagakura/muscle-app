@@ -1,4 +1,6 @@
 class Article < ApplicationRecord
+  MAX_ARTICLE_TAGS_LENGTH = 5
+
   belongs_to :user
   belongs_to :target_site
   has_many :favorites, dependent: :destroy
@@ -10,4 +12,5 @@ class Article < ApplicationRecord
 
   validates :title, presence: true, length: { maximum: 30 }
   validates :content, presence: true
+  validates :article_tags, length: {maximum: MAX_ARTICLE_TAGS_LENGTH}
 end

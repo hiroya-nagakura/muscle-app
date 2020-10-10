@@ -1,5 +1,11 @@
 ja:
   activerecord:
+    errors:
+      models:
+        article:
+          attributes:
+            article_tags:
+              too_long: 'は%{count}個までしか登録できません'
     models:
       user: ユーザー
       article: 記事
@@ -20,6 +26,7 @@ ja:
         user: ユーザー
         target_site: 鍛えたい部位
         content: メニューの方法
+        article_tags: タグ
       bodyweight:
         weight: 体重
         day: 日付
