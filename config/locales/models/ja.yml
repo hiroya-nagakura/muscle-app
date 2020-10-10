@@ -33,6 +33,10 @@ ja:
         start_time: 日付
         user: ユーザー
         training_menus: 最低１つはトレーニングメニュー
+      record/training_menus:
+          weight: 重量
+          rep: 回数
+          set: セット数
       tag:
         name: タグ名
         tag_group: タグの種類

@@ -2,7 +2,11 @@
   <%= form_with model: [@user, @record], local: true do |f| %>
 
     <div class="text-right">
-      <%= f.date_field :start_time, value: Date.today%>
+      <% if @record.start_time.present? %>
+        <%= f.date_field :start_time %>
+      <% else %>
+        <%= f.date_field :start_time, value: Date.today%>
+      <% end %>
     </div>
     <div class="form-group record-target-form">
       <%= f.label :main_target, '特に鍛えたい場所'%>

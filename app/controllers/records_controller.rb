@@ -46,6 +46,8 @@ class RecordsController < ApplicationController
     if @record.update(record_params)
       redirect_to user_records_path(@user), notice: 'トレーニングメニューを編集しました'
     else
+      flash.now[:alert] = '編集に失敗しました'
+      flash.now[:error_messages] = @record.errors.full_messages
       render 'edit'
     end
   end
