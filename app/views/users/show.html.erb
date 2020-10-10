@@ -107,7 +107,7 @@
     <div id='prof-favorites' class='tab-pane'>
       <% if @favorite_articles.any? %>
         <div class='article'>
-          <%= render 'favorites', favorite_articles: @favorite_articles%>
+          <%= render partial: 'articles/article', collection:@favorite_articles%>
         </div>
       <% else %>
         <div class='no-content'>

@@ -26,11 +26,10 @@ a{
   padding: 1em;
   border-radius: 1em;
 }
-// icon // 
-.fas{
-  font-size: large;
-}
 
+.signed_in{
+  opacity: 1 !important;
+}
 //top//
 
 .top{
@@ -372,9 +371,7 @@ a{
   background-color: #fdfdff;
   border: outset;
   box-shadow: 4px 4px 2px;
-  display: flex;
-  flex-wrap: wrap;
-
+  max-width: 500px;
 }
 
 .card-title{
@@ -383,22 +380,43 @@ a{
   border-bottom: double 5px;
   width: 100%;
 }
-
-.card-wrapper{
-  width:50%;
+.link-decoration {
+  color: black;
+}
+.card-middle{
+  display: flex;
+}
+.card-middle-wrapper{
+  width: 50%;
   display: flex;
   flex-direction: column;
   justify-content: space-between;
 }
-
+.card-user{
+  display: flex;
+}
+.card-avatar-img{
+  border-radius: 50%;
+  width: 50px;
+  height: 50px;
+  object-fit: cover;
+}
+.card-user-content{
+  font-weight: bold;
+  display: flex;
+  align-items: center;
+  margin-left: 5px;
+}
 .card-content{
   margin-top: 2em;
 }
 
-.card-bottom{
+.card-btn{
   display: flex;
-  flex-direction: column;
-  align-items: flex-end;
+  width: 100%;
+  font-size: 1.4em;
+  opacity: 0.5;
+  margin-bottom: 10px;
 }
 
 .card-info{
