@@ -31,8 +31,10 @@
     <h3>コメント一覧</h3>
       <%= render @comments%>
     </div>
-    <div>
-    <%= render 'comments/comment_form'%>
-    </div>
+    <% if user_signed_in? %>
+      <div>
+      <%= render 'comments/comment_form'%>
+      </div>
+    <% end %>
   </div>
 </div>
