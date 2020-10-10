@@ -4,10 +4,7 @@ class ArticlesController < ApplicationController
   before_action :tag_checkbox, only: %i[new edit]
   before_action :correct_user, only: %i[edit update destroy]
   def index
-    @articles = Article.page(params[:page]).per(10)
-    @search = Article.ransack(params[:q])
-    @search_articles = @search.result(distinct: true).page(params[:page]).per(10)
-    @search_articles = @search_header.result(distinct: true).page(params[:page]).per(10) if @search_header
+    @articles = @search.result(distinct: true).page(params[:page]).per(10)
   end
 
   def new
