@@ -103,7 +103,7 @@
                     <% if user_signed_in? %>
                       <% if current_user == @user %>
                         <td>
-                          <%= link_to '×', user_bodyweight_path(user_id: @user, id: bodyweight), method: :delete %>
+                          <%= link_to '×', user_bodyweight_path(user_id: @user, id: bodyweight), method: :delete, data: { confirm: '削除しますか？' } %>
                         </td>
                       <% end %>
                     <% end %>

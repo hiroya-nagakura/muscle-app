@@ -19,7 +19,7 @@
     <% if user_signed_in?%>
       <% if current_user.id == @article.user_id %>
         <%= link_to '編集', edit_article_path(@article) %>
-        <%= link_to '削除', article_path(@article), method: :delete %>
+        <%= link_to '削除', article_path(@article), method: :delete, data: { confirm: '削除しますか？' } %>
       <% end %>
     <% end %>
 
