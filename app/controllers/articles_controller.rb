@@ -4,7 +4,7 @@ class ArticlesController < ApplicationController
   before_action :tag_checkbox, only: %i[new create edit update]
   before_action :correct_user, only: %i[edit update destroy]
   def index
-    @articles = @search.result(distinct: true).page(params[:page]).per(10)
+    @articles = @search.result(distinct: true).page(params[:page]).per(4)
   end
 
   def new
