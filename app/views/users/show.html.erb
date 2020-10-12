@@ -25,14 +25,8 @@
   </div>
 
   <div class='management-link'>
-  <% if current_user == @user || @user.records_is_released && @user.bodyweights_is_released %>
-    <%= link_to 'トレーニング記録', user_records_path(@user), class: 'btn btn-sm prof-btn'%>
-    <%= link_to '体重記録', user_bodyweights_path(@user), class: 'btn btn-sm prof-btn'%>
-  <% elsif @user.records_is_released %>
-    <%= link_to 'トレーニング記録', user_records_path(@user), class: 'btn btn-sm prof-btn'%>
-  <% elsif @user.bodyweights_is_released %>
-    <%= link_to '体重記録', user_bodyweights_path(@user), class: 'btn btn-sm prof-btn'%>
-  <% end %>
+    <%= link_to 'トレーニング記録', user_records_path(@user), class: 'btn-default blue-btn' if current_user == @user || @user.records_is_released %>
+    <%= link_to '体重記録', user_bodyweights_path(@user), class: 'btn-default blue-btn' if current_user == @user || @user.bodyweights_is_released%>
   </div>
 
   <ul class='nav nav-tabs justify-content-center prof-nav'>

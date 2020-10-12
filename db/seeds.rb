@@ -11,3 +11,4 @@ TargetSite.create!(muscle_name: '腕')
 TargetSite.create!(muscle_name: '腹')
 TargetSite.create!(muscle_name: '背中')
 TargetSite.create!(muscle_name: '脚')
+

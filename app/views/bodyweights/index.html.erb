@@ -2,27 +2,6 @@
 
 <div class='container-fluid'>
   <h2>体重記録</h2>
-  <% if user_signed_in? %>
-    <% if current_user == @user %>
-      <div class='form-wrapper weight-new-form'>
-        <%= form_with model: [@user, @bodyweight], local: true do |f| %>
-          <div>
-          <%= f.label :day, '日付'%>
-          <%= f.date_field :day, value: Date.today%>
-          </div>
-
-          <div>
-          <%= f.label :weight, '体重'%>
-          <%= f.number_field :weight, step: '0.1' %><span> kg</span>
-          </div>
-
-          <div>
-            <%= f.submit '記録する'%>
-          </div>
-        <% end %>
-      </div>
-    <% end %>
-  <% end %>
   <div class='row'>
     <div class='col-12 col-lg-7 chart-wrapper'>
       <div class="btn-group btn-group-sm chart-btn-group" role="group">
@@ -83,7 +62,7 @@
                             <%= f.number_field :weight, step: '0.1', class: 'weight-edit-field' %>
                             <span class='weight-edit-icon'><i class="fas fa-edit"></i></span>
                             <span> kg</span><br>
-                            <%= f.submit '編集する', class: 'weight-edit-btn'%>
+                            <%= f.submit '編集する', class: 'btn-sm red-round-btn weight-edit-btn '%>
                           <% end %>
                         </td>
                       <% else %>
@@ -114,6 +93,31 @@
           </tbody>
         </table>
       </div>
+      <input type="button" id="new-bodyweight-btn" class='btn-default btn-lg blue-btn float-right' value='体重を記録する' >
     </div>
   </div>
+</div>
+
+<div id="bodyweight-modal" class="bodyweight-modal">
+  <% if user_signed_in? %>
+    <% if current_user == @user %>
+      <div class='form-wrapper weight-new-form'>
+        <%= form_with model: [@user, @bodyweight], local: true do |f| %>
+          <div>
+          <%= f.label :day, '日付'%>
+          <%= f.date_field :day, value: Date.today%>
+          </div>
+
+          <div>
+          <%= f.label :weight, '体重'%>
+          <%= f.number_field :weight, step: '0.1' %><span> kg</span>
+          </div>
+
+          <div class='text-right'>
+            <%= f.submit '記録する', class: 'btn-default red-round-btn'%>
+          </div>
+        <% end %>
+      </div>
+    <% end %>
+  <% end %>
 </div>

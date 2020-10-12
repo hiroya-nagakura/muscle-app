@@ -47,10 +47,11 @@
       <%= link_to_add_association "メニューを追加", f, :training_menus %>
     </div>
     <div class="actions text-right">
+      <%= link_to 'キャンセル', :back, class: 'btn-default cancel-round-btn' %>
       <% if request.path_info == new_user_record_path(@user) %>
-        <%= f.submit "記録する" %>
+        <%= f.submit "記録する", class: 'btn-default red-round-btn' %>
       <% else %>
-        <%= f.submit "編集する" %>
+        <%= f.submit "編集する", class: 'btn-default red-round-btn' %>
       <% end %>
     </div>
   <% end %>

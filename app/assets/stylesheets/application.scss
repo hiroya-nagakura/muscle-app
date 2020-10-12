@@ -30,6 +30,81 @@ a{
 .signed_in{
   opacity: 1 !important;
 }
+
+.radio_btn{
+  margin-left: 10px;
+}
+.btn-default{
+  display: inline-block;
+  text-align: center;
+  vertical-align: middle;
+  margin-left: 1em;
+  border: 1px solid transparent;
+  padding: 0.375rem 0.75rem;
+  font-size: 1rem;
+  line-height: 1.5;
+  transition: color 0.15s ease-in-out, background-color 0.15s ease-in-out, border-color 0.15s ease-in-out, box-shadow 0s;
+  outline: 0;
+  text-decoration: none;
+  &:hover{
+    text-decoration: none;
+  }
+}
+.blue-btn{
+  color: #fff;
+  background-color: #3368ff;
+  border-color: #3368ff;
+  font-weight: bold;
+  border-radius: 10px;
+  &:hover{
+    background-color: lighten(#3368ff, 3%);
+    border-color: lighten(#3368ff, 3%);
+    color: #fff;
+    box-shadow: 0px 0px 3px black;
+  }
+  &:active{
+    box-shadow: 0px 0px 0px black;
+    transform: scale(0.95);
+  }
+}
+
+.red-round-btn{
+  color: #fff;
+  background-color: #bd2130;
+  border-color: #bd2130;
+  font-weight: bold;
+  border-radius: 50rem ;
+  box-shadow: 0px 2px 4px black;
+  outline: 0;
+  &:hover{
+    box-shadow: 0px 3px 4px black;
+  }
+  &:active{
+    box-shadow: 0px 0px 4px black;
+    text-decoration: none;
+    -webkit-transform: translate(0px, 3px);
+            transform: translate(0px, 3px);
+  }
+}
+
+.cancel-round-btn{
+  background-color: #fff;
+  font-weight: bold ;
+  border-radius: 50rem ;
+  color: #737373;
+  border-color: #737373;
+  text-decoration: none;
+  &:hover{
+    color: #fff;
+    background-color: #737373;
+    border-color: #737373;
+    text-decoration: none;
+  }
+  &:active{
+    -webkit-transform: translate(0px, 2px);
+            transform: translate(0px, 2px);
+  }
+}
 //top//
 
 .top{
@@ -256,15 +331,19 @@ a{
     width: auto;
   }
 }
-
-.select-target-group{
+.tag-check-box{
   display: flex;
+  justify-content: space-between;
+  overflow-x: auto;
 }
-
-.select-target{
-  margin-right: 1em;
+.check-box-list{
+  display: flex;
+  flex-direction: column;
+  min-width: 9em;
+  @include smartphone{
+    font-size: 0.8em
+  }
 }
-
 //プロフィール//
 .prof-wrapper{
   justify-content: center;
@@ -298,8 +377,8 @@ a{
 
 .prof-btn{
   color: white !important;
-  background-color: #384cd9 !important;
-  border-color: #384cd9 !important;
+  background-color: #3368ff !important;
+  border-color: #003ff3 !important;
   margin-left: 1em;
 }
 
@@ -575,6 +654,9 @@ a{
 //体重管理//
 .weight-new-form{
   width: fit-content;
+  background-color: white;
+  margin: 20% auto;
+  font-size: 1.5em;
 }
 .chart-wrapper{
   margin-top: 2em;
@@ -703,4 +785,16 @@ a{
 
 .negative-weight{
   color: #ff4d4d;
+}
+
+.bodyweight-modal{
+  display: none;
+  position: fixed;
+  z-index: 5;
+  left: 0;
+  top: 0;
+  height: 100%;
+  width: 100%;
+  overflow: auto;
+  background-color: rgba(0,0,0,0.5);
 }
