@@ -449,9 +449,16 @@ a{
   padding: 1em;
   background-color: #fdfdff;
   border: outset;
+  border-radius: 1em;
   box-shadow: 4px 4px 2px;
   max-width: 500px;
+  transition: transform 0.15s ease-in-out,box-shadow 0.15s ease-in-out;
+  &:hover{
+    transform: scale(1.01);
+    box-shadow: 5px 5px 4px;
+  }
 }
+
 
 .card-title{
   text-align: center;
@@ -459,8 +466,12 @@ a{
   border-bottom: double 5px;
   width: 100%;
 }
-.link-decoration {
+.non-link-decoration {
   color: black;
+  &:hover{
+    text-decoration: none;
+    color: black;
+  }
 }
 .card-middle{
   display: flex;
