@@ -78,7 +78,7 @@
     </div>
     <div id='prof-followings' class='tab-pane'>
       <% if @followings.any? %>
-        <div class='prof-follows'>
+        <div class='row justify-content-between'>
           <%= render 'follows', users: @followings%>
         </div>
       <% else %>
@@ -89,7 +89,7 @@
     </div>
     <div id='prof-followers' class='tab-pane'>
       <% if @followers.any? %>
-        <div class='prof-follows'>
+        <div class='row justify-content-between'>
           <%= render 'follows', users: @followers%>
         </div>
       <% else %>

@@ -4,7 +4,7 @@ class StaticPagesController < ApplicationController
     @last_record = Record.where(user: current_user).order(start_time: :desc).first
     #チャート表示に必要な情報の取得
     @bodyweights = Bodyweight.where(user: current_user)
-    @dailychart_range = Date.current.prev_week(:monday)..Date.current.end_of_week.to_date
+    @dailychart_range = Date.current.ago(1.week).to_date..Date.current.to_date
     chart_bodyweight = @bodyweights.where(day: @dailychart_range)
     if chart_bodyweight.present?
       @max = chart_bodyweight.maximum(:weight).round + 1

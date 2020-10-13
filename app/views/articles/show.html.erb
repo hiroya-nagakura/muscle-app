@@ -105,10 +105,12 @@
           <%= render @comments%>
         </div>
       </div>
-      <div>
-      <h4>コメントを投稿する</h4>
-      <%= render 'comments/comment_form' if user_signed_in?%>
-      <div>
+      <% if user_signed_in? %>
+        <div>
+          <h4>コメントを投稿する</h4>
+          <%= render 'comments/comment_form'%>
+        <div>
+      <% end %>
     </div>
   </div>
 </div>

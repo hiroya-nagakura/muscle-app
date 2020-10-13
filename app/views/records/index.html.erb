@@ -1,28 +1,29 @@
 <% provide :title, 'トレーニング記録' %>
 
 <div class='container-fluid'>
-  <h2>トレーニング記録</h2>
-  <%= month_calendar events: @records do |date, records| %>
-    <%= date.day %>
+  <div class='record-wrapper'>
+    <h2>トレーニング記録</h2>
+    <%= month_calendar events: @records do |date, records| %>
+      <%= date.day %>
 
-    <% records.each do |record| %>
-      <div>
-        <%= link_to image_tag('stamp.png', class: 'record-logo' ),user_record_path(user_id: @user, id: record.id)%>
-      </div>
-    <% end %>
-  <% end %>
-  <div class='text-right'>
-    <% if user_signed_in? %>
-      <% if current_user == @user %>
-        <%= link_to 'トレーニングメニューを記録する',new_user_record_path(@user),class: 'btn-default btn-lg blue-btn'%>
+      <% records.each do |record| %>
+        <div>
+          <%= link_to image_tag('stamp.png', class: 'record-logo' ),user_record_path(user_id: @user, id: record.id)%>
+        </div>
       <% end %>
     <% end %>
+    <div class='text-right'>
+      <% if user_signed_in? %>
+        <% if current_user == @user %>
+          <%= link_to 'トレーニングメニューを記録する',new_user_record_path(@user),class: 'btn-default btn-lg blue-btn'%>
+        <% end %>
+      <% end %>
+    </div>
+    <div class='last-record'>
+      <h2>直近のトレーニングメニュー</h2>
+      <% if @last_record%>
+        <%= render 'record_table', record: @last_record%>
+      <% end %>
+    </div>
   </div>
-</div>
-
-<div class='container record-top-wrapper'>
-  <h2>直近のトレーニングメニュー</h2>
-  <% if @last_record%>
-    <%= render 'record_table', record: @last_record%>
-  <% end %>
 </div>

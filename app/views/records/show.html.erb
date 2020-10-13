@@ -4,8 +4,8 @@
   <%= render 'record_table', record: @record%>
   <% if user_signed_in? %>
     <% if current_user == @user %>
-      <%= link_to '編集する', edit_user_record_path(user_id: @user, id: @record) %>
-      <%= link_to '削除する', user_record_path(user_id: @user, id: @record), method: :delete, data: { confirm: '削除しますか？' } %>
+      <%= link_to '編集する', edit_user_record_path(user_id: @user, id: @record), class: 'btn-default btn-outline-success' %>
+      <%= link_to '削除する', user_record_path(user_id: @user, id: @record), method: :delete, data: { confirm: '削除しますか？' }, class: 'btn-default btn-outline-danger' %>
     <% end %>
   <% end %>
 </div>

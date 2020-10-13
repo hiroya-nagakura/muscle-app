@@ -20,20 +20,27 @@
 </div>
 
 <div class='container-fluid'>
-  <div class='top-record-wrapper'>
-    <h2>最新のトレーニング記録</h2>
-    <% if @last_record.present? %>
-      <%= render 'records/record_table', record: @last_record%>
-    <% end %>
-  </div>
-  <div class='top-chart-wrapper'>
-    <h2>体重推移</h2>
-    <div class='top-chart weight-chart daily-chart' id='daily-chart'>
-      <%= line_chart @bodyweights.day_chart_date(@dailychart_range), curve: false, 
-                                                                     precision: 4,
-                                                                     min: @min,
-                                                                     max: @max
-                                                                     %>
+  <div class='row'>
+    <div class='col-lg-6'>
+      <div class='top-record-wrapper'>
+        <h2>最新のトレーニング記録</h2>
+        <% if @last_record.present? %>
+          <%= render 'records/record_table', record: @last_record%>
+        <% end %>
+      </div>
+    </div>
+    <div class='top-chart-wrapper col-lg-6'>
+      <div class='top-chart-wrapper'>
+        <h2>1週間の体重推移</h2>
+        <div class='top-chart weight-chart daily-chart' id='daily-chart'>
+          <%= line_chart @bodyweights.day_chart_date(@dailychart_range), curve: false, 
+                                                                        precision: 4,
+                                                                        width: '90%',
+                                                                        min: @min,
+                                                                        max: @max
+                                                                        %>
+        </div>
+      </div>
     </div>
   </div>
   <div>
