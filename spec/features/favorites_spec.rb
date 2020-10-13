@@ -25,30 +25,12 @@ RSpec.feature 'Favorites', type: :feature do
     click_link 'メニュー一覧'
     find 'h2', text: 'メニュー一覧'
 
-    # いいねする
-    expect do
-      find('.fa-thumbs-up').click
-      find "#favorites_buttons_#{@article.id}", text: '1' 
-    end.to change(Favorite.all, :count).by(1)
-
-    # いいねが反映されたか検証する
-    iine = Favorite.first
-    expect(iine.article_id).to eq @article.id
-    expect(current_path).to eq articles_path
-
-    # いいねを解除する
-    expect do
-      find('.fa-thumbs-up').click
-      find "#favorites_buttons_#{@article.id}", text: '0'
-    end.to change(Favorite.all, :count).by(-1)
-
-    # いいねが解除できたか検証する
-
     # 詳細ページでいいねする
-    click_link 'もっと読む'
+    click_link @article.title
+    find 'h2', text: @article.title
     expect do
       find('.fa-thumbs-up').click
-      find "#favorites_buttons_#{@article.id}", text: '1' 
+      find ".fas", text: 'いいね！'
     end.to change(Favorite.all, :count).by(1)
 
     # いいねが反映されたか検証する
@@ -59,7 +41,7 @@ RSpec.feature 'Favorites', type: :feature do
     # 詳細ページでいいねを解除する
     expect do
       find('.fa-thumbs-up').click
-      find "#favorites_buttons_#{@article.id}", text: '0'
+      find ".far", text: 'いいね！'
     end.to change(Favorite.all, :count).by(-1)
 
     # いいねが解除できたか検証する

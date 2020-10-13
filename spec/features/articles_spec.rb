@@ -56,7 +56,7 @@ RSpec.feature 'Articles', type: :feature do
     choose '脚'
     fill_in_rich_text_area 'article_content', with: 'テスト２'
     fill_in 'コツや注意点、回数など', with: 'テスト２'
-    click_button '投稿する'
+    click_button '編集する'
 
     # 編集が反映されたか検証
     sleep 0.5

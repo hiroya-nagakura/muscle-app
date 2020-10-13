@@ -26,7 +26,7 @@ RSpec.feature 'Comments', type: :feature do
     find 'h2', text: 'メニュー一覧'
 
     # 投稿詳細ページへ
-    click_link 'もっと読む'
+    click_link @article.title
 
     # コメント作成
     find 'h2', text: @article.title
