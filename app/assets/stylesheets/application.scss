@@ -12,13 +12,13 @@
 
 //universal//
 .contents{
-  margin-top: 5em;
+  padding-top: 100px;
   min-height: 90vh;
+  background-color: #f8f8f8;
 }
 
 a{
   text-decoration: none;
-  color: black;
 }
 
 .form-wrapper{
@@ -67,6 +67,24 @@ a{
     transform: scale(0.95);
   }
 }
+.blue-outline-btn{
+  border-color: #3368ff;
+  font-weight: bold;
+  border-radius: 10px;
+  &:hover{
+    background-color: #3368ff;
+    color: #fff;
+    box-shadow: 0px 0px 3px black;
+  }
+  &:active{
+    box-shadow: 0px 0px 0px black;
+    transform: scale(0.95);
+  }
+}
+.already-favorite{
+  background-color: rgb(214, 214, 214);
+}
+
 
 .red-round-btn{
   color: #fff;
@@ -117,7 +135,7 @@ a{
   align-items: center;
   justify-content: center;
   margin-bottom: 2em;
-  margin-top: -5em;
+  margin-top: -100px;
   @include tablet {
     min-height: 60vh;
   }
@@ -536,15 +554,33 @@ a{
 
 .article-wrapper{
   margin: auto;
-  width: 70%;
-
+  background-color: #fff;
+  padding: 2em;
+  border-radius: 5px;
 }
-.article_title{
+.article-header-user{
+  display: flex;
+  align-items: center;
+  font-weight: bold;
+}
+
+.article-header-time{
+  margin-left: 1em;
+  opacity: 0.5;
+}
+
+.small-avatar-img{
+  border-radius: 50%;
+  width: 40px;
+  height: 40px;
+  object-fit: cover;
+}
+.article_header-title{
   text-align: center;
   padding: 0.5em 0;
   border-top: solid;
   border-bottom: double;
-  margin-top: 2em;
+  margin-top: 1em;
   margin-bottom: 2em;
 }
 
@@ -591,6 +627,71 @@ a{
       font-size: 0.4em;
     }
   }
+}
+.article-header-target-site{
+  display: none;
+  @include tablet{
+    display: inline-block;
+    margin-top: 1em;
+    padding: 5px;
+    font-weight: bold;
+    border: ridge;
+    border-radius: 5px;
+  }
+}
+.article-header-target-box{
+  border: ridge;
+  border-radius: 5px;
+  padding: 5px;
+  min-width: 8em;
+  @include tablet{
+    display: none;
+  }
+}
+.target-site-img{
+  width: 100%;
+  object-fit: cover;
+}
+.article-content-title{
+  border-bottom: dotted;
+  margin: 1em 0;
+}
+.article-footer{
+  border-top: ridge;
+  padding: 2em 0;
+}
+.article-footer-user{
+  padding: 1em;
+  width: fit-content;
+  display: flex;
+  align-items: center;
+}
+
+.article-footer-user-info{
+  margin-left: 1em;
+}
+.article-comment-list{
+  border-top: dotted;
+  padding-bottom: 1em;
+  min-height: 2em;
+  margin-bottom: 1em;
+}
+//-----コメント-----//
+.comment-wrapper{
+  border-bottom: dashed;
+  border-color: rgba(0, 0, 0, 0.5);
+  padding: 1em 0;
+}
+.comment-header{
+  display: flex;
+  justify-content: space-between;
+}
+.comment-contents{
+  margin: 1em;
+}
+.comment-footer{
+  display: flex;
+  justify-content: flex-end;
 }
 //メニュー記録//
 //一覧画面//

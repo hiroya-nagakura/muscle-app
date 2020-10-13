@@ -1,15 +1,17 @@
-<% if user_signed_in? && user.id != current_user.id%>
-  <div class="follow_form_<%= user.id %>">
-    <% if current_user.following?(user) %>
-      <%= form_with(model: current_user, url: relationship_path(@user.id), method: :delete, remote: true) do |f| %>
-        <%= hidden_field_tag :follow_id, user.id %>
-        <%= f.submit 'フォロー中', class: 'btn btn-success btn-block' %>
+<% if user_signed_in? %>
+  <% if user.id != current_user.id%>
+    <div class="follow_form_<%= user.id %>">
+      <% if current_user.following?(user) %>
+        <%= form_with(model: current_user, url: relationship_path(user.id), method: :delete, remote: true) do |f| %>
+          <%= hidden_field_tag :follow_id, user.id %>
+          <%= f.submit 'フォロー中', class: 'btn btn-success btn-block' %>
+        <% end %>
+      <% else %>
+        <%= form_with(model: current_user, url: relationships_path, method: :post, remote: true) do |f| %>
+          <%= hidden_field_tag :follow_id, user.id %>
+          <%= f.submit 'フォローする', class: 'btn btn-primary btn-block' %>
+        <% end %>
       <% end %>
-    <% else %>
-      <%= form_with(model: current_user, url: relationships_path, method: :post, remote: true) do |f| %>
-        <%= hidden_field_tag :follow_id, user.id %>
-        <%= f.submit 'フォローする', class: 'btn btn-primary btn-block' %>
-      <% end %>
-    <% end %>
-  </div>
+    </div>
+  <% end %>
 <% end %>
