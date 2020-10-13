@@ -1,5 +1,15 @@
 class StaticPagesController < ApplicationController
   def home
+    #最新のトレーニングレコードを取得
+    @last_record = Record.where(user: current_user).order(start_time: :desc).first
+    #チャート表示に必要な情報の取得
+    @bodyweights = Bodyweight.where(user: current_user)
+    @dailychart_range = Date.current.ago(1.week).to_date..Date.current.to_date
+    chart_bodyweight = @bodyweights.where(day: @dailychart_range)
+    if chart_bodyweight.present?
+      @max = chart_bodyweight.maximum(:weight).round + 1
+      @min = chart_bodyweight.minimum(:weight).round - 1
+    end
     # 人気の記事のIDを上から順に10番目まで配列で取得
     article_rank_ary = Favorite.group(:article_id).order('count(article_id) desc').limit(10).pluck(:article_id)
     # それをもとに記事を取得

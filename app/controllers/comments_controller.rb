@@ -7,14 +7,14 @@ class CommentsController < ApplicationController
     if @comment.save
       redirect_to article_path(@article), notice: 'コメントを投稿しました。'
     else
-      flash.now[:alert] = '投稿に失敗しました。'
+      flash[:alert] = '投稿に失敗しました。'
       redirect_to article_path(@article)
     end
   end
 
   def destroy
     @comment = Comment.find(params[:id])
-    redirect_to article_path(@article) if @comment.destroy
+    redirect_to article_path(@article), notice: 'コメントを削除しました。' if @comment.destroy
   end
 
   private

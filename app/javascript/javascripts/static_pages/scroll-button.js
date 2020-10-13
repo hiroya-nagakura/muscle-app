@@ -1,7 +1,6 @@
-
 $(document).on('turbolinks:load', function() {
 	var target_favorite = document.getElementById('favorite-menu-card');
-	if (target_favorite != null){
+	if (target_favorite){
 		var scrollvalue_favorite = target_favorite.clientWidth;
 	}
 	$('#favorite-scroll-left').on('click', function() {
@@ -13,7 +12,7 @@ $(document).on('turbolinks:load', function() {
 	});
 
 	var target_new = document.getElementById('new-menu-card');
-	if (target_new != null){
+	if (target_new){
 		var scrollvalue_new = target_new.clientWidth;
 	}
 	$('#new-scroll-left').on('click', function() {

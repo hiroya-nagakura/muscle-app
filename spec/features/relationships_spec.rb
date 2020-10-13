@@ -13,7 +13,7 @@ RSpec.feature 'Relationships', type: :feature do
     visit root_path
 
     # ログインページへ
-    click_link 'login'
+    click_link 'ログイン'
 
     # ログインする
     fill_in 'メールアドレス', with: 'test@example.com'
@@ -23,23 +23,18 @@ RSpec.feature 'Relationships', type: :feature do
 
     # otherのユーザーページへ
     visit user_path(@other)
+    find '.prof-name', text: @other.user_name
 
     # フォローする
     expect do
       click_button 'フォローする'
-      sleep 3
+      find 'p', text: "#{@other.user_name}さんをフォローしました。"
     end.to change(Relationship.all, :count).by(1)
-
-    # フォローが反映されたか検証
-    expect(page).to have_button 'フォロー中'
 
     # フォロー解除する
     expect do
       click_button 'フォロー中'
-      sleep 3
+      find 'p', text: "#{@other.user_name}さんのフォローを解除しました。"
     end.to change(Relationship.all, :count).by(-1)
-
-    # フォローが解除できたか検証
-    expect(page).to have_button 'フォローする'
   end
 end

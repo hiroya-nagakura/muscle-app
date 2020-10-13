@@ -1,8 +1,8 @@
 <div class ='top'>
   <div class ='top-contents'>
     <div class='top-search'>
-      <%= search_form_for @search_header ,class: 'top-search-form', url: articles_path do |f|%>
-        <%= f.search_field :title_or_target_site_or_tags_name_cont, placeholder: 'メニューや鍛えたい部位で検索', class: 'top-search-input' %>
+      <%= search_form_for @search ,class: 'top-search-form', url: articles_path do |f|%>
+        <%= f.search_field :title_or_target_site_muscle_name_or_tags_name_cont, placeholder: 'メニューや鍛えたい部位で検索', class: 'top-search-input' %>
         <%= button_tag type: 'submit', class: 'top-search-btn' do %>
           <i class="fas fa-search"></i>
         <% end %>
@@ -20,21 +20,45 @@
 </div>
 
 <div class='container-fluid'>
-  <h2>人気のメニュー</h2>
-  <div class='top-articles-wrapper favorite-wrapper'>
-    <button id='favorite-scroll-left' class='scroll-btn favorite-scroll-btn'> < </button>
-    <div class='top-article slide' id='favorite-menu-card'>
-      <%= render partial: 'static_pages/article', collection: @all_ranks %>
+  <div class='row'>
+    <div class='col-lg-6'>
+      <div class='top-record-wrapper'>
+        <h2>最新のトレーニング記録</h2>
+        <% if @last_record.present? %>
+          <%= render 'records/record_table', record: @last_record%>
+        <% end %>
+      </div>
     </div>
-    <button id='favorite-scroll-right' class='scroll-btn favorite-scroll-btn'> > </button>
+    <div class='top-chart-wrapper col-lg-6'>
+      <div class='top-chart-wrapper'>
+        <h2>1週間の体重推移</h2>
+        <div class='top-chart weight-chart daily-chart' id='daily-chart'>
+          <%= line_chart @bodyweights.day_chart_date(@dailychart_range), curve: false, 
+                                                                        precision: 4,
+                                                                        width: '90%',
+                                                                        min: @min,
+                                                                        max: @max
+                                                                        %>
+        </div>
+      </div>
+    </div>
   </div>
-  
-  <h2>新着のメニュー</h2>
-  <div class='top-articles-wrapper new-wrapper'>
-    <button id='new-scroll-left' class='scroll-btn new-scroll-btn'> < </button>
-    <div class='top-article slide' id='new-menu-card'>
-      <%= render partial: 'static_pages/article', collection: @new_menu %>
+  <div>
+    <h2>人気のメニュー</h2>
+    <div class='top-articles-wrapper favorite-wrapper'>
+      <button id='favorite-scroll-left' class='scroll-btn favorite-scroll-btn'> < </button>
+      <div class='top-article slide' id='favorite-menu-card'>
+        <%= render partial: 'articles/article', collection: @all_ranks %>
+      </div>
+      <button id='favorite-scroll-right' class='scroll-btn favorite-scroll-btn'> > </button>
     </div>
-    <button id='new-scroll-right'class='scroll-btn new-scroll-btn'> > </button>
+    <h2>新着のメニュー</h2>
+    <div class='top-articles-wrapper new-wrapper'>
+      <button id='new-scroll-left' class='scroll-btn new-scroll-btn'> < </button>
+      <div class='top-article slide' id='new-menu-card'>
+        <%= render partial: 'articles/article', collection: @new_menu %>
+      </div>
+      <button id='new-scroll-right'class='scroll-btn new-scroll-btn'> > </button>
+    </div>
   </div>
 </div>

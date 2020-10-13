@@ -4,4 +4,5 @@ class Record < ApplicationRecord
   accepts_nested_attributes_for :training_menus, reject_if: :all_blank, allow_destroy: true
 
   validates :start_time, presence: true
+  validates :training_menus, presence: true
 end

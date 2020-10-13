@@ -39,7 +39,15 @@ class Users::RegistrationsController < Devise::RegistrationsController
   #   super
   # end
 
-  # protected
+  protected
+
+  def update_resource(resource, params)
+    if params[:password].blank? && params[:password_confirmation].blank? && params[:current_password].blank?
+      resource.update_without_password(params)
+    else
+      resource.update_with_password(params)
+    end
+  end
 
   # If you have extra params to permit, append them to the sanitizer.
   def configure_sign_up_params
@@ -48,7 +56,7 @@ class Users::RegistrationsController < Devise::RegistrationsController
 
   # If you have extra params to permit, append them to the sanitizer.
   def configure_account_update_params
-    devise_parameter_sanitizer.permit(:account_update, keys: %i[user_name image])
+    devise_parameter_sanitizer.permit(:account_update, keys: %i[user_name image bodyweights_is_released records_is_released])
   end
 
   # The path used after sign up.
@@ -62,6 +70,6 @@ class Users::RegistrationsController < Devise::RegistrationsController
   # end
 
   def check_guest
-    redirect_to root_path, alert: 'ゲストユーザーのため変更できません' unless @user == current_user
+    redirect_to root_path, alert: 'ゲストユーザーのため変更できません' if current_user.email == 'guest@example.com'
   end
 end

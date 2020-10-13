@@ -2,6 +2,7 @@ class BodyweightsController < ApplicationController
   before_action :authenticate_user!, only: %i[create update destroy]
   before_action :set_user
   before_action :correct_user, only: %i[create update destroy]
+  before_action :unreleased
 
   def index
     @bodyweight = Bodyweight.new
@@ -67,7 +68,7 @@ class BodyweightsController < ApplicationController
   end
 
   def correct_user
-    redirect_to(user_bodyweights_path(@user)) unless @user == current_user
+    redirect_to user_bodyweights_path(@user) unless @user == current_user
   end
 
   def max_value(range)
@@ -78,5 +79,13 @@ class BodyweightsController < ApplicationController
   def min_value(range)
     min_weight = @bodyweights.where(day: range).minimum(:weight)
     min_weight.round - 1 if min_weight
+  end
+
+  def unreleased
+    unless current_user == @user
+      unless @user.bodyweights_is_released
+        redirect_to root_path, flash: { alert: "#{@user.user_name}さんは体重管理を非公開に設定しています" }
+      end
+    end
   end
 end

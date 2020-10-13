@@ -13,7 +13,7 @@ RSpec.feature 'Favorites', type: :feature do
     visit root_path
 
     # ログインページへ
-    click_link 'login'
+    click_link 'ログイン'
 
     # ログインする
     fill_in 'メールアドレス', with: 'test@example.com'
@@ -23,48 +23,27 @@ RSpec.feature 'Favorites', type: :feature do
 
     # 投稿一覧ページへ
     click_link 'メニュー一覧'
-
-    # いいねする
-    expect do
-      find('.fa-thumbs-up').click
-      sleep 3
-    end.to change(Favorite.all, :count).by(1)
-
-    # いいねが反映されたか検証する
-    iine = Favorite.first
-    expect(iine.article_id).to eq @article.id
-    expect(current_path).to eq articles_path
-    # expect(page).to have_text('1 いいね！')
-
-    # いいねを解除する
-    expect do
-      find('.fa-thumbs-up').click
-      sleep 1
-    end.to change(Favorite.all, :count).by(-1)
-
-    # いいねが解除できたか検証する
-    # expect(page).to have_text('0 いいね！')
+    find 'h2', text: 'メニュー一覧'
 
     # 詳細ページでいいねする
-    click_link 'もっと読む'
+    click_link @article.title
+    find 'h2', text: @article.title
     expect do
       find('.fa-thumbs-up').click
-      sleep 1
+      find ".fas", text: 'いいね！'
     end.to change(Favorite.all, :count).by(1)
 
     # いいねが反映されたか検証する
     iine = Favorite.first
     expect(iine.article_id).to eq @article.id
     expect(current_path).to eq article_path(@article)
-    # expect(page).to have_text('1 いいね！')
 
     # 詳細ページでいいねを解除する
     expect do
       find('.fa-thumbs-up').click
-      sleep 1
+      find ".far", text: 'いいね！'
     end.to change(Favorite.all, :count).by(-1)
 
     # いいねが解除できたか検証する
-    # expect(page).to have_text('0 いいね！')
   end
 end

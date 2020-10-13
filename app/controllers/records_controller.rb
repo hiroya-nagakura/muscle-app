@@ -1,16 +1,18 @@
 class RecordsController < ApplicationController
   before_action :authenticate_user!, only: %i[new create edit update destroy]
   before_action :set_user
+  before_action :unreleased
   before_action :correct_user, only: %i[new create edit update destroy]
+  
 
   def index
     @records = Record.where(user: @user)
-    @last_record = @records.order(start_time: :DESC).first
+    @last_record = @records.order(start_time: :desc).first
   end
 
   def new
     @record = Record.new
-    @training_menu = @record.training_menus.build
+    @record.training_menus.build
   end
 
   def show
@@ -36,6 +38,7 @@ class RecordsController < ApplicationController
 
   def edit
     @record = Record.find(params[:id])
+    @record.training_menus.build
   end
 
   def update
@@ -43,6 +46,8 @@ class RecordsController < ApplicationController
     if @record.update(record_params)
       redirect_to user_records_path(@user), notice: 'トレーニングメニューを編集しました'
     else
+      flash.now[:alert] = '編集に失敗しました'
+      flash.now[:error_messages] = @record.errors.full_messages
       render 'edit'
     end
   end
@@ -59,5 +64,13 @@ class RecordsController < ApplicationController
 
   def correct_user
     redirect_to(user_records_path(@user)) unless @user == current_user
+  end
+
+  def unreleased
+    unless current_user == @user
+      unless @user.records_is_released
+        redirect_to root_path, flash: { alert: "#{@user.user_name}さんは体重管理を非公開に設定しています" }
+      end
+    end
   end
 end

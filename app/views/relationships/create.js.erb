@@ -1,1 +1,2 @@
-$("#follow_form").html("<%= j(render("relationships/follow_button", user: @user)) %>");
+$('.follow_form_<%= @user.id %>').html("<%= j(render("relationships/follow_button", user: @user)) %>");
+$('#flash-message').html("<p class='alert alert-success'><%= @msg %></p>");

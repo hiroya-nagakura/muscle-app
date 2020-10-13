@@ -2,37 +2,115 @@
 
 <div class='container'>
   <div class='article-wrapper'>
-    <div class= article_title>
-      <h2><%= @article.title %></h2>
+    <div class='article-header'>
+      <div class='row'>
+        <div class='col-lg-10'>
+          <div class= article_header-title>
+            <h2><%= @article.title %></h2>
+          </div>
+          <div>
+            <ul class='tag-list'>
+              <% if @article.tags.present? %>
+                <% @article.tags.each do |tag| %>
+                  <li class='tag-item tag-style'><%= tag.name%></li>
+                <% end %>
+              <% end %>
+            </ul>
+          </div>
+          <div class='article-header-user'>
+            <%= link_to user_path(@article.user) do %>
+              <% if @article.user.image? %>
+                <%= image_tag @article.user.image.url, class: 'small-avatar-img' %>
+              <% else %>
+                <%= image_tag "/assets/default.png", class: 'small-avatar-img' %>
+              <% end %>
+              <span class='m-2'><%= @article.user.user_name%>さん</span>
+            <% end %>
+            <time class='article-header-time'>投稿日：<%= @article.created_at.to_s(:date_jp)%></time>
+          </div>
+          <p class='article-header-target-site'>
+            鍛えられる部位：<%= @article.target_site.muscle_name%>
+          </p>
+        </div>
+        <div class='col-lg-2'>
+          <div class='article-header-target-box'>
+            <% if @article.target_site_id == 1 %>
+              <%= image_tag('chest.png', alt: 'chest', class: 'target-site-img') %>
+            <% elsif @article.target_site_id == 2 %>
+              <%= image_tag('arm.png', alt: 'arm', class: 'target-site-img') %>
+            <% elsif @article.target_site_id == 3 %>
+              <%= image_tag('sholder.png', alt: 'sholder', class: 'target-site-img') %>
+            <% elsif @article.target_site_id == 4 %>
+              <%= image_tag('abs.png', alt: 'abs', class: 'target-site-img') %>
+            <% elsif @article.target_site_id == 5 %>
+              <%= image_tag('back.png', alt: 'back', class: 'target-site-img') %>
+            <% elsif @article.target_site_id == 6 %>
+              <%= image_tag('leg.png', alt: 'leg', class: 'target-site-img') %>
+            <% end %>
+            <p class='text-center'>鍛えられる部位</p>
+          </div>
+        </div>
+      </div>
     </div>
-    <ul class='tag-list'>
-      <% if @article.tags.present? %>
-        <% @article.tags.each do |tag| %>
-          <li class='tag-item tag-style'><%= tag.name%></li>
+    <div class='article-contents'>
+      <div>
+        <h4 class='article-content-title'>メニューの方法</h4>
+        <div>
+          <%= @article.content%>
+        </div>
+      </div>
+      <div>
+        <h4 class='article-content-title'>コツや注意点、回数など</h4>
+        <p>
+          <%= simple_format(@article.important_point) %>
+        </p>
+      </div>
+    </div>
+    <div class='article-footer'>
+      <div>
+        <div class='article-footer-user'>
+          <div>
+            <% if @article.user.image? %>
+              <%= link_to image_tag(@article.user.image.url, class: 'follows-avatar-img'), @article.user %>
+            <% else %>
+              <%= link_to image_tag("/assets/default.png", class: 'follows-avatar-img'), @article.user %>
+            <% end %>
+          </div>
+          <div class='article-footer-user-info'>
+            <div class='prof-name'>
+              <%= @article.user.user_name%>
+            </div>
+            <div class='prof-menu'>
+              <%= render "relationships/follow_button", user: @article.user %>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class='d-flex'>
+        <div id="favorites_buttons_<%= @article.id %>">
+          <%= render 'favorites/favorite', article: @article %>
+        </div>
+        <% if user_signed_in?%>
+          <% if current_user.id == @article.user_id %>
+            <%= link_to '編集', edit_article_path(@article), class: 'btn-default btn-outline-success' %>
+            <%= link_to '削除', article_path(@article), method: :delete, data: { confirm: '削除しますか？' }, class: 'btn-default btn-outline-danger' %>
+          <% end %>
         <% end %>
-      <% end %>
-    </ul>
-    <p>鍛えられる部位: <%= @article.target_site %></p>
-    <p>メニューのやり方: <%= @article.content %></p>
-    <p>コツや注意点、回数など: <%= @article.important_point %></p>
-
-    <% if user_signed_in?%>
-      <% if current_user.id == @article.user_id %>
-        <%= link_to '編集', edit_article_path(@article) %>
-        <%= link_to '削除', article_path(@article), method: :delete %>
-      <% end %>
-    <% end %>
-
-    <div id="favorites_buttons_<%= @article.id %>">
-      <%= render 'favorites/favorite', article: @article %>
+      </div>
     </div>
-
-    <div class = 'comments'>
-    <h3>コメント一覧</h3>
-      <%= render @comments%>
-    </div>
-    <div>
-    <%= render 'comments/comment_form'%>
+    <div class='article-comment'>
+      <div class = 'comments'>
+        <h4>コメント一覧</h4>
+        <div class=article-comment-list>
+          <%= render @comments%>
+        </div>
+      </div>
+      <% if user_signed_in? %>
+        <div>
+          <h4>コメントを投稿する</h4>
+          <%= render 'comments/comment_form'%>
+        <div>
+      <% end %>
     </div>
   </div>
 </div>

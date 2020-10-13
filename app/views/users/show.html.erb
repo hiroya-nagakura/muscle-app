@@ -25,8 +25,8 @@
   </div>
 
   <div class='management-link'>
-    <%= link_to 'トレーニング記録', user_records_path(@user), class: 'btn btn-sm prof-btn'%>
-    <%= link_to '体重記録', user_bodyweights_path(@user), class: 'btn btn-sm prof-btn'%>
+    <%= link_to 'トレーニング記録', user_records_path(@user), class: 'btn-default blue-btn' if current_user == @user || @user.records_is_released %>
+    <%= link_to '体重記録', user_bodyweights_path(@user), class: 'btn-default blue-btn' if current_user == @user || @user.bodyweights_is_released%>
   </div>
 
   <ul class='nav nav-tabs justify-content-center prof-nav'>
@@ -78,7 +78,7 @@
     </div>
     <div id='prof-followings' class='tab-pane'>
       <% if @followings.any? %>
-        <div class='prof-follows'>
+        <div class='row justify-content-between'>
           <%= render 'follows', users: @followings%>
         </div>
       <% else %>
@@ -89,7 +89,7 @@
     </div>
     <div id='prof-followers' class='tab-pane'>
       <% if @followers.any? %>
-        <div class='prof-follows'>
+        <div class='row justify-content-between'>
           <%= render 'follows', users: @followers%>
         </div>
       <% else %>
@@ -101,7 +101,7 @@
     <div id='prof-favorites' class='tab-pane'>
       <% if @favorite_articles.any? %>
         <div class='article'>
-          <%= render 'favorites', favorite_articles: @favorite_articles%>
+          <%= render partial: 'articles/article', collection:@favorite_articles%>
         </div>
       <% else %>
         <div class='no-content'>

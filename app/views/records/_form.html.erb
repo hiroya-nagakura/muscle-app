@@ -2,7 +2,11 @@
   <%= form_with model: [@user, @record], local: true do |f| %>
 
     <div class="text-right">
-      <%= f.date_field :start_time, value: Date.today%>
+      <% if @record.start_time.present? %>
+        <%= f.date_field :start_time %>
+      <% else %>
+        <%= f.date_field :start_time, value: Date.today%>
+      <% end %>
     </div>
     <div class="form-group record-target-form">
       <%= f.label :main_target, '特に鍛えたい場所'%>
@@ -43,10 +47,11 @@
       <%= link_to_add_association "メニューを追加", f, :training_menus %>
     </div>
     <div class="actions text-right">
+      <%= link_to 'キャンセル', :back, class: 'btn-default cancel-round-btn' %>
       <% if request.path_info == new_user_record_path(@user) %>
-        <%= f.submit "記録する" %>
+        <%= f.submit "記録する", class: 'btn-default red-round-btn' %>
       <% else %>
-        <%= f.submit "編集する" %>
+        <%= f.submit "編集する", class: 'btn-default red-round-btn' %>
       <% end %>
     </div>
   <% end %>

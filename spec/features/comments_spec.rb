@@ -23,15 +23,17 @@ RSpec.feature 'Comments', type: :feature do
 
     # 投稿一覧ページへ
     click_link 'メニュー一覧'
+    find 'h2', text: 'メニュー一覧'
 
     # 投稿詳細ページへ
-    click_link 'もっと読む'
+    click_link @article.title
 
     # コメント作成
+    find 'h2', text: @article.title
     expect do
       fill_in 'comment_content', with: 'コメント投稿のテスト'
       click_button 'コメントする'
-      sleep 0.5
+      find 'p', text: 'コメントを投稿しました。'
     end.to change(Comment.all, :count).by(1)
 
     # コメントが反映されたか検証
@@ -44,6 +46,8 @@ RSpec.feature 'Comments', type: :feature do
     # ーーーーコメントの削除ーーーー
     expect do
       click_link 'コメントを削除'
+      expect(page.accept_confirm).to eq "削除しますか？"
+      expect(page).to have_text('コメントを削除しました。')
     end.to change(Comment.all, :count).by(-1)
   end
 end
