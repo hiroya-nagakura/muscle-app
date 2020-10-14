@@ -3,9 +3,9 @@
     <div class='article-header-user'>
       <%= link_to user_path(comment.user) do %>
         <% if comment.user.image? %>
-          <%= image_tag comment.user.image.url, class: 'small-avatar-img' %>
+          <%= image_tag comment.user.image.url, class: 'avatar-img small-img' %>
         <% else %>
-          <%= image_tag "/assets/default.png", class: 'small-avatar-img' %>
+          <%= image_tag "/assets/default.png", class: 'avatar-img small-img' %>
         <% end %>
         <span class='m-2'><%= comment.user.user_name%>さん</span>
       <% end %>

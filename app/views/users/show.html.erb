@@ -1,24 +1,22 @@
 <% provide :title, 'マイページ' %>
 
 <div class='container'>
-  <div class='row prof-wrapper'>
+  <div class='prof-header'>
     <div class='prof-img'>
       <% if @user.image? %>
-        <%= image_tag @user.image.url, class: 'avatar-img' %>
+        <%= image_tag @user.image.url, class: 'avatar-img big-img' %>
       <% else %>
-        <%= image_tag "/assets/default.png", class: 'avatar-img' %>
+        <%= image_tag "/assets/default.png", class: 'avatar-img big-img' %>
       <% end %>
     </div>
-    <div class='prof-content'>
+    <div class='prof-info'>
       <div class='prof-name'>
         <%= @user.user_name%>
       </div>
       <div class='prof-menu'>
         <%= render "relationships/follow_button", user: @user %>
-        <% if user_signed_in? %>
-          <% if current_user.user_name == @user.user_name%>
-            <%= link_to 'プロフィール編集',edit_user_registration_path(@user), class: 'btn btn-sm btn-outline-secondary'%>
-          <% end %>
+        <% if current_user == @user%>
+          <%= link_to 'プロフィール編集',edit_user_registration_path(@user), class: 'btn btn-sm btn-outline-secondary'%>
         <% end %>
       </div>
     </div>
@@ -29,8 +27,8 @@
     <%= link_to '体重記録', user_bodyweights_path(@user), class: 'btn-default blue-btn' if current_user == @user || @user.bodyweights_is_released%>
   </div>
 
-  <ul class='nav nav-tabs justify-content-center prof-nav'>
-    <li class ='nav-item prof-tab'>
+  <ul class='nav nav-tabs justify-content-center mt-5'>
+    <li class ='nav-item text-center'>
       <a href='#prof-articles' class='nav-link active prof-tab-color' data-toggle='tab' role="tab">
         <span class='tab-name'>投稿</span>
         <div>
@@ -38,7 +36,7 @@
         </div>
       </a>
     </li>
-    <li class ='nav-item prof-tab'>
+    <li class ='nav-item text-center'>
       <a href='#prof-followings' class='nav-link prof-tab-color' data-toggle='tab' >
         <span class='tab-name'>フォロー</span>
         <div>
@@ -46,7 +44,7 @@
         </div>
       </a>
     </li>
-    <li class ='nav-item prof-tab'>
+    <li class ='nav-item text-center'>
       <a href='#prof-followers' class='nav-link prof-tab-color' data-toggle='tab' >
         <span class='tab-name'>フォロワー</span>
         <div>
@@ -54,7 +52,7 @@
         </div>
       </a>
     </li>
-    <li class ='nav-item prof-tab'>
+    <li class ='nav-item text-center'>
       <a href='#prof-favorites' class='nav-link prof-tab-color' data-toggle='tab' >
         <span class='tab-name'>いいね！</span>
         <div>

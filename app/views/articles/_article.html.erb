@@ -1,7 +1,7 @@
 <div class='col-lg-4 col-md-6'>
   <div class='article-card'>
     <%= link_to article_path(article.id), class: 'non-link-decoration' do %>
-      <div class='card-top card-title'>
+      <div class='card-title'>
           <h3><%= article.title %></h3>
       </div>
       <div class='card-middle'>
@@ -16,7 +16,7 @@
             </ul>
           </div>
           <div>
-            <div class='card-btn <%= 'signed_in' if user_signed_in? %>'>
+            <div class='card-btn'>
               <div class='col-6'>
                 <% if user_signed_in? && current_user.already_favorite?(article) %>
                     <i class='fas fa-thumbs-up'></i>
@@ -26,23 +26,23 @@
                     <%= article.favorites.count%>
                 <% end %>
               </div>
-              <div class='card-comment col-6'>
+              <div class='col-6'>
                 <i class="far fa-comments"></i>
                 <%= article.comments.count %>
               </div>
             </div>
-              <div class='card-user'>
-                <div>
-                  <% if article.user.image? %>
-                    <%= image_tag article.user.image.url, class: 'card-avatar-img' %>
-                  <% else %>
-                    <%= image_tag "/assets/default.png", class: 'card-avatar-img' %>
-                  <% end %>
-                </div>
-                <div class='card-user-content'>
-                    <span><%= article.user.user_name%></span>
-                </div>
+            <div class='card-user'>
+              <div>
+                <% if article.user.image? %>
+                  <%= image_tag article.user.image.url, class: 'avatar-img small-img' %>
+                <% else %>
+                  <%= image_tag "/assets/default.png", class: 'avatar-img small-img' %>
+                <% end %>
               </div>
+              <div class='card-user-content'>
+                  <span><%= article.user.user_name%></span>
+              </div>
+            </div>
             <p>投稿日：<%= article.created_at.to_s(:date_jp)%></p>
           </div>
         </div>

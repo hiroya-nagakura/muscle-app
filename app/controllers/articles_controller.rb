@@ -55,6 +55,7 @@ class ArticlesController < ApplicationController
   end
 
   def tag_checkbox
+    #タグの種類を分けて表示
     @muscles_check = Tag.where(tag_group_id: 1)
     @tools_check = Tag.where(tag_group_id: 2)
     @recommends_check = Tag.where(tag_group_id: 3)

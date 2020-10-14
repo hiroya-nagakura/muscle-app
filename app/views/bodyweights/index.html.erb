@@ -58,19 +58,17 @@
                   <td><%= date.strftime("%-m/%d(#{@weeks[date.wday]})")%></td>
                   <% @bodyweights.each do |bodyweight| %>
                     <% if bodyweight.day == date %>
-                      <% if user_signed_in? %>
-                        <% if current_user == @user %>
-                          <td class='weight-edit-form' >
-                            <%= form_with model: [@user, bodyweight] do |f|%>
-                              <%= f.number_field :weight, step: '0.1', class: 'weight-edit-field' %>
-                              <span class='weight-edit-icon'><i class="fas fa-edit"></i></span>
-                              <span> kg</span><br>
-                              <%= f.submit '編集する', class: 'btn-sm red-round-btn weight-edit-btn '%>
-                            <% end %>
-                          </td>
-                        <% else %>
-                          <td class='text-center'><%= bodyweight.weight %><span> kg</span></td>
-                        <% end %>
+                      <% if current_user == @user %>
+                        <td class='weight-edit-form' >
+                          <%= form_with model: [@user, bodyweight] do |f|%>
+                            <%= f.number_field :weight, step: '0.1', class: 'weight-edit-field' %>
+                            <span class='weight-edit-icon'><i class="fas fa-edit"></i></span>
+                            <span> kg</span><br>
+                            <%= f.submit '編集する', class: 'btn-sm red-round-btn weight-edit-btn '%>
+                          <% end %>
+                        </td>
+                      <% else %>
+                        <td class='text-center'><%= bodyweight.weight %><span> kg</span></td>
                       <% end %>
                       <td> 
                         <% if @last_weight.present? %>
@@ -82,12 +80,10 @@
                         <% end %>
                       </td>
                       <% @last_weight = bodyweight.weight%>
-                      <% if user_signed_in? %>
-                        <% if current_user == @user %>
-                          <td>
-                            <%= link_to '×', user_bodyweight_path(user_id: @user, id: bodyweight), method: :delete, data: { confirm: '削除しますか？' } %>
-                          </td>
-                        <% end %>
+                      <% if current_user == @user %>
+                        <td>
+                          <%= link_to '×', user_bodyweight_path(user_id: @user, id: bodyweight), method: :delete, data: { confirm: '削除しますか？' } %>
+                        </td>
                       <% end %>
                     <% end %>
                   <% end %>

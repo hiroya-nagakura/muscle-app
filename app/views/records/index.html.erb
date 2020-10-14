@@ -1,7 +1,7 @@
 <% provide :title, 'トレーニング記録' %>
 
 <div class='container-fluid'>
-  <div class='record-wrapper'>
+  <div class='record-wrapper white-background'>
     <h2>トレーニング記録</h2>
     <%= month_calendar events: @records do |date, records| %>
       <%= date.day %>
@@ -12,11 +12,9 @@
         </div>
       <% end %>
     <% end %>
-    <div class='text-right'>
-      <% if user_signed_in? %>
-        <% if current_user == @user %>
-          <%= link_to 'トレーニングメニューを記録する',new_user_record_path(@user),class: 'btn-default btn-lg blue-btn'%>
-        <% end %>
+    <div class='float-right'>
+      <% if current_user == @user %>
+        <%= link_to 'トレーニングメニューを記録する',new_user_record_path(@user),class: 'btn-default btn-lg blue-btn'%>
       <% end %>
     </div>
     <div class='last-record'>

@@ -2,7 +2,7 @@
 
 <%= render "users/shared/error_messages", resource: resource %>
 <div class ='container'>
-  <div class ='user_form'>
+  <div class ='user_form form-wrapper'>
     <h2>新規ユーザー登録</h2>
     
       <%= form_for(resource, as: resource_name, url: registration_path(resource_name)) do |f| %>
