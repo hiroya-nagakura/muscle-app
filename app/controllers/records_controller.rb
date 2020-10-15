@@ -7,6 +7,7 @@ class RecordsController < ApplicationController
 
   def index
     @records = Record.where(user: @user)
+    # 最近のトレーニングメニューの取得
     @last_record = @records.order(start_time: :desc).first
   end
 
@@ -38,6 +39,7 @@ class RecordsController < ApplicationController
 
   def edit
     @record = Record.find(params[:id])
+    # 編集画面でメニューを追加できるように設定
     @record.training_menus.build
   end
 
@@ -66,11 +68,10 @@ class RecordsController < ApplicationController
     redirect_to(user_records_path(@user)) unless @user == current_user
   end
 
+  # 非公開設定していたら本人以外はトップページにリダイレクト
   def unreleased
-    unless current_user == @user
-      unless @user.records_is_released
-        redirect_to root_path, flash: { alert: "#{@user.user_name}さんは体重管理を非公開に設定しています" }
-      end
+    unless current_user == @user || @user.records_is_released
+      redirect_to root_path, flash: { alert: "#{@user.user_name}さんは体重管理を非公開に設定しています" }
     end
   end
 end

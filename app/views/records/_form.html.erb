@@ -1,7 +1,7 @@
 <div class='form-wrapper'>
   <%= form_with model: [@user, @record], local: true do |f| %>
 
-    <div class="text-right">
+    <div class="float-right">
       <% if @record.start_time.present? %>
         <%= f.date_field :start_time %>
       <% else %>
@@ -9,7 +9,7 @@
       <% end %>
     </div>
     <div class="form-group record-target-form">
-      <%= f.label :main_target, '特に鍛えたい場所'%>
+      <%= f.label :main_target, '特に鍛えたい部位'%>
       <%= f.text_field :main_target, class: 'form-control' %>
     </div>
     <div class='record-set nested-fields'>
@@ -17,7 +17,7 @@
         <%= f.label :menu, 'メニュー'%>
       </div>
 
-      <div class='d-flex col-7'>
+      <div class='row col-7'>
         <div class="col-4 record-field">
           <%= f.label :weight, '重量' %>
         </div>

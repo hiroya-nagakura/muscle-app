@@ -20,9 +20,9 @@
           <div class='article-header-user'>
             <%= link_to user_path(@article.user) do %>
               <% if @article.user.image? %>
-                <%= image_tag @article.user.image.url, class: 'small-avatar-img' %>
+                <%= image_tag @article.user.image.url, class: 'avatar-img small-img' %>
               <% else %>
-                <%= image_tag "/assets/default.png", class: 'small-avatar-img' %>
+                <%= image_tag "/assets/default.png", class: 'avatar-img small-img' %>
               <% end %>
               <span class='m-2'><%= @article.user.user_name%>さん</span>
             <% end %>
@@ -71,9 +71,9 @@
         <div class='article-footer-user'>
           <div>
             <% if @article.user.image? %>
-              <%= link_to image_tag(@article.user.image.url, class: 'follows-avatar-img'), @article.user %>
+              <%= link_to image_tag(@article.user.image.url, class: 'avatar-img middle-img'), @article.user %>
             <% else %>
-              <%= link_to image_tag("/assets/default.png", class: 'follows-avatar-img'), @article.user %>
+              <%= link_to image_tag("/assets/default.png", class: 'avatar-img middle-img'), @article.user %>
             <% end %>
           </div>
           <div class='article-footer-user-info'>
@@ -91,7 +91,7 @@
           <%= render 'favorites/favorite', article: @article %>
         </div>
         <% if user_signed_in?%>
-          <% if current_user.id == @article.user_id %>
+          <% if current_user == @article.user %>
             <%= link_to '編集', edit_article_path(@article), class: 'btn-default btn-outline-success' %>
             <%= link_to '削除', article_path(@article), method: :delete, data: { confirm: '削除しますか？' }, class: 'btn-default btn-outline-danger' %>
           <% end %>

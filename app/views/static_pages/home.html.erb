@@ -20,42 +20,46 @@
 </div>
 
 <div class='container-fluid'>
-  <div class='row'>
-    <div class='col-lg-6'>
-      <div class='top-record-wrapper'>
-        <h2>最新のトレーニング記録</h2>
-        <% if @last_record.present? %>
-          <%= render 'records/record_table', record: @last_record%>
-        <% end %>
+  <% if user_signed_in? %>
+    <div class='row'>
+      <div class='col-lg-6'>
+        <div class='top-record-wrapper white-background'>
+          <h2 class='management-title'>最新のトレーニング記録</h2>
+          <div class='management-content'>
+            <% if @last_record.present? %>
+              <%= render 'records/record_table', record: @last_record%>
+            <% end %>
+          </div>
+        </div>
       </div>
-    </div>
-    <div class='top-chart-wrapper col-lg-6'>
-      <div class='top-chart-wrapper'>
-        <h2>1週間の体重推移</h2>
-        <div class='top-chart weight-chart daily-chart' id='daily-chart'>
-          <%= line_chart @bodyweights.day_chart_date(@dailychart_range), curve: false, 
-                                                                        precision: 4,
-                                                                        width: '90%',
-                                                                        min: @min,
-                                                                        max: @max
-                                                                        %>
+      <div class='col-lg-6'>
+        <div class='top-chart-wrapper white-background'>
+          <h2 class='management-title'>1週間の体重推移</h2>
+          <div class='top-chart weight-chart daily-chart management-content' id='daily-chart'>
+            <%= line_chart @bodyweights.day_chart_date(@dailychart_range), curve: false, 
+                                                                          precision: 4,
+                                                                          width: '90%',
+                                                                          min: @min,
+                                                                          max: @max
+                                                                          %>
+          </div>
         </div>
       </div>
     </div>
-  </div>
+  <% end %>
   <div>
-    <h2>人気のメニュー</h2>
-    <div class='top-articles-wrapper favorite-wrapper'>
+    <h2 class='top-article-title'>人気のメニュー</h2>
+    <div class='top-articles-wrapper favorite-wrapper white-gackground'>
       <button id='favorite-scroll-left' class='scroll-btn favorite-scroll-btn'> < </button>
-      <div class='top-article slide' id='favorite-menu-card'>
+      <div class='top-article white-background slide' id='favorite-menu-card'>
         <%= render partial: 'articles/article', collection: @all_ranks %>
       </div>
       <button id='favorite-scroll-right' class='scroll-btn favorite-scroll-btn'> > </button>
     </div>
-    <h2>新着のメニュー</h2>
+    <h2 class='top-article-title'>新着のメニュー</h2>
     <div class='top-articles-wrapper new-wrapper'>
       <button id='new-scroll-left' class='scroll-btn new-scroll-btn'> < </button>
-      <div class='top-article slide' id='new-menu-card'>
+      <div class='top-article white-background slide' id='new-menu-card'>
         <%= render partial: 'articles/article', collection: @new_menu %>
       </div>
       <button id='new-scroll-right'class='scroll-btn new-scroll-btn'> > </button>

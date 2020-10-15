@@ -71,21 +71,22 @@ class BodyweightsController < ApplicationController
     redirect_to user_bodyweights_path(@user) unless @user == current_user
   end
 
+  # チャートの最大値を設定するメソッド
   def max_value(range)
     max_weight = @bodyweights.where(day: range).maximum(:weight)
     max_weight.round + 1 if max_weight
   end
 
+  # チャートの最小値を設定するメソッド
   def min_value(range)
     min_weight = @bodyweights.where(day: range).minimum(:weight)
     min_weight.round - 1 if min_weight
   end
 
+  #非公開設定していたら本人以外はトップページへリダイレクト
   def unreleased
-    unless current_user == @user
-      unless @user.bodyweights_is_released
-        redirect_to root_path, flash: { alert: "#{@user.user_name}さんは体重管理を非公開に設定しています" }
-      end
+    unless current_user == @user || @user.bodyweights_is_released
+      redirect_to root_path, flash: { alert: "#{@user.user_name}さんは体重管理を非公開に設定しています" }
     end
   end
 end

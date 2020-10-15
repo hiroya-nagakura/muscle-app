@@ -3,9 +3,9 @@
     <div class='follows-user'>
       <div class='prof-img'>
         <% if user.image? %>
-          <%= link_to image_tag(user.image.url, class: 'follows-avatar-img'), user %>
+          <%= link_to image_tag(user.image.url, class: 'avatar-img middle-img'), user %>
         <% else %>
-          <%= link_to image_tag("/assets/default.png", class: 'follows-avatar-img'), user %>
+          <%= link_to image_tag("/assets/default.png", class: 'avatar-img middle-img'), user %>
         <% end %>
       </div>
       <div class='ml-2'>

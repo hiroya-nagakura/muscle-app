@@ -6,6 +6,7 @@ $(document).on('turbolinks:load', function() {
   var weekly_chart = document.getElementById("weekly-chart");
   var monthly_chart = document.getElementById("monthly-chart");
 
+  // ボタン、チャートの初期化設定 //
   var remove_active = function() {
     daily_btn.classList.remove("active");
     weekly_btn.classList.remove("active");
@@ -15,6 +16,7 @@ $(document).on('turbolinks:load', function() {
     monthly_chart.classList.remove("active");
   };
 
+  //ボタンを押したらそれに対応するチャートにactiveクラスを付加//
   $(daily_btn).on('click', function() {
     remove_active();
     $(daily_btn).addClass('active');
