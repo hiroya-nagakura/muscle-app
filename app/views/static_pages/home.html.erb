@@ -28,14 +28,19 @@
           <div class='management-content'>
             <% if @last_record.present? %>
               <%= render 'records/record_table', record: @last_record%>
+            <% else %>
+              <p class='no-content'>トレーニング記録がありません</p>
             <% end %>
+            <%= link_to 'トレーニングを記録する', new_user_record_path(current_user), class: 'btn-default blue-btn'%>
           </div>
         </div>
       </div>
       <div class='col-lg-6'>
         <div class='top-chart-wrapper white-background'>
           <h2 class='management-title'>1週間の体重推移</h2>
+          <% if @bodyweights.present? %>
           <div class='top-chart weight-chart daily-chart management-content' id='daily-chart'>
+            <span class=chart-label>体重 (kg)</span>
             <%= line_chart @bodyweights.day_chart_date(@dailychart_range), curve: false, 
                                                                           precision: 4,
                                                                           width: '90%',
@@ -43,6 +48,10 @@
                                                                           max: @max
                                                                           %>
           </div>
+          <% else %>
+            <p class='no-content'>体重記録がありません</p>
+          <% end %>
+          <%= link_to '体重を記録する', user_bodyweights_path(current_user), class: 'btn-default blue-btn'%>
         </div>
       </div>
     </div>
