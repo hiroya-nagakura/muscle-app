@@ -1,33 +1,37 @@
 <div class='form-wrapper'>
   <%= form_with model: [@user, @record], local: true do |f| %>
 
-    <div class="float-right">
-      <% if @record.start_time.present? %>
-        <%= f.date_field :start_time %>
-      <% else %>
-        <%= f.date_field :start_time, value: Date.today%>
-      <% end %>
-    </div>
-    <div class="form-group record-target-form">
-      <%= f.label :main_target, '特に鍛えたい部位'%>
-      <%= f.text_field :main_target, class: 'form-control' %>
-    </div>
-    <div class='record-set nested-fields'>
-      <div class="col-4 record-field">
-        <%= f.label :menu, 'メニュー'%>
+    <div class="record-form">
+      <div>
+        <% if @record.start_time.present? %>
+          <%= f.date_field :start_time %>
+        <% else %>
+          <%= f.date_field :start_time, value: Date.today%>
+        <% end %>
       </div>
-
-      <div class='row col-7'>
+      <div class="form-group record-target-form">
+        <%= f.label :main_target, '特に鍛えたい部位'%>
+        <%= f.text_field :main_target, class: 'form-control' %>
+      </div>
+    </div>
+    <div class='record-label'>
+      <div class='record-set nested-fields'>
         <div class="col-4 record-field">
-          <%= f.label :weight, '重量' %>
+          <%= f.label :menu, 'メニュー'%>
         </div>
 
-        <div class="col-4 record-field">
-          <%= f.label :rep, '回数' %>
-        </div>
+        <div class='row col-7'>
+          <div class="col-4 record-field">
+            <%= f.label :weight, '重量' %>
+          </div>
 
-        <div class="col-4 record-field">
-          <%= f.label :set, 'セット数' %>
+          <div class="col-4 record-field">
+            <%= f.label :rep, '回数' %>
+          </div>
+
+          <div class="col-4 record-field">
+            <%= f.label :set, 'セット数' %>
+          </div>
         </div>
       </div>
     </div>
