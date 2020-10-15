@@ -1,4 +1,4 @@
-<div class='col-lg-4 col-md-6'>
+<div class='col-xl-4 col-md-6'>
   <div class='article-card'>
     <%= link_to article_path(article.id), class: 'non-link-decoration' do %>
       <div class='card-title'>
@@ -47,21 +47,21 @@
           </div>
         </div>
         <div class='card-middle-wrapper'>
-          <% if article.target_site_id == 1 %>
-            <%= image_tag('chest.png', alt: 'chest', class: 'card-image') %>
-          <% elsif article.target_site_id == 2 %>
-            <%= image_tag('arm.png', alt: 'arm', class: 'card-image') %>
-          <% elsif article.target_site_id == 3 %>
-            <%= image_tag('sholder.png', alt: 'sholder', class: 'card-image') %>
-          <% elsif article.target_site_id == 4 %>
-            <%= image_tag('abs.png', alt: 'abs', class: 'card-image') %>
-          <% elsif article.target_site_id == 5 %>
-            <%= image_tag('back.png', alt: 'back', class: 'card-image') %>
-          <% elsif article.target_site_id == 6 %>
-            <%= image_tag('leg.png', alt: 'leg', class: 'card-image') %>
-          <% end %>
-          <div class='text-center'>
-            <p>鍛えられる部位</p>
+          <div>
+            <% if article.target_site_id == 1 %>
+              <%= image_tag('chest.png', alt: 'chest', class: 'card-image') %>
+            <% elsif article.target_site_id == 2 %>
+              <%= image_tag('arm.png', alt: 'arm', class: 'card-image') %>
+            <% elsif article.target_site_id == 3 %>
+              <%= image_tag('sholder.png', alt: 'sholder', class: 'card-image') %>
+            <% elsif article.target_site_id == 4 %>
+              <%= image_tag('abs.png', alt: 'abs', class: 'card-image') %>
+            <% elsif article.target_site_id == 5 %>
+              <%= image_tag('back.png', alt: 'back', class: 'card-image') %>
+            <% elsif article.target_site_id == 6 %>
+              <%= image_tag('leg.png', alt: 'leg', class: 'card-image') %>
+            <% end %>
+            <p class='text-center'>鍛えられる部位</p>
           </div>
         </div>
       </div>

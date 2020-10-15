@@ -14,11 +14,11 @@
     <% end %>
     <div class='float-right'>
       <% if current_user == @user %>
-        <%= link_to 'トレーニングメニューを記録する',new_user_record_path(@user),class: 'btn-default btn-lg blue-btn'%>
+        <%= link_to 'トレーニングを記録する',new_user_record_path(@user),class: 'btn-default btn-lg blue-btn'%>
       <% end %>
     </div>
     <div class='last-record'>
-      <h2>直近のトレーニングメニュー</h2>
+      <h2>最新のトレーニングメニュー</h2>
       <% if @last_record%>
         <%= render 'record_table', record: @last_record%>
       <% end %>
