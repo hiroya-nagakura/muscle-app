@@ -11,6 +11,8 @@
     <% end %>
   <% end %>
 <% else %>
-  <i class='far fa-thumbs-up'>いいね！</i>
-  <%= article.favorites.count%>
+  <%= link_to article_favorites_path(article_id: article.id), method: :post, class: 'btn-default blue-outline-btn' do%>
+      <i class='far fa-thumbs-up'>いいね！</i>
+      <%= article.favorites.count%>
+    <% end %>
 <% end %>
