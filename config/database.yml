@@ -29,5 +29,5 @@ production:
   <<: *default
   host: fitmenu-mysql.cahix3ckj0ot.ap-northeast-1.rds.amazonaws.com
   database: Fitmenu_production
-  username: <%= 'ENV["DB_USERNAME"]' %>
-  password: <%= 'ENV["DB_PASSWORD"]' %>
+  username: admin
+  password: 79181219
