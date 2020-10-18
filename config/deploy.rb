@@ -5,7 +5,7 @@ set :application, 'muscle-app'
 set :repo_url, 'git@github.com:hiroya-nagakura/muscle-app.git'
 set :deploy_to, '/var/www/rails/muscle-app'
 
-# Pumaに関する設定（後述）
+# Pumaに関する設定
 # ソケットの場所、Nginxとのやり取りに必要
 set :puma_bind, "unix://#{shared_path}/tmp/sockets/puma.sock"
 # サーバー状態を表すファイルの場所
@@ -19,7 +19,7 @@ set :puma_error_log, "#{shared_path}/log/puma.access.log"
 # タスクでsudoなどを行う際に必要
 set :pty, true
 # シンボリックリンクのファイルを指定、具体的にはsharedに入るファイル
-set :linked_files, fetch(:linked_files, []).push('config/secrets.yml')
+set :linked_files, fetch(:linked_files, []).push('config/credentials/production.key')
 # シンボリックリンクのディレクトリを生成
 append :linked_dirs, 'log', 'tmp/pids', 'tmp/cache', 'tmp/sockets', 'public/system', 'public/uploads', 'public/storage'
 

@@ -29,5 +29,5 @@ production:
   <<: *default
   host: fitmenu-mysql.cahix3ckj0ot.ap-northeast-1.rds.amazonaws.com
   database: Fitmenu_production
-  username: admin
-  password: 79181219
+  username: <%= Rails.application.credentials.db[:username] %>
+  password: <%= Rails.application.credentials.db[:password] %>
