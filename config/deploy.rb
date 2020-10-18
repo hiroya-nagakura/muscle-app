@@ -19,7 +19,7 @@ set :puma_error_log, "#{shared_path}/log/puma.access.log"
 # タスクでsudoなどを行う際に必要
 set :pty, true
 # シンボリックリンクのファイルを指定、具体的にはsharedに入るファイル
-set :linked_files, fetch(:linked_files, []).push('config/credentials/production.key')
+set :linked_files, fetch(:linked_files, []).push('config/secrets.yml')
 # シンボリックリンクのディレクトリを生成
 append :linked_dirs, 'log', 'tmp/pids', 'tmp/cache', 'tmp/sockets', 'public/system', 'public/uploads', 'public/storage'
 
