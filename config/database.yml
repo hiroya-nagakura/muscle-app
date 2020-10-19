@@ -27,7 +27,7 @@ test:
 
 production:
   <<: *default
-  host: fitmenu-mysql.cahix3ckj0ot.ap-northeast-1.rds.amazonaws.com
+  host: <%= Rails.application.credentials.DB[:host] %>
   database: Fitmenu_production
-  username: admin
-  password: 79181219
+  username: <%= Rails.application.credentials.DB[:user_name] %>
+  password: <%= Rails.application.credentials.DB[:password] %>
