@@ -82,7 +82,9 @@
                       <% @last_weight = bodyweight.weight%>
                       <% if current_user == @user %>
                         <td>
-                          <%= link_to '×', user_bodyweight_path(user_id: @user, id: bodyweight), method: :delete, data: { confirm: '削除しますか？' } %>
+                          <%= link_to user_bodyweight_path(user_id: @user, id: bodyweight), method: :delete, data: { confirm: '削除しますか？' } do %>
+                            <button type="button" class="btn btn-outline-danger btn-sm " data_but="btn-xs"><i class="fas fa-times"></i> </button>
+                          <% end %>
                         </td>
                       <% end %>
                     <% end %>
