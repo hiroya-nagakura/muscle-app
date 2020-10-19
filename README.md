@@ -1,24 +1,74 @@
-# README
+# FitMenu
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
+URL：https://fitmenu.work/
 
-Things you may want to cover:
+Fitmenuはトレーニングメニューを共有することができるアプリです。
 
-* Ruby version
+「トレーニングを始めたいけど、どんなメニューがあるのかわからない。」　「最近メニューがマンネリ化してきたけど、何かいいメニューないかな」、などトレーニング初心者から上級者までどのような方でも利用できます。
 
-* System dependencies
+また、日々の体重を管理できたり、実際に行なったトレーニングを記録できたりする機能もあります。
 
-* Configuration
+# 制作背景
 
-* Database creation
+**より多くの人にトレーニングをする楽しさを知ってほしいと思いこのアプリを作成しました。**
 
-* Database initialization
+ジムへ行くと、ランニングマシンで走って、トレーナーさんが教えてくれたメニューを思い出しながら行うという人が多いと思います。
 
-* How to run the test suite
+それは、どのようなトレーニングメニューがあるのかわからない、またどのようなトレーニングを組み合わせればいいのかわからない
 
-* Services (job queues, cache servers, search engines, etc.)
+ということが根本にあるからだと私は考えました。
 
-* Deployment instructions
+私自身、トレーニングを始めた頃どのようなことをすればいいのか分からず、とりあえず腕立て伏せや腹筋をしたりと効率のあまり良くないことをしていました。
 
-* ...
+その上、そのトレーニングでどこが鍛えられるのか曖昧にしか理解できていなかったため、トレーニング効果の実感も持てず挫折した経験が何度もあります。
+
+そこで、このアプリを通してより多くの人がより簡単に自分に合うトレーニングメニューを知ることができればと思い作成しました。
+
+# 使用技術
+- HTML / SCSS
+- Javascript
+- JQuery
+- Bootstrap
+- Ruby 2.5.1
+- Rails 6.0.3.3
+- MySQL
+- AWS(EC2, VPC, RDS, Route53, ACM, ALB)
+- Doker/docker-compose
+- CircleCI()
+- RSpec
+- rubocop
+
+# 機能一覧
+**ユーザー機能**
+- ユーザーの新規登録、編集
+- プロフィール画像の追加、編集
+- ゲストログイン
+
+**記事機能**
+- 記事の新規投稿、編集、削除 (記事内容にはAction Text使用)
+- 記事一覧表示
+- 記事検索 (Ransack)
+- お気に入り機能 (非同期)
+- コメント機能
+
+**トレーニングメニュー記録機能**
+- トレーニングメニューの記録,編集、削除 (cocoon)
+- カレンダー表示 (トレーニングした日を見える化)
+
+**体重記録機能**
+- 体重の記録、編集、削除
+- グラフによる体重の推移表示
+
+**フォロー機能**
+- ユーザーをフォロー、フォロー解除 （非同期）
+
+**コメント機能**
+- 記事へのコメントの新規投稿、削除
+
+**その他**
+- Rspecによるテスト (example 150以上)
+- ruboco
+- レスポンシブデザイン
+
+# インフラ構図
+ 今後追加
