@@ -6,26 +6,18 @@ class BodyweightsController < ApplicationController
 
   def index
     @bodyweight = Bodyweight.new
-    @bodyweights = Bodyweight.where(user: @user)
-    standard_date = Date.current
-    standard_date = Date.current.ago(params[:date].to_i.weeks) if params[:date]
+    standard_date = Time.current
+    standard_date = Time.current.ago(params[:date].to_i.weeks) if params[:date]
     # 表示用範囲設定
     @date_range = standard_date.beginning_of_week.to_date..standard_date.end_of_week.to_date # 一週間分
-    @dailychart_range = standard_date.prev_week(:monday)..standard_date.end_of_week.to_date # 二週間分
+    @dailychart_range = standard_date.all_week # 一週間分
     @weeklychart_range = standard_date.ago(1.month).beginning_of_month..standard_date.end_of_month # 二ヶ月分
     @monthlychart_range = standard_date.all_year # 一年分
     # 一週間より一つ前のレコードの体重の取得（前回比用）
-    last_weight_record = @bodyweights.order(day: :desc).where('day < ? ', standard_date.beginning_of_week).first
+    last_weight_record = @user.bodyweights.order(day: :desc).where('day < ? ', standard_date.beginning_of_week).first
     @last_weight = last_weight_record.weight if last_weight_record
     # 曜日表示用
     @weeks = %w[日 月 火 水 木 金 土]
-    # チャートの最大値、最小値の設定
-    @dailychart_max = max_value(@dailychart_range)
-    @dailychart_min = min_value(@dailychart_range)
-    @weeklychart_max = max_value(@weeklychart_range)
-    @weeklychart_min = min_value(@weeklychart_range)
-    @monthlychart_max = max_value(@monthlychart_range)
-    @monthlychart_min = min_value(@monthlychart_range)
   end
 
   def create
@@ -69,18 +61,6 @@ class BodyweightsController < ApplicationController
 
   def correct_user
     redirect_to user_bodyweights_path(@user) unless @user == current_user
-  end
-
-  # チャートの最大値を設定するメソッド
-  def max_value(range)
-    max_weight = @bodyweights.where(day: range).maximum(:weight)
-    max_weight.round + 1 if max_weight
-  end
-
-  # チャートの最小値を設定するメソッド
-  def min_value(range)
-    min_weight = @bodyweights.where(day: range).minimum(:weight)
-    min_weight.round - 1 if min_weight
   end
 
   #非公開設定していたら本人以外はトップページへリダイレクト

@@ -24,7 +24,7 @@
     <div class='row'>
       <div class='col-lg-6'>
         <div class='top-record-wrapper white-background'>
-          <h2 class='management-title'>最新のトレーニング記録</h2>
+          <h2 class='management-title'>最新のトレーニング</h2>
           <div class='management-content'>
             <% if @last_record.present? %>
               <%= render 'records/record_table', record: @last_record%>
@@ -38,15 +38,10 @@
       <div class='col-lg-6'>
         <div class='top-chart-wrapper white-background'>
           <h2 class='management-title'>1週間の体重推移</h2>
-          <% if @bodyweights.present? %>
+          <% if current_user.bodyweights.where(day: @dailychart_range).present? %>
           <div class='top-chart weight-chart daily-chart management-content' id='daily-chart'>
             <span class=chart-label>体重 (kg)</span>
-            <%= line_chart @bodyweights.day_chart_date(@dailychart_range), curve: false, 
-                                                                          precision: 4,
-                                                                          width: '90%',
-                                                                          min: @min,
-                                                                          max: @max
-                                                                          %>
+            <%= chart_graph('day', current_user, @dailychart_range) %>
           </div>
           <% else %>
             <p class='no-content'>体重記録がありません</p>
