@@ -1,12 +1,9 @@
 FactoryBot.define do
   factory :article do
     title { '筋トレメニュー' }
-    target_site { 'ターゲット部位' }
-    need { '必要な器具' }
-    recommended_target { 'おすすめしたい人' }
     content { 'メニューの内容' }
     important_point { '注意点など' }
-    user
-    created_at { Faker::Time.between(from: DateTime.now - 2, to: DateTime.now) }
+    association :user
+    association :target_site
   end
 end

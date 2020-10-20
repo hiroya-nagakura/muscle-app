@@ -5,8 +5,11 @@ trix-editor{
   border-radius: 3px;
   margin: 0;
   padding: 0.4em 0.6em;
-  min-height: 10em;
+  min-height: 20em;
   outline: none;
+  overflow-y: auto;
 }
-
+.trix-button{
+  background-color: white !important;
+}
 

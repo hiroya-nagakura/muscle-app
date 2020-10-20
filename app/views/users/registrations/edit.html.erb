@@ -27,6 +27,13 @@
         <%= f.email_field :email, autofocus: true, autocomplete: "email", class: 'form-control' %>
       </div>
 
+      <div class="field form-group">
+        <%= f.label :bodyweights_is_released, '体重管理の公開設定' %>
+        <%= f.check_box :bodyweights_is_released, checked_value: 'true', unchecked_value: 'false' %>
+        <%= f.label :records_is_released, 'トレーニング記録の公開設定' %>
+        <%= f.check_box :records_is_released, checked_value: 'true', unchecked_value: 'false' %>
+      </div>
+
       <% if devise_mapping.confirmable? && resource.pending_reconfirmation? %>
         <div>Currently waiting confirmation for: <%= resource.unconfirmed_email %></div>
       <% end %>
@@ -53,8 +60,8 @@
       </div>
 
       <div class="actions">
-        <%= link_to "キャンセル", :back, class: 'btn btn-outline-secondary'%>
-        <%= f.submit "変更を保存する", class: 'btn btn-primary ' %>
+        <%= link_to "キャンセル", :back, class: 'btn-default cancel-round-btn'%>
+        <%= f.submit "変更を保存する", class: 'btn-default red-round-btn ' %>
       </div>
     <% end %>
   </div>

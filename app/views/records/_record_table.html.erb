@@ -1,0 +1,26 @@
+<h3>
+  <%= record.start_time.month%>月<%= record.start_time.day%>日
+</h3>
+<div class='record-table-wrapper'>
+  <h3>特に鍛えたい部位：<%= record.main_target%></h3>
+  <table class='record-table'>
+    <thead>
+      <tr>
+        <th>メニュー</th>
+        <th class='text-center'>重量</th>
+        <th class='text-center'>回数</th>
+        <th class='text-center'>セット数</th>
+      </tr>
+    </thead>
+    <tbody>
+      <% record.training_menus.each do |training_menu| %>
+        <tr>
+          <td><%= training_menu.menu %></td>
+          <td class='text-center'><%= training_menu.weight %><span> kg</span></td>
+          <td class='text-center'><%= training_menu.rep %><span> rep</span></td>
+          <td class='text-center'><%= training_menu.set %><span> set</span></td>
+        </tr>
+      <% end %>
+    </tbody>
+  </table>
+</div>

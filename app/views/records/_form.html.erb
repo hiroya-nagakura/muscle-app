@@ -1,0 +1,62 @@
+<div class='form-wrapper'>
+  <%= form_with model: [@user, @record], local: true do |f| %>
+
+    <div class="record-form">
+      <div>
+        <% if @record.start_time.present? %>
+          <%= f.date_field :start_time %>
+        <% else %>
+          <%= f.date_field :start_time, value: Date.today%>
+        <% end %>
+      </div>
+      <div class="form-group record-target-form">
+        <%= f.label :main_target, '特に鍛えたい部位'%>
+        <%= f.text_field :main_target, class: 'form-control' %>
+      </div>
+    </div>
+    <div class='record-label'>
+      <div class='record-set nested-fields'>
+        <div class="col-4 record-field">
+          <%= f.label :menu, 'メニュー'%>
+        </div>
+
+        <div class='row col-7'>
+          <div class="col-4 record-field">
+            <%= f.label :weight, '重量' %>
+          </div>
+
+          <div class="col-4 record-field">
+            <%= f.label :rep, '回数' %>
+          </div>
+
+          <div class="col-4 record-field">
+            <%= f.label :set, 'セット数' %>
+          </div>
+        </div>
+      </div>
+    </div>
+    <% if request.path_info == new_user_record_path(@user) %>
+      <% 4.times do %>
+        <%= f.fields_for :training_menus do |f| %>
+            <%= render "training_menu_fields", f: f %>
+        <% end %>
+      <% end %>
+    <% else %>
+      <%= f.fields_for :training_menus do |f| %>
+          <%= render "training_menu_fields", f: f %>
+      <% end %>
+    <% end %>
+
+    <div class="links">
+      <%= link_to_add_association "メニューを追加", f, :training_menus %>
+    </div>
+    <div class="actions text-right">
+      <%= link_to 'キャンセル', :back, class: 'btn-default cancel-round-btn' %>
+      <% if request.path_info == new_user_record_path(@user) %>
+        <%= f.submit "記録する", class: 'btn-default red-round-btn' %>
+      <% else %>
+        <%= f.submit "編集する", class: 'btn-default red-round-btn' %>
+      <% end %>
+    </div>
+  <% end %>
+</div>

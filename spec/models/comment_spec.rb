@@ -22,32 +22,32 @@ RSpec.describe Comment, type: :model do
     it 'ユーザーがいなければ無効な状態であること' do
       comment.user = nil
       comment.valid?
-      expect(comment.errors[:user]).to include("を入力してください")
+      expect(comment.errors[:user]).to include('を入力してください')
     end
 
     it '関連する記事がなければ無効な状態であること' do
       comment.article = nil
       comment.valid?
-      expect(comment.errors[:article]).to include("を入力してください")
+      expect(comment.errors[:article]).to include('を入力してください')
     end
 
     it 'コメント内容がなければ無効な状態であること' do
       comment.content = nil
       comment.valid?
-      expect(comment.errors[:content]).to include("を入力してください")
+      expect(comment.errors[:content]).to include('を入力してください')
     end
   end
 
   describe '文字数の検証' do
     it 'コメント内容が200文字以内だと有効であること' do
-      comment.content = 'あ'*200
+      comment.content = 'あ' * 200
       expect(comment).to be_valid
     end
 
     it 'コメント内容が201文字以上だと無効であること' do
-      comment.content = 'あ'*201
+      comment.content = 'あ' * 201
       comment.valid?
-      expect(comment.errors[:content]).to include("は200文字以内で入力してください")
+      expect(comment.errors[:content]).to include('は200文字以内で入力してください')
     end
   end
 end

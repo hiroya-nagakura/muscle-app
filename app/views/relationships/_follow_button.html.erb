@@ -1,15 +1,15 @@
-<% if user_signed_in?%>
-  <% unless current_user == user %>
+<% if user_signed_in? && user.id != current_user.id%>
+  <div class="follow_form_<%= user.id %>">
     <% if current_user.following?(user) %>
-      <%= form_with url: current_user.relationships.find_by(follow_id: user.id), method: :delete do |f| %>
+      <%= form_with(model: current_user, url: relationship_path(user.id), method: :delete, remote: true) do |f| %>
         <%= hidden_field_tag :follow_id, user.id %>
         <%= f.submit 'フォロー中', class: 'btn btn-success btn-block' %>
       <% end %>
     <% else %>
-      <%= form_with url:current_user.relationships.build do |f| %>
+      <%= form_with(model: current_user, url: relationships_path, method: :post, remote: true) do |f| %>
         <%= hidden_field_tag :follow_id, user.id %>
         <%= f.submit 'フォローする', class: 'btn btn-primary btn-block' %>
       <% end %>
     <% end %>
-  <% end %>
+  </div>
 <% end %>

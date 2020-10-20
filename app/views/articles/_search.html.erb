@@ -1,13 +1,28 @@
 <div class='search-box'>
-  <%= search_form_for @search do |f| %>
-
-      <%= f.label :target_site, '鍛えられる部位' %>
-      <%= f.collection_select :target_site_eq, @search_ary, :target_site, :target_site, include_blank: '部位を選択してください' %>
-      <%= f.select( :sorts, {'並び替え': 'updated_at desc', '日付の新しい順': 'updated_at desc', '日付の古い順': 'updated_at asc' })%>
-    <%= f.label :検索 %>
-    <%= f.search_field :title_or_need_or_recommended_target_cont, placeholder: 'キーワードを入力' %>
-
-
-    <%= f.submit '検索'%>
-  <% end %>
+  <div class='pc-search-box'>
+    <%= search_form_for @search do |f| %>
+      <div class='input-group input-group-lg font-weight-bold'>
+        <%= f.collection_select :target_site_id_eq, TargetSite.all, :id, :muscle_name,
+                                {prompt: "部位を選択"}, {class: "form-control col-lg-2"}%>
+        <%= f.grouped_collection_select :tags_id_eq, TagGroup.all, :tags, :name, :id, :name,
+                                {prompt: "タグを選択"}, {class: "form-control col-lg-2"}%>
+        <%= f.search_field :title_or_tags_name_cont, placeholder: 'キーワードを入力', class: 'form-control' %>
+        <%= f.submit '検索'%>
+      </div>
+    <% end %>
+  </div>
+  <div class='tablet-search-box'>
+    <%= search_form_for @search do |f| %>
+      <div class='input-group input-group-lg'>
+        <%= f.collection_select :target_site_id_eq, TargetSite.all, :id, :muscle_name,
+                                {prompt: "部位を選択", include_blank: '選択しない'},{class: "form-control"}%>
+        <%= f.grouped_collection_select :tags_id_eq, TagGroup.all, :tags, :name, :id, :name,
+                                {prompt: "タグを選択", include_blank: '選択しない'},{class: "form-control"}%>
+      </div>
+      <div class='input-group input-group-lg'>
+        <%= f.search_field :title_or_tags_name_cont, placeholder: 'キーワードを入力', class: 'form-control' %>
+        <%= f.submit '検索'%>
+      </div>
+    <% end %>
+  </div>
 </div>

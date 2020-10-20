@@ -1,0 +1,113 @@
+<% provide :title, '体重管理' %>
+
+<div class='container-fluid'>
+  <h2>体重記録</h2>
+  <div class='row'>
+    <div class='col-lg-7'>
+      <div class='chart-wrapper'>
+        <div class="btn-group btn-group-sm chart-btn-group" role="group">
+          <button type="button" id ='daily-chart-btn' class="btn btn-secondary active">day</button>
+          <button type="button" id ='weekly-chart-btn' class="btn btn-secondary">week</button>
+          <button type="button" id ='monthly-chart-btn' class="btn btn-secondary">month</button>
+        </div>
+        <div class='chart-box'>
+          <span class=chart-label>体重 (kg)</span>
+          <div class='weight-chart active daily-chart' id='daily-chart'>
+            <%= chart_graph('day', @user, @dailychart_range) %>
+          </div>
+          <div class='weight-chart weekly-chart' id='weekly-chart'>
+            <%= chart_graph('week', @user, @weeklychart_range) %>
+          </div>
+          <div class='weight-chart monthly-chart' id='monthly-chart'>
+            <%= chart_graph('month', @user, @monthlychart_range) %>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class='col-lg-5'>
+      <div class='table-wrapper'>
+        <div class='weight-table-wrapper'>
+          <div class='next-back'>
+            <%= link_to "<< 先週",user_bodyweights_path(@user, date: params[:date].to_i + 1) %>
+            <%= link_to "来週 >>",user_bodyweights_path(@user, date: params[:date].to_i - 1) %>
+          </div>
+          <table class='weight-table'>
+            <thead>
+              <tr>
+                <th>日付</th>
+                <th class='text-center'>体重</th>
+                <th>前回比</th>
+              </tr>
+            </thead>
+            <tbody>
+              <% @date_range.each do |date| %>
+                <tr>
+                  <td><%= date.strftime("%-m/%d(#{@weeks[date.wday]})")%></td>
+                  <% @user.bodyweights.each do |bodyweight| %>
+                    <% if bodyweight.day == date %>
+                      <% if current_user == @user %>
+                        <td class='weight-edit-form' >
+                          <%= form_with model: [@user, bodyweight] do |f|%>
+                            <%= f.number_field :weight, step: '0.1', class: 'weight-edit-field' %>
+                            <span class='weight-edit-icon'><i class="fas fa-edit"></i></span>
+                            <span> kg</span><br>
+                            <%= f.submit '編集する', class: 'btn-sm red-round-btn weight-edit-btn '%>
+                          <% end %>
+                        </td>
+                      <% else %>
+                        <td class='text-center'><%= bodyweight.weight %><span> kg</span></td>
+                      <% end %>
+                      <td> 
+                        <% if @last_weight.present? %>
+                          <% if (bodyweight.weight - @last_weight) > 0%>
+                            <p class='positive-weight'>+<%= (bodyweight.weight - @last_weight).round(1) %> kg</p>
+                          <% else%>
+                            <p class='negative-weight'><%= (bodyweight.weight - @last_weight).round(1) %> kg</p>
+                          <% end %>
+                        <% end %>
+                      </td>
+                      <% @last_weight = bodyweight.weight%>
+                      <% if current_user == @user %>
+                        <td>
+                          <%= link_to user_bodyweight_path(user_id: @user, id: bodyweight), method: :delete, data: { confirm: '削除しますか？' } do %>
+                            <button type="button" class="btn btn-outline-danger btn-sm " data_but="btn-xs"><i class="fas fa-times"></i> </button>
+                          <% end %>
+                        </td>
+                      <% end %>
+                    <% end %>
+                  <% end %>
+                </tr>
+              <% end %>
+            </tbody>
+          </table>
+        </div>
+      </div>
+      <input type="button" id="new-bodyweight-btn" class='btn-default btn-lg blue-btn float-right' value='体重を記録する' >
+    </div>
+  </div>
+</div>
+
+<div id="bodyweight-modal" class="bodyweight-modal">
+  <% if user_signed_in? %>
+    <% if current_user == @user %>
+      <div class='form-wrapper weight-new-form'>
+        <%= form_with model: [@user, @bodyweight], local: true do |f| %>
+          <div>
+          <%= f.label :day, '日付'%>
+          <%= f.date_field :day, value: Date.today%>
+          </div>
+
+          <div>
+          <%= f.label :weight, '体重'%>
+          <%= f.number_field :weight, step: '0.1' %><span> kg</span>
+          </div>
+
+          <div class='text-right'>
+            <%= f.submit '記録する', class: 'btn-default red-round-btn'%>
+          </div>
+        <% end %>
+      </div>
+    <% end %>
+  <% end %>
+</div>

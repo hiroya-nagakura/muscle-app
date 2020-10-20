@@ -5,22 +5,15 @@
   <%= render 'search' %>
 
   <div class='article'>
-    <% if @search_articles %>
-      <% if @search_articles.count == 0%>
-        <div class = 'no-hit'>
-          <h2>一致する項目は見つかりません</h2>
-        </div>
-      <% else %>
-        <%= render @search_articles %>
-        <div>
-          <%= paginate @search_articles %>
-        </div>
-      <% end %>
+    <% if @articles.count == 0%>
+      <div class = 'no-hit'>
+        <h2>一致する項目は見つかりません</h2>
+      </div>
     <% else %>
       <%= render @articles %>
-      <div>
-        <%= paginate @articles %>
-      </div>
     <% end %>
+  </div>
+  <div>
+    <%= paginate @articles %>
   </div>
 </div>

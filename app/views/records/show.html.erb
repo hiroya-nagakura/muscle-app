@@ -1,0 +1,9 @@
+<% provide :title, "#{@record.start_time.month}月#{@record.start_time.day}日のメニュー" %>
+
+<div class='container'>
+  <%= render 'record_table', record: @record%>
+  <% if current_user == @user %>
+    <%= link_to '編集する', edit_user_record_path(user_id: @user, id: @record), class: 'btn-default btn-outline-success' %>
+    <%= link_to '削除する', user_record_path(user_id: @user, id: @record), method: :delete, data: { confirm: '削除しますか？' }, class: 'btn-default btn-outline-danger' %>
+  <% end %>
+</div>

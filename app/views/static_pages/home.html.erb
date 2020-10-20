@@ -1,28 +1,72 @@
-<% unless user_signed_in? %>
-  <div class ='top'>
-    <div class ='top-contents'>
-      <div class='top-title'>
-        <h2>FitMenu</h2>
-      </div>
-      <p>おすすめのトレーニングメニューを</p>
-      <p>投稿、シェアすることができるサイトです</p>
-      <p>お気に入りのメニューをみんなと共有しましょう！</p>
-      <div class='top-link'>
-        <%= link_to '新規登録', new_user_registration_path, class: 'btn btn-primary btn-lg'%>
-        <%= link_to 'ログイン', user_session_path, class: 'btn btn-secondary btn-lg'%>
-      </div>
+<div class ='top'>
+  <div class ='top-contents'>
+    <div class='top-search'>
+      <%= search_form_for @search ,class: 'top-search-form', url: articles_path do |f|%>
+        <%= f.search_field :title_or_target_site_muscle_name_or_tags_name_cont, placeholder: 'メニューや鍛えたい部位で検索', class: 'top-search-input' %>
+        <%= button_tag type: 'submit', class: 'top-search-btn' do %>
+          <i class="fas fa-search"></i>
+        <% end %>
+      <% end %>
+    </div>
+    <div class='tag-search'>
+      <p>人気のタグ：</p>
+      <ul class='tag-list'>
+      <% @top5_tag.each do |tag| %>
+        <li class='tag-item'><%= link_to tag.name, articles_path(q: { tags_name_eq: tag.name }), class: 'tag-style tag-search-item'%></li>
+      <% end %>
+      </ul>
     </div>
   </div>
-<% end %>
+</div>
 
-<div class='container'>
-  <h2>人気のメニュー</h2>
-  <div class='top-article'>
-    <%= render partial: 'static_pages/article', collection: @all_ranks %>
-  </div>
-
-  <h2>新着のメニュー</h2>
-  <div class='top-article'>
-    <%= render partial: 'static_pages/article', collection: @new_menu %>
+<div class='container-fluid'>
+  <% if user_signed_in? %>
+    <div class='row'>
+      <div class='col-lg-6'>
+        <div class='top-record-wrapper white-background'>
+          <h2 class='management-title'>最新のトレーニング</h2>
+          <div class='management-content'>
+            <% if @last_record.present? %>
+              <%= render 'records/record_table', record: @last_record%>
+            <% else %>
+              <p class='no-content'>トレーニング記録がありません</p>
+            <% end %>
+            <%= link_to 'トレーニングを記録する', new_user_record_path(current_user), class: 'btn-default blue-btn'%>
+          </div>
+        </div>
+      </div>
+      <div class='col-lg-6'>
+        <div class='top-chart-wrapper white-background'>
+          <h2 class='management-title'>1週間の体重推移</h2>
+          <% if current_user.bodyweights.where(day: @dailychart_range).present? %>
+          <div class='top-chart weight-chart daily-chart management-content' id='daily-chart'>
+            <span class=chart-label>体重 (kg)</span>
+            <%= chart_graph('day', current_user, @dailychart_range) %>
+          </div>
+          <% else %>
+            <p class='no-content'>体重記録がありません</p>
+          <% end %>
+          <%= link_to '体重を記録する', user_bodyweights_path(current_user), class: 'btn-default blue-btn'%>
+        </div>
+      </div>
+    </div>
+  <% end %>
+  <div>
+    <h2 class='top-article-title'>人気のメニュー</h2>
+    <div class='top-articles-wrapper favorite-wrapper white-gackground'>
+      <button id='favorite-scroll-left' class='scroll-btn favorite-scroll-btn'> < </button>
+      <div class='top-article white-background slide' id='favorite-menu-card'>
+        <%= render partial: 'articles/article', collection: @all_ranks %>
+      </div>
+      <button id='favorite-scroll-right' class='scroll-btn favorite-scroll-btn'> > </button>
+    </div>
+    <h2 class='top-article-title'>新着のメニュー</h2>
+    <div class='top-articles-wrapper new-wrapper'>
+      <button id='new-scroll-left' class='scroll-btn new-scroll-btn'> < </button>
+      <div class='top-article white-background slide' id='new-menu-card'>
+        <%= render partial: 'articles/article', collection: @new_menu %>
+      </div>
+      <button id='new-scroll-right'class='scroll-btn new-scroll-btn'> > </button>
+    </div>
   </div>
 </div>

@@ -1,7 +1,7 @@
 <% provide :title, 'ログイン' %>
 
 <div class='container'>
-  <div class='user_form'>
+  <div class='user_form form-wrapper'>
     <h2>ログイン</h2>
 
     <%= form_for(resource, as: resource_name, url: session_path(resource_name)) do |f| %>
@@ -27,7 +27,10 @@
         <%= f.submit "ログイン" %>
       </div>
     <% end %>
-
-    <%= render "users/shared/links" %>
-  </div>
+    <div>
+      <%= link_to 'ゲストログイン（閲覧用）', users_guest_sign_in_path, method: :post , class: 'btn btn-secondary btn-sm guest-btn'%>
+    </div>
+    <div>
+      <%= render "users/shared/links" %>
+    </div>
 </div>
