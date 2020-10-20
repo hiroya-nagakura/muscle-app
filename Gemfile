@@ -81,3 +81,5 @@ gem 'kaminari'
 gem 'ed25519'
 gem 'bcrypt_pbkdf'
 gem 'fog-aws'
+# action textのS3保存用
+gem "aws-sdk-s3", require: false
