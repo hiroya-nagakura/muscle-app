@@ -104,3 +104,5 @@ gem "cocoon"
 #グラフ
 gem "chartkick"
 gem 'groupdate'
+# active storageをS3で保存
+gem "aws-sdk-s3", require: false
