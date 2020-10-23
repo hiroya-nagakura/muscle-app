@@ -1,8 +1,8 @@
 class BodyweightsController < ApplicationController
   before_action :authenticate_user!, only: %i[create update destroy]
   before_action :set_user
-  before_action :correct_user, only: %i[create update destroy]
-  before_action :unreleased
+  before_action :allow_correct_user, only: %i[create update destroy]
+  before_action :deny_browsing_bodyweights
 
   def index
     @bodyweight = Bodyweight.new
@@ -22,25 +22,20 @@ class BodyweightsController < ApplicationController
 
   def create
     @bodyweight = current_user.bodyweights.build(weight_params)
-    if @bodyweight.save
-      redirect_to user_bodyweights_path(@user), notice: '体重を記録しました'
-    else
-      # レンダリングでは諸々の変数を設定しないといけないためリダイレクトに設定
-      redirect_to user_bodyweights_path(@user),
-                  flash: { alert: '記録に失敗しました',
-                           error_messages: @bodyweight.errors.full_messages }
-    end
+    return  redirect_to user_bodyweights_path(@user), notice: '体重を記録しました' if @bodyweight.save
+    # レンダリングでは諸々の変数を設定しないといけないためリダイレクトに設定
+    redirect_to user_bodyweights_path(@user),
+                flash: { alert: '記録に失敗しました',
+                         error_messages: @bodyweight.errors.full_messages }
   end
 
   def update
     @bodyweight = Bodyweight.find(params[:id])
-    if @bodyweight.update(weight_params)
-      redirect_to user_bodyweights_path(@user), notice: '編集しました'
-    else
-      redirect_to user_bodyweights_path(@user),
-                  flash: { alert: '編集に失敗しました',
-                           error_messages: @bodyweight.errors.full_messages }
-    end
+    return  redirect_to user_bodyweights_path(@user), notice: '編集しました' if @bodyweight.update(weight_params)
+    
+    redirect_to user_bodyweights_path(@user),
+                flash: { alert: '編集に失敗しました',
+                         error_messages: @bodyweight.errors.full_messages }
   end
 
   def destroy
@@ -59,14 +54,14 @@ class BodyweightsController < ApplicationController
     @user = User.find(params[:user_id])
   end
 
-  def correct_user
+  def allow_correct_user
     redirect_to user_bodyweights_path(@user) unless @user == current_user
   end
 
   #非公開設定していたら本人以外はトップページへリダイレクト
-  def unreleased
-    unless current_user == @user || @user.bodyweights_is_released
-      redirect_to root_path, flash: { alert: "#{@user.user_name}さんは体重管理を非公開に設定しています" }
+  def deny_browsing_bodyweights
+    unless @user == current_user || @user.bodyweights_is_released
+      redirect_to root_path, alert: "#{@user.user_name}さんは体重管理を非公開に設定しています" 
     end
   end
 end
