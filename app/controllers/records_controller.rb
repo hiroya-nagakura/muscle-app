@@ -1,7 +1,7 @@
 class RecordsController < ApplicationController
   before_action :authenticate_user!, only: %i[new create edit update destroy]
   before_action :set_user
-  before_action :deny_browsing_records
+  before_action :deny_records_browsing
   before_action :allow_correct_user, only: %i[new create edit update destroy]
   
 
@@ -65,7 +65,7 @@ class RecordsController < ApplicationController
   end
 
   # 非公開設定していたら本人以外はトップページにリダイレクト
-  def deny_browsing_records
+  def deny_records_browsing
     unless @user == current_user || @user.records_is_released
       redirect_to root_path, alert: "#{@user.user_name}さんはトレーニング記録を非公開に設定しています"
     end

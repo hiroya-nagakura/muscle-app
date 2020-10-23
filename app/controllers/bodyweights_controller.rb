@@ -2,7 +2,7 @@ class BodyweightsController < ApplicationController
   before_action :authenticate_user!, only: %i[create update destroy]
   before_action :set_user
   before_action :allow_correct_user, only: %i[create update destroy]
-  before_action :deny_browsing_bodyweights
+  before_action :deny_bodyweights_browsing
 
   def index
     @bodyweight = Bodyweight.new
@@ -59,7 +59,7 @@ class BodyweightsController < ApplicationController
   end
 
   #非公開設定していたら本人以外はトップページへリダイレクト
-  def deny_browsing_bodyweights
+  def deny_bodyweights_browsing
     unless @user == current_user || @user.bodyweights_is_released
       redirect_to root_path, alert: "#{@user.user_name}さんは体重管理を非公開に設定しています" 
     end
