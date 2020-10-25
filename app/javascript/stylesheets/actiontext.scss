@@ -8,6 +8,7 @@ trix-editor{
   min-height: 20em;
   outline: none;
   overflow-y: auto;
+  height: fit-content !important;
 }
 .trix-button{
   background-color: white !important;
