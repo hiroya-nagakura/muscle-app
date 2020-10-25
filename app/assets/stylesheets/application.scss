@@ -219,6 +219,12 @@ a{
 .navbar-link-color{
   color: white;
 }
+// フラッシュメッセージ //
+#flash-message{
+  position: fixed;
+  width: 100%;
+  z-index: 100;
+}
 //フッター//
 
 .footer{
