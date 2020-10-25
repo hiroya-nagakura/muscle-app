@@ -9,48 +9,40 @@ RSpec.describe 'Comments', type: :request do
 
   describe '#create' do
     context '未ログイン状態のとき' do
-      it 'コメントを作成できず、ログインページにリダイレクトされること' do
+      it 'コメントを作成できないこと' do
         comment_params = attributes_for(:comment, article_id: @article.id)
         expect do
-          post article_comments_path(@article), params: { comment: comment_params }
+          post article_comments_path(@article), params: { comment: comment_params }, xhr: true
         end.to change(Comment.all, :count).by(0)
-        expect(response).to have_http_status(302)
-        expect(response).to redirect_to '/users/sign_in'
       end
     end
     context 'ログイン状態のとき' do
-      it 'コメントを作成でき、コメントした記事にリダイレクトされる' do
+      it 'コメントを作成できること' do
         sign_in(user)
         comment_params = attributes_for(:comment, article_id: @article.id)
         expect do
-          post article_comments_path(@article), params: { comment: comment_params }
+          post article_comments_path(@article), params: { comment: comment_params }, xhr: true
         end.to change(Comment.all, :count).by(1)
-        expect(response).to have_http_status(302)
-        expect(response).to redirect_to article_path(@article)
       end
     end
   end
 
   describe '#destroy' do
     context '未ログイン状態のとき' do
-      it 'コメントを削除できず、ログインページにリダイレクトされること' do
+      it 'コメントを削除できないこと' do
         comment = create(:comment, article_id: @article.id)
         expect do
-          delete article_comment_path(article_id: @article.id, id: comment.id)
+          delete article_comment_path(article_id: @article.id, id: comment.id), xhr: true
         end.to change(Comment.all, :count).by(0)
-        expect(response).to have_http_status(302)
-        expect(response).to redirect_to '/users/sign_in'
       end
     end
     context 'ログイン状態のとき' do
-      it 'コメントを削除でき、コメントしていた記事にリダイレクトされること' do
+      it 'コメントを削除できること' do
         sign_in(user)
         comment = create(:comment, user: user, article_id: @article.id)
         expect do
-          delete article_comment_path(article_id: @article.id, id: comment.id)
+          delete article_comment_path(article_id: @article.id, id: comment.id), xhr: true
         end.to change(Comment.all, :count).by(-1)
-        expect(response).to have_http_status(302)
-        expect(response).to redirect_to redirect_to article_path(@article)
       end
     end
   end

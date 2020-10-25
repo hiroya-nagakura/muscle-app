@@ -101,8 +101,8 @@
     <div class='article-comment'>
       <div class = 'comments'>
         <h4>コメント一覧</h4>
-        <div class=article-comment-list>
-          <%= render @comments%>
+        <div class=article-comment-list id='comment-list'>
+          <%= render 'comments/comments', comments: @comments%>
         </div>
       </div>
       <% if user_signed_in? %>

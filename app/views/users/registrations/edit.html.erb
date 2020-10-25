@@ -15,11 +15,11 @@
       <div class="field form-group">
         <%= f.label :image,'プロフィール画像' %>
           <% if @user.image? %>
-            <%= image_tag @user.image.url, class: 'avatar-img' %>
+            <%= image_tag @user.image.url, class: 'avatar-img big-img', id: 'img-preview' %>
           <% else %>
-            <%= image_tag "/assets/default.png", :size => '100x100' %>
+            <%= image_tag "/assets/default.png", :size => '100x100', id: 'img-preview' %>
           <% end %>
-        <%= f.file_field :image, accept: 'image/jpeg,image/gif,image/png' %>
+        <%= f.file_field :image, accept: 'image/jpeg,image/gif,image/png', id: 'prof-file' %>
       </div>
 
       <div class="field form-group">

@@ -24,6 +24,8 @@ require('javascripts/static_pages/slide')
 require('javascripts/static_pages/scroll-button')
 require('javascripts/bodyweights/chart-change')
 require('javascripts/bodyweights/modal')
+require('javascripts/users/preview')
+require('javascripts/layouts/flash-message')
 // Uncomment to copy all static images under ../images to the output folder and reference
 // them with the image_pack_tag helper in views (e.g <%= image_pack_tag 'rails.png' %>)
 // or the `imagePath` JavaScript helper below.

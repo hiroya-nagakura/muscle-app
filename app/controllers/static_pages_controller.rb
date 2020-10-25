@@ -3,7 +3,7 @@ class StaticPagesController < ApplicationController
     #最新のトレーニングレコードを取得
     @last_record = Record.where(user: current_user).order(start_time: :desc).first
     #チャート表示に必要な情報の取得
-    @dailychart_range = Time.current.all_week # 表示データ範囲
+    @dailychart_range = Time.current.ago(1.week)..Time.current # 表示データ範囲
     # 人気の記事のIDを上から順に10番目まで配列で取得
     article_rank_ary = Favorite.group(:article_id).order('count(article_id) desc').limit(10).pluck(:article_id)
     # それをもとに記事を取得

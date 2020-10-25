@@ -1,8 +1,8 @@
 class RecordsController < ApplicationController
   before_action :authenticate_user!, only: %i[new create edit update destroy]
   before_action :set_user
-  before_action :unreleased
-  before_action :correct_user, only: %i[new create edit update destroy]
+  before_action :deny_records_browsing
+  before_action :allow_correct_user, only: %i[new create edit update destroy]
   
 
   def index
@@ -22,13 +22,11 @@ class RecordsController < ApplicationController
 
   def create
     @record = current_user.records.build(record_params)
-    if @record.save
-      redirect_to user_records_path(@user), notice: 'トレーニングメニューを記録しました'
-    else
-      flash.now[:alert] = '記録に失敗しました'
-      flash.now[:error_messages] = @record.errors.full_messages
-      render :new
-    end
+    return  redirect_to user_records_path(@user), notice: 'トレーニングメニューを記録しました'if @record.save
+
+    flash.now[:alert] = '記録に失敗しました'
+    flash.now[:error_messages] = @record.errors.full_messages
+    render :new
   end
 
   def destroy
@@ -45,13 +43,11 @@ class RecordsController < ApplicationController
 
   def update
     @record = Record.find(params[:id])
-    if @record.update(record_params)
-      redirect_to user_records_path(@user), notice: 'トレーニングメニューを編集しました'
-    else
-      flash.now[:alert] = '編集に失敗しました'
-      flash.now[:error_messages] = @record.errors.full_messages
-      render 'edit'
-    end
+    return  redirect_to user_records_path(@user), notice: 'トレーニングメニューを編集しました' if @record.update(record_params)
+    
+    flash.now[:alert] = '編集に失敗しました'
+    flash.now[:error_messages] = @record.errors.full_messages
+    render 'edit'
   end
 
   private
@@ -64,14 +60,14 @@ class RecordsController < ApplicationController
     @user = User.find(params[:user_id])
   end
 
-  def correct_user
+  def allow_correct_user
     redirect_to(user_records_path(@user)) unless @user == current_user
   end
 
   # 非公開設定していたら本人以外はトップページにリダイレクト
-  def unreleased
-    unless current_user == @user || @user.records_is_released
-      redirect_to root_path, flash: { alert: "#{@user.user_name}さんは体重管理を非公開に設定しています" }
+  def deny_records_browsing
+    unless @user == current_user || @user.records_is_released
+      redirect_to root_path, alert: "#{@user.user_name}さんはトレーニング記録を非公開に設定しています"
     end
   end
 end

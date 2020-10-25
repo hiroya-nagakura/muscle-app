@@ -1,3 +1,4 @@
-$('.follow_form_<%= @user.id %>').html("<%= j(render("relationships/follow_button", user: @user)) %>");
+$("#comment-list").html("<%= j(render 'comments', comments: @comment.article.comments)%>");
+$('#comment_content').val("");
 $('#flash-message').html("<p class='alert alert-success'><%= @msg %></p>");
 setTimeout("$('.alert-success').fadeOut('slow')", 3000);
