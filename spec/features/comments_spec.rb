@@ -33,7 +33,7 @@ RSpec.feature 'Comments', type: :feature do
     expect do
       fill_in 'comment_content', with: 'コメント投稿のテスト'
       click_button 'コメントする'
-      find 'p', text: 'コメントを投稿しました。'
+      find 'p', text: 'コメントを投稿しました'
     end.to change(Comment.all, :count).by(1)
 
     # コメントが反映されたか検証
@@ -47,7 +47,7 @@ RSpec.feature 'Comments', type: :feature do
     expect do
       click_link 'コメントを削除'
       expect(page.accept_confirm).to eq "削除しますか？"
-      expect(page).to have_text('コメントを削除しました。')
+      expect(page).to have_text('コメントを削除しました')
     end.to change(Comment.all, :count).by(-1)
   end
 end
