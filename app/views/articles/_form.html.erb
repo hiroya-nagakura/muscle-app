@@ -57,6 +57,11 @@
     </div>
 
     <div class="field form-group">
+      <%= f.label :youtube_url, '参考動画（YouTube）のURL' %><br />
+      <%= f.text_field :youtube_url, class: 'form-control' %>
+    </div>
+
+    <div class="field form-group">
       <%= f.label :content, 'メニューの方法' %>
       <%= f.rich_text_area :content, class: 'form-control'%>
     </div>

@@ -625,6 +625,22 @@ a{
   border-bottom: dotted;
   margin: 1em 0;
 }
+.video-wrapper{
+  position: relative;
+  width: 100%;
+  &:before {
+    content:"";
+    display: block;
+    padding-top: 56.25%; /* 高さと幅の比を16:9に固定。9/16*100=56.25 */
+  }
+}
+.video-content{
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+}
 .article-footer{
   border-top: ridge;
   padding: 2em 0;
