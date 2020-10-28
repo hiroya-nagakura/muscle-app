@@ -74,6 +74,8 @@ class ArticlesController < ApplicationController
     elsif @article.youtube_url.include?(str2)
       @article.youtube_url.slice!(str2)
       return @article.youtube_url.first(11)
+    else
+      @aricle.youtube_url.last(11)
     end
   end
 end

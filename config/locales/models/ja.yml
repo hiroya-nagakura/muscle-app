@@ -34,6 +34,7 @@ ja:
         target_site: 鍛えたい部位
         content: メニューの方法
         article_tags: タグ
+        youtube_url: 参考動画のURL
       bodyweight:
         weight: 体重
         day: 日付
