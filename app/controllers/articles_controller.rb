@@ -21,6 +21,7 @@ class ArticlesController < ApplicationController
   end
 
   def show
+    @video_id = youtube_video_id if @article.youtube_url.present?
     @comments = @article.comments
     @comment = Comment.new
   end
@@ -43,7 +44,7 @@ class ArticlesController < ApplicationController
   private
 
   def article_params
-    params.require(:article).permit(:title, :target_site_id, :important_point, :content, tag_ids: [])
+    params.require(:article).permit(:title, :target_site_id, :important_point, :content, :youtube_url, tag_ids: [])
   end
 
   def set_article
@@ -60,5 +61,21 @@ class ArticlesController < ApplicationController
 
   def check_correct_user
     redirect_to(articles_path) unless @article.user == current_user
+  end
+
+  def youtube_video_id
+    # Youtubeのよく上に出てるURL
+    str1 = 'https://www.youtube.com/watch?v='
+    # Youtubeの共有用URL
+    str2 = 'https://youtu.be/'
+    if @article.youtube_url.include?(str1)
+      @article.youtube_url.slice!(str1)
+      return @article.youtube_url.first(11)
+    elsif @article.youtube_url.include?(str2)
+      @article.youtube_url.slice!(str2)
+      return @article.youtube_url.first(11)
+    else
+      @aricle.youtube_url.last(11)
+    end
   end
 end

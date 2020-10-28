@@ -69,4 +69,17 @@ RSpec.describe Article, type: :model do
       expect { article.destroy }.to change(article.comments, :count).by(-1)
     end
   end
+
+  describe 'フォーマットの検証' do
+    it '正しいフォーマットのyoutube_urlは有効であること' do
+      article.youtube_url = 'https://www.youtube.com/watch?v=u-wS8jABqQI'
+      expect(article).to be_valid
+    end
+
+    it '不正なフォーマットのyoutube_urlは無効であること' do
+      article.youtube_url = 'https://www.google.com/'
+      article.valid?
+      expect(article.errors[:youtube_url]).to include('は不正な値です')
+    end
+  end
 end

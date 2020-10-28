@@ -1,5 +1,5 @@
 class Article < ApplicationRecord
-  MAX_ARTICLE_TAGS_LENGTH = 5
+  YOUTUBE_URL = /\A(https\:\/\/)?(www\.)?(youtube\.com\/watch\?v=|youtu\.be\/)+[\S]{11,}\z/
 
   belongs_to :user
   belongs_to :target_site
@@ -12,5 +12,6 @@ class Article < ApplicationRecord
 
   validates :title, presence: true, length: { maximum: 30 }
   validates :content, presence: true
-  validates :article_tags, length: {maximum: MAX_ARTICLE_TAGS_LENGTH}
+  validates :article_tags, length: {maximum: 5 }
+  validates :youtube_url, allow_blank: true, format: { with: YOUTUBE_URL }
 end

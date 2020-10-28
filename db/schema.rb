@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_10_09_115219) do
+ActiveRecord::Schema.define(version: 2020_10_26_154628) do
 
   create_table "action_text_rich_texts", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
     t.string "name", null: false
@@ -85,6 +85,7 @@ ActiveRecord::Schema.define(version: 2020_10_09_115219) do
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
     t.bigint "target_site_id"
+    t.string "youtube_url"
     t.index ["target_site_id"], name: "index_articles_on_target_site_id"
     t.index ["user_id"], name: "index_articles_on_user_id"
   end
