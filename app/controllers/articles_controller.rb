@@ -21,7 +21,7 @@ class ArticlesController < ApplicationController
   end
 
   def show
-    @video_id = youtube_video_id if @article.youtube_url
+    @video_id = youtube_video_id if @article.youtube_url.present?
     @comments = @article.comments
     @comment = Comment.new
   end
