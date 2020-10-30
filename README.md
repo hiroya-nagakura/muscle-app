@@ -30,9 +30,9 @@ Fitmenuはトレーニングメニューを共有することができるアプ�
 - Ruby 2.5.1
 - Rails 6.0.3.3
 - MySQL
-- AWS(EC2, VPC, RDS, Route53, ACM, ALB)
+- AWS(EC2, VPC, RDS, Route53, ACM, ALB, S3)
 - Doker/docker-compose
-- CircleCI()
+- CircleCI(CI/CD)
 - RSpec
 - rubocop
 
@@ -65,8 +65,8 @@ Fitmenuはトレーニングメニューを共有することができるアプ�
 
 **その他**
 - Rspecによるテスト (example 150以上)
-- ruboco
+- rubocop
 - レスポンシブデザイン
 
 # インフラ構図
- 今後追加
+ ![infra](https://user-images.githubusercontent.com/66972481/97733361-124c7680-1b1b-11eb-8a7b-a3fdd8bd6d1b.png)
