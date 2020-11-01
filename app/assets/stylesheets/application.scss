@@ -686,6 +686,12 @@ a{
   @include tablet{
     width: 4em;
   }
+  @include smartphone{
+    width: 2em;
+  }
+  &:hover{
+    transform: scale(1.05);
+  }
 }
 .last-record{
   margin-top: 100px;
