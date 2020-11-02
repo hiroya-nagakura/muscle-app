@@ -64,18 +64,9 @@ class ArticlesController < ApplicationController
   end
 
   def youtube_video_id
-    # Youtubeのよく上に出てるURL
-    str1 = 'https://www.youtube.com/watch?v='
-    # Youtubeの共有用URL
-    str2 = 'https://youtu.be/'
-    if @article.youtube_url.include?(str1)
-      @article.youtube_url.slice!(str1)
-      return @article.youtube_url.first(11)
-    elsif @article.youtube_url.include?(str2)
-      @article.youtube_url.slice!(str2)
-      return @article.youtube_url.first(11)
-    else
-      @aricle.youtube_url.last(11)
-    end
+    # YoutubeのURLの正規表現
+    yt_Regexp = /(https\:\/\/)?(www\.)?(youtube\.com\/watch\?v=|youtu\.be\/)/
+    @article.youtube_url.slice!(yt_Regexp)
+    @article.youtube_url.first(11)
   end
 end
