@@ -8,7 +8,10 @@
 
       <% records.each do |record| %>
         <div>
-          <%= link_to image_tag('stamp.png', class: 'record-logo' ),user_record_path(user_id: @user, id: record.id)%>
+          <%= link_to user_record_path(user_id: @user, id: record.id) do %>
+            <p class='calendar-main-target'><%= record.main_target %></p>
+            <%= image_tag('stamp.png', class: 'record-logo' )%>
+          <% end %>
         </div>
       <% end %>
     <% end %>

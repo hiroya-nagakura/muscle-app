@@ -680,6 +680,13 @@ a{
 }
 //--------------メニュー記録----------------//
 //一覧画面//
+.calendar-main-target{
+  text-align: center;
+  font-weight: bold;
+  @include smartphone{
+    font-size: 0.5em;
+  }
+}
 .record-logo{
   width: 90%;
   transform: rotate( -15deg );
