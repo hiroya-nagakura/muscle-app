@@ -1,4 +1,4 @@
-$(document).on('turbolinks:load', function() {
+document.addEventListener('turbolinks:load', function() {
   var btn = document.getElementById('new-bodyweight-btn');
   var bodyweight_modal = document.getElementById('bodyweight-modal');
 

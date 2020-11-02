@@ -1,4 +1,4 @@
-$(document).on('turbolinks:load', function() {
+document.addEventListener('turbolinks:load', function() {
 	var target_favorite = document.getElementById('favorite-menu-card');
 	if (target_favorite){
 		// 移動幅を取得 //

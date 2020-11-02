@@ -1,4 +1,4 @@
-$(document).on('turbolinks:load', function() {
+document.addEventListener('turbolinks:load', function() {
   var daily_btn = document.getElementById("daily-chart-btn");
   var weekly_btn = document.getElementById("weekly-chart-btn");
   var monthly_btn = document.getElementById("monthly-chart-btn");

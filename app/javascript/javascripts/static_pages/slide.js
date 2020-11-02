@@ -1,5 +1,5 @@
 if (window.matchMedia('(max-width: 768px)').matches) {
-  $(document).on('turbolinks:load', function() {
+  document.addEventListener('turbolinks:load', function() {
     $('.slide').slick({
       dots: true,
       autoplay: true,
