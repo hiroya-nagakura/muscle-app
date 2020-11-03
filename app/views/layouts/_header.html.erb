@@ -1,7 +1,7 @@
 <header class="navbar fixed-top navbar-expand-lg navbar-color justify-content-between">
   <%= link_to image_tag('logo.png', class: 'header-logo' ), root_path, id: "logo" , class: 'navbar-brand'%>
   <div class='navbar-nav header-search-wrapper'>
-      <%= search_form_for @search, url: articles_path do |f| %>
+      <%= search_form_for @search, url: articles_path , id: 'header-search' do |f| %>
         <%= f.search_field :title_or_target_site_muscle_name_or_tags_name_cont, placeholder: 'メニューなどを入力', class: 'header-search' %>
         <button type="submit"><i class="fas fa-search"></i></button>
       <% end %>

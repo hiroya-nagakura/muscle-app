@@ -546,18 +546,7 @@ a{
   margin-bottom: 1em;
   border-radius: 10px;
 }
-.pc-search-box{
-  display: block;
-  @include tablet{
-    display: none;
-  }
-}
-.tablet-search-box{
-  display: none;
-  @include tablet{
-    display: block;
-  }
-}
+
 //記事投稿画面//
 .tag-check-box{
   display: flex;
