@@ -1,6 +1,6 @@
-$(document).on('turbolinks:load', function() {
-  var btn = document.getElementById('new-bodyweight-btn');
-  var bodyweight_modal = document.getElementById('bodyweight-modal');
+document.addEventListener('turbolinks:load', function() {
+  const btn = document.getElementById('new-bodyweight-btn');
+  const bodyweight_modal = document.getElementById('bodyweight-modal');
 
   // ボタンを押したらdisplay: blockにする //
   if (btn) {
