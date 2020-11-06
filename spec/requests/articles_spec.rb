@@ -41,14 +41,15 @@ RSpec.describe 'Articles', type: :request do
       end
     end
     context 'ログイン状態のとき' do
-      it '記事を作成でき一覧ページにリダイレクトされること' do
+      it '記事を作成でき詳細ページにリダイレクトされること' do
         sign_in(user)
         article_params = attributes_for(:article, user: user, target_site_id: target_site.id)
         expect do
           post articles_path, params: { article: article_params }
         end.to change(Article.all, :count).by(1)
+        newest_article = Article.last
         expect(response).to have_http_status(302)
-        expect(response).to redirect_to articles_path
+        expect(response).to redirect_to article_path(newest_article)
       end
     end
   end

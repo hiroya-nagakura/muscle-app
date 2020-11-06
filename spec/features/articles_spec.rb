@@ -43,12 +43,11 @@ RSpec.feature 'Articles', type: :feature do
       # expect(article.content).to eq 'テスト'
       expect(article.important_point).to eq 'テスト'
     end
-    expect(current_path).to eq articles_path
+    expect(current_path).to eq article_path(article)
     expect(page).to have_text('メニューを投稿しました')
 
     #------記事の編集-------
     # 編集ページに移動
-    visit article_path(article)
     click_link '編集'
 
     # 記事の編集
