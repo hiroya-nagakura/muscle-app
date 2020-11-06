@@ -81,4 +81,5 @@ FitMenuはトレーニングメニューを共有することができるアプ�
 - レスポンシブデザイン
 
 # インフラ構図
- ![infra](https://user-images.githubusercontent.com/66972481/97733361-124c7680-1b1b-11eb-8a7b-a3fdd8bd6d1b.png)
+[![Image from Gyazo](https://i.gyazo.com/7492448396f235d8e95be7f09a3c45bd.png)](https://gyazo.com/7492448396f235d8e95be7f09a3c45bd)
+
