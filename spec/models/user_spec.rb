@@ -60,10 +60,12 @@ RSpec.describe User, type: :model do
       expect(user.errors[:user_name]).to include('は20文字以内で入力してください')
     end
     it 'emailが255文字以内の場合有効であること' do
+      # @example.comまで合わせて255文字
       user.email = 'a' * 243 + '@example.com'
       expect(user).to be_valid
     end
     it 'emailが256文字以上の場合無効であること' do
+      # @example.comまで合わせて256文字
       user.email = 'a' * 244 + '@example.com'
       user.valid?
       expect(user.errors[:email]).to include('は255文字以内で入力してください')
@@ -96,26 +98,31 @@ RSpec.describe User, type: :model do
       create(:article, user: user)
       expect { user.destroy }.to change(user.articles, :count).by(-1)
     end
-
     it '削除すると紐づくお気に入りも削除されること' do
       create(:favorite, user: user)
       expect { user.destroy }.to change(user.favorites, :count).by(-1)
     end
-
     it '削除すると紐づくフォローも削除されること' do
       user.follow(user1)
       expect { user.destroy }.to change(user.followings, :count).by(-1)
     end
-
     it '削除すると紐づくフォロワーも削除されること' do
       user.follow(user1)
       expect { user.destroy }.to change(user1.followers, :count).by(-1)
     end
-
-    it '削除すると紐づくコメントも削除される' do
+    it '削除すると紐づくコメントも削除されること' do
       create(:comment, user: user)
       expect { user.destroy }.to change(user.comments, :count).by(-1)
     end
+    it '削除すると紐づくトレーニング記録も削除されること' do
+      create(:record, user: user)
+      expect { user.destroy }.to change(user.records, :count).by(-1)
+    end
+    it '削除すると紐づく体重記録も削除されること' do
+      create(:bodyweight, user: user)
+      expect { user.destroy }.to change(user.bodyweights, :count).by(-1)
+    end
+
   end
 
   describe 'メソッドの検証' do
