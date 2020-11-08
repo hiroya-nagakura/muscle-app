@@ -1,7 +1,7 @@
 class RecordsController < ApplicationController
   before_action :authenticate_user!, only: %i[new create edit update destroy]
   before_action :set_user
-  before_action :deny_records_browsing
+  before_action :deny_records_browsing, only: %i[index]
   before_action :allow_correct_user, only: %i[new create edit update destroy]
   
 

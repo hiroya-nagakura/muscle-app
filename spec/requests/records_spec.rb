@@ -2,6 +2,7 @@ require 'rails_helper'
 
 RSpec.describe 'Records', type: :request do
   let(:user) { create(:user) }
+  let(:deny_user) { create(:user, records_is_released: false) }
   let(:other) { create(:user) }
   let(:record) { create(:record) }
   let(:training_menu) { create(:training_menu) }
@@ -11,6 +12,11 @@ RSpec.describe 'Records', type: :request do
       get user_records_path(user)
       expect(response).to have_http_status(200)
     end
+    it '非公開設定の場合、トップページにリダイレクトされること' do
+      get user_records_path(deny_user)
+      expect(response).to have_http_status(302)
+      expect(response).to redirect_to root_path
+    end
   end
 
   describe '#new' do
@@ -18,7 +24,7 @@ RSpec.describe 'Records', type: :request do
       it 'ログインページにリダイレクトされること' do
         get new_user_record_path(user)
         expect(response).to have_http_status(302)
-        expect(response).to redirect_to '/users/sign_in'
+        expect(response).to redirect_to user_session_path
       end
     end
     context '記録ページ本人でログイン状態のとき' do
@@ -57,7 +63,7 @@ RSpec.describe 'Records', type: :request do
         record_params = attributes_for(:record, training_menus_attributes:[ attributes_for(:training_menu)])
         post user_records_path(user), params: { record: record_params }
         expect(response).to have_http_status(302)
-        expect(response).to redirect_to '/users/sign_in'
+        expect(response).to redirect_to user_session_path
       end
     end
     context '記録ページ本人でログイン状態のとき' do
@@ -109,7 +115,7 @@ RSpec.describe 'Records', type: :request do
       it 'ログインページにリダイレクトされること' do
         delete user_record_path(user_id: user, id: @record)
         expect(response).to have_http_status(302)
-        expect(response).to redirect_to '/users/sign_in'
+        expect(response).to redirect_to user_session_path
       end
     end
     context '記録ページ本人でログイン状態のとき' do
@@ -146,7 +152,7 @@ RSpec.describe 'Records', type: :request do
       it 'ログインページにリダイレクトされること' do
         get edit_user_record_path(user_id: user, id: @record)
         expect(response).to have_http_status(302)
-        expect(response).to redirect_to '/users/sign_in'
+        expect(response).to redirect_to user_session_path
       end
     end
     context '記録ページ本人でログイン状態のとき' do
@@ -179,7 +185,7 @@ RSpec.describe 'Records', type: :request do
         record_params = attributes_for(:record, main_target: '三角筋')
         patch user_record_path(user_id: user, id: @record), params: { record: record_params }
         expect(response).to have_http_status(302)
-        expect(response).to redirect_to '/users/sign_in'
+        expect(response).to redirect_to user_session_path
       end
     end
     context '記録ページ本人でログイン状態のとき' do

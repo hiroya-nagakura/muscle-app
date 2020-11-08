@@ -17,12 +17,17 @@ RSpec.describe 'Comments', type: :request do
       end
     end
     context 'ログイン状態のとき' do
+      before { sign_in(user) }
       it 'コメントを作成できること' do
-        sign_in(user)
         comment_params = attributes_for(:comment, article_id: @article.id)
         expect do
           post article_comments_path(@article), params: { comment: comment_params }, xhr: true
         end.to change(Comment.all, :count).by(1)
+      end
+      it '失敗時、詳細ページにリダイレクトされること' do
+        comment_params = attributes_for(:comment, content: nil, article_id: @article.id)
+        post article_comments_path(@article), params: { comment: comment_params }, xhr: true
+        expect(response).to redirect_to article_path(@article)
       end
     end
   end
