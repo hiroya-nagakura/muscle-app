@@ -2,7 +2,7 @@ class BodyweightsController < ApplicationController
   before_action :authenticate_user!, only: %i[create update destroy]
   before_action :set_user
   before_action :allow_correct_user, only: %i[create update destroy]
-  before_action :deny_bodyweights_browsing
+  before_action :deny_bodyweights_browsing, only: %i[index]
 
   def index
     @bodyweight = Bodyweight.new

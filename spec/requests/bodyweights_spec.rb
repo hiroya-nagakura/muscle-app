@@ -2,6 +2,7 @@ require 'rails_helper'
 
 RSpec.describe 'Bodyweights', type: :request do
   let(:user) { create(:user) }
+  let(:deny_user) { create(:user, bodyweights_is_released: false) }
   let(:other) { create(:user) }
   let(:bodyweight) { create(:bodyweight) }
 
@@ -9,6 +10,11 @@ RSpec.describe 'Bodyweights', type: :request do
     it '正常にアクセスできること' do
       get user_bodyweights_path(user)
       expect(response).to have_http_status(200)
+    end
+    it '非公開設定の場合トップページにリダイレクトされること' do
+      get user_bodyweights_path(deny_user)
+      expect(response).to have_http_status(302)
+      expect(response).to redirect_to root_path
     end
   end
 
@@ -24,7 +30,7 @@ RSpec.describe 'Bodyweights', type: :request do
         bodyweight_params = attributes_for(:bodyweight)
         post user_bodyweights_path(user), params: { bodyweight: bodyweight_params }
         expect(response).to have_http_status(302)
-        expect(response).to redirect_to '/users/sign_in'
+        expect(response).to redirect_to user_session_path
       end
     end
     context '記録ページ本人でログイン状態のとき' do
@@ -78,7 +84,7 @@ RSpec.describe 'Bodyweights', type: :request do
         bodyweight_params = attributes_for(:bodyweight, weight: 80)
         patch user_bodyweight_path(user_id: user, id: @bodyweight), params: { bodyweight: bodyweight_params }
         expect(response).to have_http_status(302)
-        expect(response).to redirect_to '/users/sign_in'
+        expect(response).to redirect_to user_session_path
       end
     end
     context '記録ページ本人でログイン状態のとき' do
@@ -130,7 +136,7 @@ RSpec.describe 'Bodyweights', type: :request do
       it 'ログインページにリダイレクトされること' do
         delete user_bodyweight_path(user_id: user, id: @bodyweight)
         expect(response).to have_http_status(302)
-        expect(response).to redirect_to '/users/sign_in'
+        expect(response).to redirect_to user_session_path
       end
     end
     context '記録ページ本人でログイン状態のとき' do
