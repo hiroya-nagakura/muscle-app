@@ -17,7 +17,7 @@ RSpec.describe 'Articles', type: :request do
       it 'ログインページにリダイレクトされること' do
         get new_article_path
         expect(response).to have_http_status(302)
-        expect(response).to redirect_to '/users/sign_in'
+        expect(response).to redirect_to user_session_path
       end
     end
     context 'ログイン状態のとき' do
@@ -41,7 +41,7 @@ RSpec.describe 'Articles', type: :request do
         article_params = attributes_for(:article, user: user)
         post articles_path, params: { article: article_params }
         expect(response).to have_http_status(302)
-        expect(response).to redirect_to '/users/sign_in'
+        expect(response).to redirect_to user_session_path
       end
     end
     context 'ログイン状態のとき' do
@@ -58,6 +58,12 @@ RSpec.describe 'Articles', type: :request do
         newest_article = Article.last
         expect(response).to have_http_status(302)
         expect(response).to redirect_to article_path(newest_article)
+      end
+      it '失敗時、新規作成ページがレンダリングされること' do
+        article_params = attributes_for(:article, title: nil,user: user, target_site_id: target_site.id)
+        post articles_path, params: { article: article_params }
+        expect(response).to have_http_status(200)
+        expect(response).to render_template :new
       end
     end
   end
@@ -76,7 +82,7 @@ RSpec.describe 'Articles', type: :request do
         article = create(:article, user: user)
         get edit_article_path(article)
         expect(response).to have_http_status(302)
-        expect(response).to redirect_to '/users/sign_in'
+        expect(response).to redirect_to user_session_path
       end
     end
     context 'ログイン状態のとき' do
@@ -102,7 +108,7 @@ RSpec.describe 'Articles', type: :request do
         article = create(:article)
         patch article_path(article)
         expect(response).to have_http_status 302
-        expect(response).to redirect_to '/users/sign_in'
+        expect(response).to redirect_to user_session_path
       end
     end
     context '投稿者でログイン状態のとき' do
@@ -119,6 +125,12 @@ RSpec.describe 'Articles', type: :request do
         patch article_path(@article), params: { article: article_params }
         expect(response).to have_http_status 302
         expect(response).to redirect_to article_path(@article)
+      end
+      it '失敗時、編集ページにリダイレクトされること' do
+        article_params = attributes_for(:article, title: nil)
+        patch article_path(@article), params: { article: article_params }
+        expect(response).to have_http_status(200)
+        expect(response).to render_template :edit
       end
     end
     context '投稿者以外でログイン状態のとき' do
@@ -145,7 +157,7 @@ RSpec.describe 'Articles', type: :request do
         article = create(:article, user: user)
         delete article_path(article)
         expect(response).to have_http_status 302
-        expect(response).to redirect_to '/users/sign_in'
+        expect(response).to redirect_to user_session_path
       end
     end
     context '投稿者でログイン状態のとき' do
