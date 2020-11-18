@@ -14,4 +14,19 @@ class Article < ApplicationRecord
   validates :content, presence: true
   validates :article_tags, length: {maximum: 5 }
   validates :youtube_url, allow_blank: true, format: { with: YOUTUBE_URL }
+
+  def self.sorting(selection)
+    case selection
+    when 'new'
+      order(updated_at: :desc)
+    when 'old'
+      order(updated_at: :asc)
+    when 'comment'
+      joins(:comments).group("id").order("count(comments.user_id) DESC")
+    when 'like'
+      joins(:favorites).group("id").order("count(favorites.user_id) DESC")
+    else
+      order(updated_at: :desc)
+    end
+  end
 end

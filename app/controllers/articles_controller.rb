@@ -5,6 +5,8 @@ class ArticlesController < ApplicationController
   before_action :check_correct_user, only: %i[edit update destroy]
   def index
     @articles = @search.result(distinct: true).page(params[:page]).per(12)
+    selection = params[:sort]
+    # @articles = articles.sorting(selection)
   end
 
   def new

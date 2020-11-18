@@ -3,7 +3,16 @@
 <div class='container'>
   <h2>メニュー一覧</h2>
   <%= render 'search' %>
-
+  <div>
+    <%= sort_link(@search, :updated_at)%>
+    <select onChange="location.href=value;">
+    <option value="">default</option>
+    <option value=<%= articles_path(sort: 'new')%>>新着順</option>
+    <option value=<%= articles_path(sort: 'old')%>>投稿順</option>
+    <option value=<%= articles_path(sort: 'comment')%>>コメントの多い順</option>
+    <option value=<%= articles_path(sort: 'like')%>>いいねの多い順</option>
+</select>
+  </div>
   <div class='article'>
     <% if @articles.count == 0%>
       <div class = 'no-hit'>
