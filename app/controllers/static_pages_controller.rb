@@ -9,7 +9,7 @@ class StaticPagesController < ApplicationController
     # それをもとに記事を取得
     @all_ranks = Article.includes([:article_tags, :tags, :target_site, :user]).find(article_rank_ary)
     # 新しい順に記事を10番目まで取得
-    @new_menu = Article.all.order(updated_at: 'DESC').limit(10).includes([:article_tags, :tags, :target_site, :user])
+    @new_menu = Article.all.order(updated_at: :desc).limit(10).includes([:article_tags, :tags, :target_site, :user])
     # よく使用されているタグのIDを５番目まで取得
     tag_rank_ary = ArticleTag.group(:tag_id).order('count(tag_id) desc').limit(5).pluck(:tag_id)
     # それをもとにタグを取得
