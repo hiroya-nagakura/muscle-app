@@ -32,7 +32,7 @@
             鍛えられる部位：<%= @article.target_site.muscle_name%>
           </p>
         </div>
-        <div class='col-lg-2'>
+        <div class='col-md-2'>
           <div class='article-header-target-box'>
             <% if @article.target_site.muscle_name == '胸' %>
               <%= image_tag('chest.png', alt: 'chest', class: 'target-site-img') %>
