@@ -2,6 +2,7 @@ version: 2.1
 
 jobs:
   build:
+    context: muscle_app_test
     machine:
       image: ubuntu-2004:202104-01
     steps:
