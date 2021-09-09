@@ -1,6 +1,4 @@
 FROM ruby:2.5.1
-ARG RAILS_MASTER_KEY
-ENV RAILS_MASTER_KEY ${RAILS_MASTER_KEY}
 
 # nodejsとmysql-client (default-mysql-client) のインストール
 RUN apt-get update -qq && apt-get install -y curl apt-transport-https wget nodejs default-mysql-client
