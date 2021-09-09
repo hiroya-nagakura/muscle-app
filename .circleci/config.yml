@@ -1,9 +1,4 @@
 version: 2.1
-workflows:
-  test-workflow:
-    jobs:
-      - test:
-        context: muscle_app_test
 
 jobs:
   build:
