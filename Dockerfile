@@ -8,7 +8,8 @@ RUN apt-get update && apt-get install -y curl apt-transport-https wget && \
   curl -sS https://dl.yarnpkg.com/debian/pubkey.gpg | apt-key add - && \
   echo "deb https://dl.yarnpkg.com/debian/ stable main" | tee /etc/apt/sources.list.d/yarn.list && \
   apt-get update -qq && apt-get install -y yarn
-  
+RUN gem install bundler -v2.1.4
+
 # プロジェクトのディレクトリをコンテナに作成
 RUN mkdir /muscle-app
 
@@ -21,7 +22,6 @@ COPY Gemfile.lock /muscle-app/Gemfile.lock
 
 # gemのインストール
 ENV BUNDLER_VERSION 2.1.4
-RUN gem install bundler
 RUN bundle install
 COPY . /muscle-app
 
