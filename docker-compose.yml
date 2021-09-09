@@ -1,5 +1,5 @@
 # docker-composeのバージョン
-version: '3'
+version: "3"
 
 # コンテナの情報
 services:
@@ -7,9 +7,9 @@ services:
     image: mysql:5.7
     environment:
       MYSQL_DATABASE: root
-      MYSQL_PASSWORD: 'yes'
+      MYSQL_PASSWORD: "yes"
     ports:
-      - '3306:3306'
+      - "3306:3306"
     volumes:
       # 初期データを投入するSQLが格納されているdir
       - ./db/mysql_init:/docker-entrypoint-initdb.d
@@ -28,7 +28,7 @@ services:
     # 環境変数の設定
     # RAILS_ENVにdevelopmentを指定で、実行モードを開発モードに
     environment:
-      RAILS_ENV: development
+      RAILS_ENV: test
 
     # コンテナ起動時に実行するコマンド
     # pid情報の削除とRailsサーバー起動
@@ -41,5 +41,5 @@ services:
     ports:
       - "3000:3000"
     depends_on:
-      - db 
+      - db
     # DB側のコンテナが出来上がってからwebを実行する
