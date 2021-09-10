@@ -1,0 +1,26 @@
+version: 2.1
+
+jobs:
+  build:
+    machine:
+      image: ubuntu-2004:202104-01
+    steps:
+      - checkout
+      - run:
+          name: docker-compose build
+          command: docker-compose build
+      - run:
+          name: docker-compose up
+          command: docker-compose up -d
+      - run:
+          name: sleep for waiting launch db
+          command: sleep 10
+      - run:
+          name: before_test setup db
+          command: docker-compose run -e RAILS_MASTER_KEY=$RAILS_MASTER_KEY web bundle exec rails db:create db:migrate 
+      - run:
+          name: test
+          command: docker-compose run web bundle exec rspec
+      - run:
+          name: docker-compose down
+          command: docker-compose down
