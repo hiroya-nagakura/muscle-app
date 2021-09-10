@@ -16,8 +16,8 @@ jobs:
           name: sleep for waiting launch db
           command: sleep 10
       - run:
-          name: "before_test: setup db"
-          command: docker-compose run web bundle exec rails db:create db:migrate -e RAILS_MASTER_KEY=$RAILS_MASTER_KEY
+          name: before_test: setup db
+          command: docker-compose run -e RAILS_MASTER_KEY=$RAILS_MASTER_KEY web bundle exec rails db:create db:migrate 
       - run:
           name: test
           command: docker-compose run web bundle exec rspec
